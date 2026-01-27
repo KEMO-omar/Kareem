@@ -2,82 +2,56 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KAREEM OMAR | CHAOS MODE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>KAREEM OMAR | Responsive Chaos</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@900&family=Orbitron:wght@900&display=swap" rel="stylesheet">
     <style>
         :root { --p: #00f2ff; --s: #bc00ff; --bg: #050505; }
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: crosshair; }
-        body { 
-            background: var(--bg); color: #fff; font-family: 'Cairo', sans-serif; 
-            overflow-x: hidden; user-select: none;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { background: var(--bg); color: #fff; font-family: 'Cairo', sans-serif; overflow-x: hidden; }
 
         /* كانفس الانفجارات */
-        #explosion-canvas {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 9999;
-        }
+        #explosion-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; }
 
-        /* المنيو السائل */
+        /* المنيو المتجاوب */
         nav.cosmic-nav {
-            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px);
-            padding: 10px 30px; border-radius: 50px; border: 1px solid var(--p);
-            display: flex; gap: 20px; z-index: 1000;
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px);
+            padding: 12px 25px; border-radius: 50px; border: 1px solid var(--p);
+            display: flex; gap: 15px; z-index: 1000; width: 90%; max-width: 400px; justify-content: center;
         }
-        .nav-link { color: #fff; text-decoration: none; font-weight: 900; transition: 0.3s; }
-        .nav-link:hover { color: var(--p); transform: scale(1.1); }
+        .nav-link { color: #fff; text-decoration: none; font-weight: 900; font-size: 0.8rem; }
 
-        /* الاسم العملاق مع تأثير الجليتش */
-        .header-content { padding-top: 150px; text-align: center; }
-        .main-name { 
-            font-family: 'Orbitron'; font-size: clamp(40px, 12vw, 90px);
-            animation: glitch 0.2s infinite; text-shadow: 4px 0 var(--s);
-        }
-        @keyframes glitch {
-            0% { transform: translate(2px, 0); }
-            50% { transform: translate(-2px, -1px); }
-            100% { transform: translate(0, 1px); }
-        }
+        /* الاسم والجليتش */
+        .header-content { padding-top: 60px; text-align: center; }
+        .main-name { font-family: 'Orbitron'; font-size: clamp(30px, 10vw, 70px); color: #fff; text-shadow: 3px 0 var(--s); animation: glitch 0.3s infinite; }
+        @keyframes glitch { 0% { transform: translate(1px, 0); } 50% { transform: translate(-1px, -1px); } 100% { transform: translate(0, 1px); } }
 
-        /* صورك الشخصية المتفاعلة */
-        .avatar-row { display: flex; justify-content: center; gap: 15px; margin: 40px 0; }
-        .avatar-row img {
-            width: 80px; height: 80px; border-radius: 50%; border: 3px solid var(--p);
-            transition: 0.2s; position: relative;
-        }
-        .avatar-row img:active { transform: scale(0.5) rotate(360deg); filter: hue-rotate(90deg); }
+        /* الصور الشخصية (PNG) */
+        .avatar-row { display: flex; justify-content: center; gap: 8px; margin: 20px 0; flex-wrap: wrap; }
+        .avatar-row img { width: 60px; height: 60px; border-radius: 50%; border: 2px solid var(--p); object-fit: cover; }
 
-        .container { max-width: 1100px; margin: auto; padding: 20px; }
+        .container { padding: 15px; max-width: 1200px; margin: auto; padding-bottom: 100px; }
 
-        /* معرض الأعمال 21 (jpg) */
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
-        .work-box {
-            background: #111; border-radius: 20px; overflow: hidden;
-            border: 1px solid #222; transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .work-box:hover { transform: scale(1.05) rotate(2deg); border-color: var(--s); }
-        .work-box img { width: 100%; height: 100%; object-fit: cover; }
+        /* شبكة الأعمال (حل مشكلة الصور المختفية) */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+        .work-box { background: #111; border-radius: 12px; overflow: hidden; border: 1px solid #222; aspect-ratio: 1/1; }
+        .work-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
         /* روابط التواصل */
-        .social-btn {
-            display: block; width: 100%; padding: 20px; text-align: center;
-            background: var(--p); color: #000; border-radius: 15px;
-            text-decoration: none; font-weight: 900; margin: 10px 0;
-            transition: 0.3s;
+        .social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 30px; }
+        .social-btn { padding: 15px; text-align: center; background: rgba(255,255,255,0.05); border-radius: 10px; text-decoration: none; color: #fff; font-weight: 900; font-size: 0.9rem; border: 1px solid #333; }
+        .wa-btn { grid-column: span 2; background: #25d366 !important; color: #fff; }
+
+        @media (min-width: 768px) {
+            .grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+            .avatar-row img { width: 90px; height: 90px; }
+            nav.cosmic-nav { top: 20px; bottom: auto; }
         }
-        .social-btn:hover { background: var(--s); color: #fff; transform: translateY(-5px); }
-
-        .wa-btn { background: #25d366 !important; }
-
-        footer { text-align: center; padding: 50px; opacity: 0.3; letter-spacing: 5px; }
     </style>
 </head>
 <body>
-
     <canvas id="explosion-canvas"></canvas>
-
     <nav class="cosmic-nav">
         <a href="#" class="nav-link">HOME</a>
         <a href="#gallery" class="nav-link">WORKS</a>
@@ -86,100 +60,74 @@
 
     <div class="header-content">
         <h1 class="main-name">KAREEM OMAR</h1>
-        <p style="color:var(--p); font-weight: 900;">إمبراطور التصميم الفوضوي 🌀</p>
-        
         <div class="avatar-row">
-            <img src="K.png" onclick="createExplosion(event)" onerror="this.style.display='none'">
-            <img src="A.png" onclick="createExplosion(event)" onerror="this.style.display='none'">
-            <img src="R.png" onclick="createExplosion(event)" onerror="this.style.display='none'">
-            <img src="E.png" onclick="createExplosion(event)" onerror="this.style.display='none'">
-            <img src="M.png" onclick="createExplosion(event)" onerror="this.style.display='none'">
+            <img src="K.png" onclick="boom(event)">
+            <img src="A.png" onclick="boom(event)">
+            <img src="R.png" onclick="boom(event)">
+            <img src="E.png" onclick="boom(event)">
+            <img src="M.png" onclick="boom(event)">
         </div>
     </div>
 
     <div class="container">
         <section id="gallery">
-            <h2 style="margin-bottom: 30px; color: var(--s);">GALLERY_PROJECTS</h2>
             <div class="grid" id="main-grid"></div>
         </section>
 
-        <section id="contact" style="margin-top: 50px;">
-            <a href="https://www.tiktok.com/@kareem_omar15" target="_blank" class="social-btn">TIKTOK 🔥</a>
-            <a href="https://www.facebook.com/share/1DQMkA2biL/" target="_blank" class="social-btn">FACEBOOK 🔗</a>
+        <section id="contact" class="social-grid">
+            <a href="https://www.tiktok.com/@kareem_omar15" target="_blank" class="social-btn">TIKTOK</a>
+            <a href="https://www.facebook.com/share/1DQMkA2biL/" target="_blank" class="social-btn">FACEBOOK</a>
             <a href="https://wa.me/201159562785" target="_blank" class="social-btn wa-btn">WHATSAPP 💬</a>
-            <a href="https://kemo-omar.github.io/Kramlat/" target="_blank" class="social-btn" style="background:var(--s); color:#fff">KRAMLAT PROJECT 🍬</a>
         </section>
-
-        <footer>KAREEM OMAR © 2026</footer>
     </div>
 
     <script>
-        // توليد صور المشاريع بصيغة jpg
+        // حل ذكي للصور: بيجرب jpg ولو منفعش بيجرب png
         const grid = document.getElementById('main-grid');
         for(let i=1; i<=21; i++){
-            grid.innerHTML += `
-                <div class="work-box">
-                    <img src="${i}.jpg" onerror="this.src='https://via.placeholder.com/400?text=Design+${i}'">
-                </div>
-            `;
+            const box = document.createElement('div');
+            box.className = 'work-box';
+            const img = document.createElement('img');
+            // بنحاول نفتح الـ jpg الأول
+            img.src = `${i}.jpg`;
+            // لو الصورة مش موجودة (زي 9 و 10 و 13 عندك)، بيحول لـ png تلقائي
+            img.onerror = function() {
+                if (this.src.endsWith('.jpg')) {
+                    this.src = this.src.replace('.jpg', '.png');
+                } else {
+                    this.style.display = 'none';
+                }
+            };
+            box.appendChild(img);
+            grid.appendChild(box);
         }
 
-        // --- محرك الانفجارات (التفاعل الغريب) ---
+        // محرك الانفجارات المتوافق مع اللمس
         const canvas = document.getElementById('explosion-canvas');
         const ctx = canvas.getContext('2d');
-        let particles = [];
+        let pts = [];
+        function res() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.onresize = res; res();
 
-        function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+        function boom(e) {
+            const x = e.clientX || (e.touches ? e.touches[0].clientX : 0);
+            const y = e.clientY || (e.touches ? e.touches[0].clientY : 0);
+            for(let i=0; i<15; i++) pts.push({ x, y, vx:(Math.random()-0.5)*12, vy:(Math.random()-0.5)*12, l:1, c:Math.random()>0.5?'#00f2ff':'#bc00ff' });
         }
-        window.onresize = resize;
-        resize();
+        window.addEventListener('mousedown', boom);
+        window.addEventListener('touchstart', (e) => boom(e));
 
-        class Particle {
-            constructor(x, y, color) {
-                this.x = x;
-                this.y = y;
-                this.color = color;
-                this.size = Math.random() * 5 + 2;
-                this.speedX = (Math.random() - 0.5) * 10;
-                this.speedY = (Math.random() - 0.5) * 10;
-                this.life = 1;
-            }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                this.life -= 0.02;
-            }
-            draw() {
-                ctx.fillStyle = this.color;
-                ctx.globalAlpha = this.life;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        function createExplosion(e) {
-            const color = Math.random() > 0.5 ? '#00f2ff' : '#bc00ff';
-            for (let i = 0; i < 20; i++) {
-                particles.push(new Particle(e.clientX || e.pageX, e.clientY || e.pageY, color));
-            }
-        }
-
-        // تفاعل عند الضغط في أي مكان
-        window.addEventListener('mousedown', createExplosion);
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles = particles.filter(p => p.life > 0);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
+        function draw() {
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            pts = pts.filter(p => p.l > 0);
+            pts.forEach(p => {
+                p.x+=p.vx; p.y+=p.vy; p.l-=0.02;
+                ctx.fillStyle=p.c; ctx.globalAlpha=p.l;
+                ctx.beginPath(); ctx.arc(p.x,p.y,3,0,7); ctx.fill();
             });
-            requestAnimationFrame(animate);
+            requestAnimationFrame(draw);
         }
-        animate();
+        draw();
     </script>
 </body>
 </html>
