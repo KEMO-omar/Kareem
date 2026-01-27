@@ -2,132 +2,135 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>KAREEM OMAR | Responsive Chaos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAREEM OMAR | THE ULTIMATE PORTFOLIO</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@900&family=Orbitron:wght@900&display=swap" rel="stylesheet">
     <style>
-        :root { --p: #00f2ff; --s: #bc00ff; --bg: #050505; }
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        :root { --p: #00f2ff; --s: #bc00ff; --bg: #080808; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background: var(--bg); color: #fff; font-family: 'Cairo', sans-serif; overflow-x: hidden; }
 
-        /* كانفس الانفجارات */
-        #explosion-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; }
-
-        /* المنيو المتجاوب */
-        nav.cosmic-nav {
-            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px);
-            padding: 12px 25px; border-radius: 50px; border: 1px solid var(--p);
-            display: flex; gap: 15px; z-index: 1000; width: 90%; max-width: 400px; justify-content: center;
+        /* منيو كرملات العائم */
+        nav.kramlat-style-nav {
+            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+            background: rgba(20, 20, 20, 0.9); backdrop-filter: blur(10px);
+            padding: 12px 30px; border-radius: 50px; border: 1px solid var(--p);
+            display: flex; gap: 25px; z-index: 1000; box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
         }
-        .nav-link { color: #fff; text-decoration: none; font-weight: 900; font-size: 0.8rem; }
+        .nav-link { color: #fff; text-decoration: none; font-weight: 900; font-size: 0.9rem; transition: 0.3s; }
+        .nav-link:hover { color: var(--p); transform: scale(1.1); }
 
-        /* الاسم والجليتش */
-        .header-content { padding-top: 60px; text-align: center; }
-        .main-name { font-family: 'Orbitron'; font-size: clamp(30px, 10vw, 70px); color: #fff; text-shadow: 3px 0 var(--s); animation: glitch 0.3s infinite; }
-        @keyframes glitch { 0% { transform: translate(1px, 0); } 50% { transform: translate(-1px, -1px); } 100% { transform: translate(0, 1px); } }
+        /* الهيدر والاسم */
+        .header-section { padding-top: 130px; text-align: center; }
+        .main-title { font-family: 'Orbitron'; font-size: clamp(35px, 10vw, 80px); letter-spacing: 5px; margin-bottom: 10px; }
 
-        /* الصور الشخصية (PNG) */
-        .avatar-row { display: flex; justify-content: center; gap: 8px; margin: 20px 0; flex-wrap: wrap; }
-        .avatar-row img { width: 60px; height: 60px; border-radius: 50%; border: 2px solid var(--p); object-fit: cover; }
+        /* تفاعل الصور الشخصية (PNG) */
+        .personal-photos { display: flex; justify-content: center; gap: 10px; margin: 30px 0; flex-wrap: wrap; }
+        .personal-photos img { 
+            width: 70px; height: 70px; border-radius: 50%; border: 2px solid var(--p); 
+            transition: 0.4s; cursor: pointer; object-fit: cover;
+        }
+        .personal-photos img:hover { transform: rotate(360deg) scale(1.2); border-color: var(--s); box-shadow: 0 0 20px var(--s); }
 
-        .container { padding: 15px; max-width: 1200px; margin: auto; padding-bottom: 100px; }
+        .container { max-width: 1200px; margin: auto; padding: 20px; }
 
         /* شبكة الأعمال (حل مشكلة الصور المختفية) */
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
-        .work-box { background: #111; border-radius: 12px; overflow: hidden; border: 1px solid #222; aspect-ratio: 1/1; }
-        .work-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .work-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; }
+        .work-card { background: #111; border-radius: 15px; overflow: hidden; border: 1px solid #222; aspect-ratio: 1/1; position: relative; }
+        .work-card img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* روابط التواصل */
-        .social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 30px; }
-        .social-btn { padding: 15px; text-align: center; background: rgba(255,255,255,0.05); border-radius: 10px; text-decoration: none; color: #fff; font-weight: 900; font-size: 0.9rem; border: 1px solid #333; }
-        .wa-btn { grid-column: span 2; background: #25d366 !important; color: #fff; }
+        /* أزرار التواصل السريعة */
+        .contact-footer { margin-top: 50px; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+        .btn-social { padding: 15px; text-align: center; border-radius: 12px; text-decoration: none; color: #fff; font-weight: 900; background: #1a1a1a; border: 1px solid #333; transition: 0.3s; }
+        .btn-social:hover { border-color: var(--p); box-shadow: 0 0 15px var(--p); }
 
-        @media (min-width: 768px) {
-            .grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
-            .avatar-row img { width: 90px; height: 90px; }
-            nav.cosmic-nav { top: 20px; bottom: auto; }
-        }
+        canvas#exploder { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; }
     </style>
 </head>
 <body>
-    <canvas id="explosion-canvas"></canvas>
-    <nav class="cosmic-nav">
-        <a href="#" class="nav-link">HOME</a>
-        <a href="#gallery" class="nav-link">WORKS</a>
-        <a href="#contact" class="nav-link">CONTACT</a>
-    </nav>
 
-    <div class="header-content">
-        <h1 class="main-name">KAREEM OMAR</h1>
-        <div class="avatar-row">
-            <img src="K.png" onclick="boom(event)">
-            <img src="A.png" onclick="boom(event)">
-            <img src="R.png" onclick="boom(event)">
-            <img src="E.png" onclick="boom(event)">
-            <img src="M.png" onclick="boom(event)">
-        </div>
+<canvas id="exploder"></canvas>
+
+<nav class="kramlat-style-nav">
+    <a href="#" class="nav-link">الرئيسية</a>
+    <a href="#gallery" class="nav-link">أعمالي</a>
+    <a href="https://kemo-omar.github.io/Kramlat/" class="nav-link" style="color:var(--s)">كرملات 🍬</a>
+</nav>
+
+<div class="header-section">
+    <h1 class="main-title">KAREEM OMAR</h1>
+    <div class="personal-photos">
+        <img src="K.png" onclick="pop(event)" onerror="this.style.display='none'">
+        <img src="A.png" onclick="pop(event)" onerror="this.style.display='none'">
+        <img src="R.png" onclick="pop(event)" onerror="this.style.display='none'">
+        <img src="E.png" onclick="pop(event)" onerror="this.style.display='none'">
+        <img src="M.png" onclick="pop(event)" onerror="this.style.display='none'">
     </div>
+</div>
 
-    <div class="container">
-        <section id="gallery">
-            <div class="grid" id="main-grid"></div>
-        </section>
+<div class="container">
+    <section id="gallery">
+        <h2 style="margin-bottom: 20px; color: var(--p);">PROJECTS_SHOWCASE</h2>
+        <div class="work-grid" id="grid-container"></div>
+    </section>
 
-        <section id="contact" class="social-grid">
-            <a href="https://www.tiktok.com/@kareem_omar15" target="_blank" class="social-btn">TIKTOK</a>
-            <a href="https://www.facebook.com/share/1DQMkA2biL/" target="_blank" class="social-btn">FACEBOOK</a>
-            <a href="https://wa.me/201159562785" target="_blank" class="social-btn wa-btn">WHATSAPP 💬</a>
-        </section>
-    </div>
+    <section id="contact" class="contact-footer">
+        <a href="https://www.facebook.com/share/1DQMkA2biL/" class="btn-social">FACEBOOK</a>
+        <a href="https://www.tiktok.com/@kareem_omar15" class="btn-social">TIKTOK</a>
+        <a href="mailto:kareemguinness@gmail.com" class="btn-social">EMAIL</a>
+        <a href="https://wa.me/201159562785" class="btn-social" style="background:#25d366; border:none;">WHATSAPP</a>
+    </section>
+</div>
 
-    <script>
-        // حل ذكي للصور: بيجرب jpg ولو منفعش بيجرب png
-        const grid = document.getElementById('main-grid');
-        for(let i=1; i<=21; i++){
-            const box = document.createElement('div');
-            box.className = 'work-box';
-            const img = document.createElement('img');
-            // بنحاول نفتح الـ jpg الأول
-            img.src = `${i}.jpg`;
-            // لو الصورة مش موجودة (زي 9 و 10 و 13 عندك)، بيحول لـ png تلقائي
-            img.onerror = function() {
-                if (this.src.endsWith('.jpg')) {
-                    this.src = this.src.replace('.jpg', '.png');
-                } else {
-                    this.style.display = 'none';
-                }
-            };
-            box.appendChild(img);
-            grid.appendChild(box);
-        }
+<script>
+    // نظام فحص الصور: لو مش موجودة jpg بيحول لـ png تلقائياً
+    const container = document.getElementById('grid-container');
+    const images = [
+        "1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", 
+        "9.png", "10.png", "11.jpg", "12.jpg", "13.png", "14.jpg", "15.jpg", 
+        "16.jpg", "17.jpg", "18.jpg", "19.jpg", "20.jpg", "21.jpg"
+    ]; // بناءً على أسماء ملفاتك الحقيقية في الصور المرفوعة
 
-        // محرك الانفجارات المتوافق مع اللمس
-        const canvas = document.getElementById('explosion-canvas');
-        const ctx = canvas.getContext('2d');
-        let pts = [];
-        function res() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-        window.onresize = res; res();
+    images.forEach(name => {
+        const card = document.createElement('div');
+        card.className = 'work-card';
+        const img = document.createElement('img');
+        img.src = name;
+        img.onerror = function() { this.style.display='none'; };
+        card.appendChild(img);
+        container.appendChild(card);
+    });
 
-        function boom(e) {
-            const x = e.clientX || (e.touches ? e.touches[0].clientX : 0);
-            const y = e.clientY || (e.touches ? e.touches[0].clientY : 0);
-            for(let i=0; i<15; i++) pts.push({ x, y, vx:(Math.random()-0.5)*12, vy:(Math.random()-0.5)*12, l:1, c:Math.random()>0.5?'#00f2ff':'#bc00ff' });
-        }
-        window.addEventListener('mousedown', boom);
-        window.addEventListener('touchstart', (e) => boom(e));
+    // محرك الانفجارات (التفاعل الغريب)
+    const canvas = document.getElementById('exploder');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    window.onresize = resize; resize();
 
-        function draw() {
-            ctx.clearRect(0,0,canvas.width,canvas.height);
-            pts = pts.filter(p => p.l > 0);
-            pts.forEach(p => {
-                p.x+=p.vx; p.y+=p.vy; p.l-=0.02;
-                ctx.fillStyle=p.c; ctx.globalAlpha=p.l;
-                ctx.beginPath(); ctx.arc(p.x,p.y,3,0,7); ctx.fill();
+    function pop(e) {
+        for(let i=0; i<15; i++) {
+            particles.push({
+                x: e.clientX || e.pageX, y: e.clientY || e.pageY,
+                vX: (Math.random()-0.5)*10, vY: (Math.random()-0.5)*10,
+                alpha: 1, color: Math.random()>0.5 ? '#00f2ff' : '#bc00ff'
             });
-            requestAnimationFrame(draw);
         }
-        draw();
-    </script>
+    }
+    window.addEventListener('mousedown', pop);
+
+    function frame() {
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        particles.forEach((p,i) => {
+            p.x+=p.vX; p.y+=p.vY; p.alpha-=0.02;
+            ctx.globalAlpha = p.alpha; ctx.fillStyle = p.color;
+            ctx.beginPath(); ctx.arc(p.x,p.y,3,0,7); ctx.fill();
+            if(p.alpha <= 0) particles.splice(i,1);
+        });
+        requestAnimationFrame(frame);
+    }
+    frame();
+</script>
+
 </body>
 </html>
