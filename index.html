@@ -2,148 +2,143 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>KEMO OMAR | THE CV CHAOS</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Orbitron:wght@900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KEMO OMAR | Creative Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --neon: #00f2ff; --purple: #bc00ff; --lime: #ccff00; --bg: #000;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: crosshair; }
+        :root { --p: #00f2ff; --s: #bc00ff; --bg: #0f1113; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
-            background: var(--bg); color: #fff; font-family: 'Cairo', sans-serif; 
-            overflow-x: hidden; scroll-behavior: smooth;
+            background: var(--bg); color: #e0e0e0; 
+            font-family: 'Cairo', sans-serif; line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* الطبقات العائمة (الصور الشخصية) */
-        .karem-img {
-            position: fixed; width: clamp(80px, 15vw, 150px); height: auto; 
-            z-index: 5; filter: drop-shadow(0 0 10px var(--neon));
-            pointer-events: auto; transition: 0.3s; opacity: 0.7;
+        /* دوائر الصور الشخصية فوق */
+        .avatar-header {
+            display: flex; justify-content: center; gap: 15px;
+            padding: 40px 10px; flex-wrap: wrap;
+            background: rgba(0,0,0,0.3);
         }
-        .karem-img:hover { opacity: 1; transform: scale(1.2) !important; z-index: 100; }
+        .avatar-header img {
+            width: 80px; height: 80px; border-radius: 50%;
+            border: 3px solid var(--p); box-shadow: 0 0 15px var(--p);
+            object-fit: cover; transition: 0.3s;
+        }
+        .avatar-header img:hover { transform: scale(1.1); border-color: var(--s); box-shadow: 0 0 15px var(--s); }
 
-        /* الهيدر */
-        header {
-            height: 100vh; display: flex; flex-direction: column; 
-            align-items: center; justify-content: center; position: relative; z-index: 10;
-        }
-        .glitch-name {
-            font-family: 'Orbitron'; font-size: clamp(40px, 12vw, 100px);
-            text-shadow: 3px 0 var(--purple), -3px 0 var(--neon);
-            animation: glitch 0.3s infinite alternate;
-        }
-        @keyframes glitch { 0% { transform: skew(2deg); } 100% { transform: skew(-2deg); } }
+        .container { max-width: 900px; margin: auto; padding: 20px; }
 
-        /* النبذة الشخصية (الـ CV) */
-        .cv-section {
-            padding: 50px 20px; position: relative; z-index: 10;
-            max-width: 900px; margin: auto; background: rgba(255,255,255,0.02);
-            border: 1px solid var(--purple); border-radius: 30px; backdrop-filter: blur(10px);
-            margin-bottom: 50px;
+        /* الواجهة */
+        .hero { text-align: center; margin-bottom: 60px; }
+        .hero h1 { 
+            font-size: 3rem; color: #fff; margin-bottom: 10px;
+            background: linear-gradient(to right, var(--p), var(--s));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-        .bio-text { font-size: 1.5rem; color: var(--lime); font-weight: 900; text-align: center; margin-bottom: 30px; }
-        .skills-tag {
-            display: inline-block; padding: 8px 20px; border: 1px solid var(--neon);
-            margin: 5px; border-radius: 50px; font-size: 0.9rem;
+        .hero p { font-size: 1.2rem; color: var(--p); font-weight: bold; }
+
+        /* الأقسام */
+        section { 
+            background: rgba(255,255,255,0.03); padding: 30px; 
+            border-radius: 20px; margin-bottom: 30px; border-right: 4px solid var(--p);
+        }
+        h2 { color: var(--p); margin-bottom: 20px; font-size: 1.5rem; display: flex; align-items: center; gap: 10px; }
+
+        /* شبكة الأعمال */
+        .work-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px; margin-top: 20px;
+        }
+        .work-item {
+            aspect-ratio: 1/1; background: #1a1d21; border-radius: 12px;
+            overflow: hidden; border: 1px solid #333;
+        }
+        .work-item img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: 0.3s; }
+        .work-item:hover img { opacity: 1; transform: scale(1.05); }
+
+        /* أزرار التواصل */
+        .links-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+        .link-card {
+            flex: 1; min-width: 140px; padding: 15px; text-align: center;
+            background: #1a1d21; border-radius: 12px; text-decoration: none;
+            color: #fff; border: 1px solid #333; transition: 0.3s;
+        }
+        .link-card:hover { border-color: var(--p); background: rgba(0,242,255,0.05); }
+
+        .btn-main {
+            display: block; width: 100%; padding: 15px; text-align: center;
+            background: linear-gradient(45deg, var(--p), var(--s));
+            color: #fff; text-decoration: none; border-radius: 12px;
+            font-weight: 900; margin-top: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
-        /* المعرض */
-        .gallery-title { text-align: center; font-family: 'Orbitron'; color: var(--neon); margin: 50px 0; }
-        .grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px; padding: 0 20px;
-        }
-        .card {
-            height: 300px; background: #080808; border-radius: 15px; overflow: hidden;
-            transform: rotate(calc(Math.random() * 10 - 5 deg)); transition: 0.4s;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        .card:hover { transform: rotate(0) scale(1.05); border-color: var(--neon); }
-        .card img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
-        .card:hover img { opacity: 1; }
-
-        /* التواصل */
-        .contact-box {
-            text-align: center; padding: 100px 20px; background: linear-gradient(transparent, #111);
-        }
-        .social-link {
-            color: #fff; text-decoration: none; margin: 0 15px; font-weight: 900;
-            display: inline-block; transition: 0.3s; font-size: 1.2rem;
-        }
-        .social-link:hover { color: var(--neon); transform: translateY(-5px); }
-
-        /* الزر العائم لكرملات */
-        .kramlat-btn {
-            position: fixed; bottom: 100px; right: 20px; z-index: 1000;
-            background: var(--purple); color: #fff; padding: 10px 20px;
-            border-radius: 50px; text-decoration: none; font-weight: 900;
-            box-shadow: 0 0 20px var(--purple); animation: pulse 2s infinite;
-        }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+        footer { text-align: center; padding: 40px; opacity: 0.5; font-size: 0.9rem; }
     </style>
 </head>
 <body>
 
-<header>
-    <p style="color:var(--neon); letter-spacing: 10px;">كيمو بيمسي على أحلى ناس</p>
-    <h1 class="glitch-name">KEMO OMAR</h1>
-    <div style="margin-top: 20px;">
-        <span class="skills-tag">Poster Design</span>
-        <span class="skills-tag">Drawing Art</span>
-        <span class="skills-tag">Canva Pro</span>
-        <span class="skills-tag">PicsArt Wizard</span>
+    <div class="avatar-header">
+        <img src="K.png" alt="K" onerror="this.style.display='none'">
+        <img src="A.png" alt="A" onerror="this.style.display='none'">
+        <img src="R.png" alt="R" onerror="this.style.display='none'">
+        <img src="E.png" alt="E" onerror="this.style.display='none'">
+        <img src="M.png" alt="M" onerror="this.style.display='none'">
     </div>
-</header>
 
-<div class="cv-section">
-    <p class="bio-text">"أنا مش بس برسم صور.. أنا برسم طموحاتي وبحققها، ومبسوط باللي وصلتله وطمعان في اللي جاي!"</p>
-    <div style="text-align: right; line-height: 2;">
-        <p>👨‍🎨 <b>مين أنا؟</b> فنان ومصمم بوسترات، بعشق الرسم وبحول الخيال لواقع.</p>
-        <p>🛠️ <b>عدتي:</b> بستخدم PicsArt و Canva عشان أطلع شغل "يخض".</p>
-        <p>🚀 <b>طموحي:</b> عملت موقع كرملات ومكمل عشان أحقق حاجات أكتر بكتير.</p>
-    </div>
-</div>
+    <div class="container">
+        <div class="hero">
+            <h1>كيمو عمر</h1>
+            <p>كيمو بيمسي على أحلى ناس ✌️</p>
+        </div>
 
-<h2 class="gallery-title">MY WORKS | أعمالي</h2>
-<div class="grid" id="gallery"></div>
+        <section>
+            <h2>👤 نبذة عني</h2>
+            <p>أنا مصمم بوسترات لكل حاجة وبحب الرسم جداً. بدأت طريقي وبحاول أطور من نفسي كل يوم، ومبسوط باللي وصلتله وطمعان في كرم ربنا إني أحقق حاجات أكتر وأكبر الفترة الجاية.</p>
+        </section>
 
-<div class="contact-box">
-    <h3>خلينا على تواصل</h3>
-    <div style="margin-top: 30px;">
-        <a href="https://www.facebook.com/share/1DQMkA2biL/" class="social-link">Facebook</a>
-        <a href="https://www.tiktok.com/@kareem_omar15" class="social-link">TikTok</a>
-        <a href="mailto:kareemguinness@gmail.com" class="social-link">Email</a>
-        <a href="https://wa.me/201159562785" class="social-link" style="color:#25d366">WhatsApp</a>
-    </div>
-</div>
+        <section>
+            <h2>🎨 الأدوات اللي بستخدمها</h2>
+            <p>شغلي كله بيطلع بجودة عالية على حسب المشروع، وبستخدم أدوات زي <b>Canva</b> و <b>PicsArt</b> عشان أطلع أحسن نتيجة ممكنة.</p>
+        </section>
 
-<a href="https://kemo-omar.github.io/Kramlat/" class="kramlat-btn">مشروع كرملات 🍬</a>
+        <section>
+            <h2>🖼️ معرض أعمالي</h2>
+            <div class="work-grid" id="gallery">
+                </div>
+        </section>
 
-<script>
-    // توزيع الصور الشخصية (K,A,R,E,M)
-    const photos = ['K.png', 'A.png', 'R.png', 'E.png', 'M.png'];
-    photos.forEach(p => {
-        const img = document.createElement('img');
-        img.src = p;
-        img.className = 'karem-img';
-        img.style.left = Math.random() * 80 + '%';
-        img.style.top = Math.random() * 80 + '%';
-        img.style.transform = `rotate(${Math.random() * 40 - 20}deg)`;
-        img.onerror = () => img.style.display = 'none';
-        document.body.appendChild(img);
-    });
+        <section>
+            <h2>🔗 مشاريعي</h2>
+            <a href="https://kemo-omar.github.io/Kramlat/" class="link-card" style="display: block; margin-bottom: 10px;">
+                🍬 موقع كرملات - اضغط لمشاهدة المشروع
+            </a>
+        </section>
 
-    // توليد المعرض
-    const gal = document.getElementById('gallery');
-    for(let i=1; i<=21; i++){
-        gal.innerHTML += `
-            <div class="card">
-                <img src="${i}.png" onerror="this.src='https://via.placeholder.com/300x400/000/00f2ff?text=Design+${i}'">
+        <section>
+            <h2>📱 تواصل معايا</h2>
+            <div class="links-grid">
+                <a href="https://www.facebook.com/share/1DQMkA2biL/" class="link-card">فيسبوك</a>
+                <a href="https://www.tiktok.com/@kareem_omar15" class="link-card">تيك توك</a>
+                <a href="mailto:kareemguinness@gmail.com" class="link-card">الإيميل</a>
             </div>
-        `;
-    }
-</script>
+            <a href="https://wa.me/201159562785" class="btn-main">ابعتلي على واتساب 💬</a>
+        </section>
 
+        <footer>
+            جميع الحقوق محفوظة لكيمو عمر © 2026
+        </footer>
+    </div>
+
+    <script>
+        const gal = document.getElementById('gallery');
+        for(let i=1; i<=21; i++){
+            gal.innerHTML += `
+                <div class="work-item">
+                    <img src="${i}.png" alt="Design ${i}" onerror="this.src='https://via.placeholder.com/300?text=Project+${i}'">
+                </div>
+            `;
+        }
+    </script>
 </body>
 </html>
