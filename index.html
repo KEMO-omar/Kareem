@@ -3,134 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KAREEM OMAR | THE ULTIMATE PORTFOLIO</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@900&family=Orbitron:wght@900&display=swap" rel="stylesheet">
+    <title>KAREEM OMAR | Official Hybrid Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Orbitron:wght@800&display=swap" rel="stylesheet">
     <style>
-        :root { --p: #00f2ff; --s: #bc00ff; --bg: #080808; }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --p: #00f2ff; --s: #bc00ff; --bg: #050505; --glass: rgba(255, 255, 255, 0.03); }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         body { background: var(--bg); color: #fff; font-family: 'Cairo', sans-serif; overflow-x: hidden; }
 
-        /* منيو كرملات العائم */
-        nav.kramlat-style-nav {
+        /* ١. منيو كرملات العائم (بلمسة احترافية) */
+        nav {
             position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
-            background: rgba(20, 20, 20, 0.9); backdrop-filter: blur(10px);
-            padding: 12px 30px; border-radius: 50px; border: 1px solid var(--p);
-            display: flex; gap: 25px; z-index: 1000; box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
+            background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(15px);
+            padding: 10px 30px; border-radius: 50px; border: 1px solid rgba(0, 242, 255, 0.2);
+            display: flex; gap: 20px; z-index: 1000; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-        .nav-link { color: #fff; text-decoration: none; font-weight: 900; font-size: 0.9rem; transition: 0.3s; }
-        .nav-link:hover { color: var(--p); transform: scale(1.1); }
+        nav a { color: #888; text-decoration: none; font-weight: 700; font-size: 0.85rem; transition: 0.3s; }
+        nav a:hover { color: var(--p); }
 
-        /* الهيدر والاسم */
-        .header-section { padding-top: 130px; text-align: center; }
-        .main-title { font-family: 'Orbitron'; font-size: clamp(35px, 10vw, 80px); letter-spacing: 5px; margin-bottom: 10px; }
-
-        /* تفاعل الصور الشخصية (PNG) */
-        .personal-photos { display: flex; justify-content: center; gap: 10px; margin: 30px 0; flex-wrap: wrap; }
-        .personal-photos img { 
-            width: 70px; height: 70px; border-radius: 50%; border: 2px solid var(--p); 
-            transition: 0.4s; cursor: pointer; object-fit: cover;
+        /* ٢. هيدر "الفوضى المنظمة" (Glitch Title) */
+        header { height: 80vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+        .main-name { 
+            font-family: 'Orbitron'; font-size: clamp(35px, 10vw, 85px); letter-spacing: 5px;
+            background: linear-gradient(to right, #fff, var(--p)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: float 3s ease-in-out infinite;
         }
-        .personal-photos img:hover { transform: rotate(360deg) scale(1.2); border-color: var(--s); box-shadow: 0 0 20px var(--s); }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+        /* ٣. تفاعل الصور الشخصية (Luxury Hover) */
+        .avatar-box { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; justify-content: center; }
+        .avatar-box img { 
+            width: 65px; height: 65px; border-radius: 50%; border: 2px solid #222; 
+            transition: 0.5s; cursor: pointer; object-fit: cover;
+        }
+        .avatar-box img:hover { transform: scale(1.2) rotate(10deg); border-color: var(--p); box-shadow: 0 0 20px var(--p); }
 
         .container { max-width: 1200px; margin: auto; padding: 20px; }
 
-        /* شبكة الأعمال (حل مشكلة الصور المختفية) */
-        .work-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; }
-        .work-card { background: #111; border-radius: 15px; overflow: hidden; border: 1px solid #222; aspect-ratio: 1/1; position: relative; }
-        .work-card img { width: 100%; height: 100%; object-fit: cover; }
+        /* ٤. شبكة المعرض الفخم (Glassmorphism) */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; }
+        @media (min-width: 768px) { .grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 25px; } }
+        
+        .card { 
+            background: var(--glass); border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); 
+            overflow: hidden; position: relative; aspect-ratio: 1/1; transition: 0.4s;
+        }
+        .card:hover { transform: translateY(-10px); border-color: var(--p); }
+        .card img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: 0.5s; }
+        .card:hover img { opacity: 1; transform: scale(1.1); }
 
-        /* أزرار التواصل السريعة */
-        .contact-footer { margin-top: 50px; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
-        .btn-social { padding: 15px; text-align: center; border-radius: 12px; text-decoration: none; color: #fff; font-weight: 900; background: #1a1a1a; border: 1px solid #333; transition: 0.3s; }
-        .btn-social:hover { border-color: var(--p); box-shadow: 0 0 15px var(--p); }
+        /* ٥. أزرار التواصل المتجاوبة */
+        .social { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 50px; }
+        .s-btn { flex: 1; min-width: 140px; padding: 15px; text-align: center; background: #111; border-radius: 15px; text-decoration: none; color: #fff; font-weight: 700; border: 1px solid #222; transition: 0.3s; }
+        .s-btn:hover { background: var(--p); color: #000; }
 
-        canvas#exploder { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; }
+        canvas#particle-canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 2000; }
     </style>
 </head>
 <body>
 
-<canvas id="exploder"></canvas>
+<canvas id="particle-canvas"></canvas>
 
-<nav class="kramlat-style-nav">
-    <a href="#" class="nav-link">الرئيسية</a>
-    <a href="#gallery" class="nav-link">أعمالي</a>
-    <a href="https://kemo-omar.github.io/Kramlat/" class="nav-link" style="color:var(--s)">كرملات 🍬</a>
+<nav>
+    <a href="#">الرئيسية</a>
+    <a href="#gallery">المعرض</a>
+    <a href="https://kemo-omar.github.io/Kramlat/" target="_blank" style="color:var(--s)">كرملات 🍬</a>
 </nav>
 
-<div class="header-section">
-    <h1 class="main-title">KAREEM OMAR</h1>
-    <div class="personal-photos">
-        <img src="K.png" onclick="pop(event)" onerror="this.style.display='none'">
-        <img src="A.png" onclick="pop(event)" onerror="this.style.display='none'">
-        <img src="R.png" onclick="pop(event)" onerror="this.style.display='none'">
-        <img src="E.png" onclick="pop(event)" onerror="this.style.display='none'">
-        <img src="M.png" onclick="pop(event)" onerror="this.style.display='none'">
+<header>
+    <h1 class="main-name">KAREEM OMAR</h1>
+    <div class="avatar-box">
+        <img src="K.png" onclick="boom(event)" onerror="this.style.display='none'">
+        <img src="A.png" onclick="boom(event)" onerror="this.style.display='none'">
+        <img src="R.png" onclick="boom(event)" onerror="this.style.display='none'">
+        <img src="E.png" onclick="boom(event)" onerror="this.style.display='none'">
+        <img src="M.png" onclick="boom(event)" onerror="this.style.display='none'">
+    </div>
+</header>
+
+<div class="container">
+    <h2 id="gallery" style="margin-bottom: 30px; letter-spacing: 2px; color: var(--p);">GALLERY_COLLECTION</h2>
+    <div class="grid" id="main-grid"></div>
+
+    <div class="social">
+        <a href="https://www.facebook.com/share/1DQMkA2biL/" class="s-btn">FACEBOOK</a>
+        <a href="https://www.tiktok.com/@kareem_omar15" class="s-btn">TIKTOK</a>
+        <a href="https://wa.me/201159562785" class="s-btn" style="background:#25d366; border:none;">WHATSAPP</a>
     </div>
 </div>
 
-<div class="container">
-    <section id="gallery">
-        <h2 style="margin-bottom: 20px; color: var(--p);">PROJECTS_SHOWCASE</h2>
-        <div class="work-grid" id="grid-container"></div>
-    </section>
-
-    <section id="contact" class="contact-footer">
-        <a href="https://www.facebook.com/share/1DQMkA2biL/" class="btn-social">FACEBOOK</a>
-        <a href="https://www.tiktok.com/@kareem_omar15" class="btn-social">TIKTOK</a>
-        <a href="mailto:kareemguinness@gmail.com" class="btn-social">EMAIL</a>
-        <a href="https://wa.me/201159562785" class="btn-social" style="background:#25d366; border:none;">WHATSAPP</a>
-    </section>
-</div>
+<footer style="text-align: center; padding: 50px; opacity: 0.3;">© 2026 KAREEM OMAR</footer>
 
 <script>
-    // نظام فحص الصور: لو مش موجودة jpg بيحول لـ png تلقائياً
-    const container = document.getElementById('grid-container');
-    const images = [
-        "1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", 
-        "9.png", "10.png", "11.jpg", "12.jpg", "13.png", "14.jpg", "15.jpg", 
-        "16.jpg", "17.jpg", "18.jpg", "19.jpg", "20.jpg", "21.jpg"
-    ]; // بناءً على أسماء ملفاتك الحقيقية في الصور المرفوعة
-
-    images.forEach(name => {
+    // نظام فحص الصور الذكي: يحل مشكلة ملفاتك المرفوعة (jpg و png) تلقائياً
+    const grid = document.getElementById('main-grid');
+    for(let i=1; i<=21; i++) {
         const card = document.createElement('div');
-        card.className = 'work-card';
+        card.className = 'card';
         const img = document.createElement('img');
-        img.src = name;
-        img.onerror = function() { this.style.display='none'; };
+        
+        // بيجرب jpg الأول
+        img.src = `${i}.jpg`;
+        
+        // لو الصورة مش موجودة (زي 9 و 10 و 13 اللي باينين في الصور عندك png) بيجرب png
+        img.onerror = function() {
+            if (this.src.endsWith('.jpg')) {
+                this.src = this.src.replace('.jpg', '.png');
+            } else {
+                this.parentElement.style.display = 'none';
+            }
+        };
         card.appendChild(img);
-        container.appendChild(card);
-    });
+        grid.appendChild(card);
+    }
 
-    // محرك الانفجارات (التفاعل الغريب)
-    const canvas = document.getElementById('exploder');
+    // نظام الانفجارات المتفاعل مع الماوس واللمس
+    const canvas = document.getElementById('particle-canvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
-    function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-    window.onresize = resize; resize();
+    function res() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    window.onresize = res; res();
 
-    function pop(e) {
+    function boom(e) {
+        const x = e.clientX || (e.touches ? e.touches[0].clientX : 0);
+        const y = e.clientY || (e.touches ? e.touches[0].clientY : 0);
         for(let i=0; i<15; i++) {
-            particles.push({
-                x: e.clientX || e.pageX, y: e.clientY || e.pageY,
-                vX: (Math.random()-0.5)*10, vY: (Math.random()-0.5)*10,
-                alpha: 1, color: Math.random()>0.5 ? '#00f2ff' : '#bc00ff'
-            });
+            particles.push({ x, y, vX: (Math.random()-0.5)*10, vY: (Math.random()-0.5)*10, a: 1, c: Math.random()>0.5 ? '#00f2ff' : '#bc00ff' });
         }
     }
-    window.addEventListener('mousedown', pop);
+    window.addEventListener('mousedown', boom);
+    window.addEventListener('touchstart', (e) => boom(e));
 
-    function frame() {
+    function animate() {
         ctx.clearRect(0,0,canvas.width,canvas.height);
-        particles.forEach((p,i) => {
-            p.x+=p.vX; p.y+=p.vY; p.alpha-=0.02;
-            ctx.globalAlpha = p.alpha; ctx.fillStyle = p.color;
-            ctx.beginPath(); ctx.arc(p.x,p.y,3,0,7); ctx.fill();
-            if(p.alpha <= 0) particles.splice(i,1);
+        particles.forEach((p, i) => {
+            p.x += p.vX; p.y += p.vY; p.a -= 0.02;
+            ctx.globalAlpha = p.a; ctx.fillStyle = p.c;
+            ctx.beginPath(); ctx.arc(p.x, p.y, 2, 0, 7); ctx.fill();
+            if(p.a <= 0) particles.splice(i, 1);
         });
-        requestAnimationFrame(frame);
+        requestAnimationFrame(animate);
     }
-    frame();
+    animate();
 </script>
-
 </body>
 </html>
