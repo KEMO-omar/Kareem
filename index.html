@@ -44,7 +44,7 @@
             margin-bottom: 15px;
         }
 
-        /* ٣. سيكشن النبذة الشخصية (الجديد) */
+        /* ٣. سيكشن النبذة الشخصية */
         .about-section {
             background: var(--glass); border: 1px solid rgba(255,255,255,0.05);
             padding: 30px; border-radius: 25px; margin: 40px auto; max-width: 800px;
@@ -78,6 +78,13 @@
         .social { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 80px; }
         .s-btn { flex: 1; min-width: 160px; padding: 18px; text-align: center; background: rgba(255,255,255,0.02); border-radius: 15px; text-decoration: none; color: #fff; font-weight: 700; border: 1px solid #1a1a1a; transition: 0.3s; }
         .s-btn:hover { background: var(--p); color: #000; }
+        
+        /* زر انستغرام مخصص */
+        .insta-btn:hover {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%) !important;
+            color: #fff !important;
+            border-color: transparent;
+        }
 
         canvas#particle-canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 2000; }
         footer { text-align: center; padding: 60px; opacity: 0.3; font-size: 0.9rem; }
@@ -124,8 +131,9 @@
 
     <div class="social">
         <a href="https://www.facebook.com/share/1DQMkA2biL/" target="_blank" class="s-btn">FACEBOOK</a>
+        <a href="https://www.instagram.com/kareemomar1511?igsh=MWRrc2VmNHI2d3ZicQ==" target="_blank" class="s-btn insta-btn">INSTAGRAM</a>
         <a href="https://www.tiktok.com/@kareem_omar15" target="_blank" class="s-btn">TIKTOK</a>
-        <a href="https://wa.me/201159562785" target="_blank" class="s-btn" style="background:#25d366; border:none;">WHATSAPP 💬</a>
+        <a href="https://wa.me/201159562785" target="_blank" class="s-btn" style="background:#25d366; color:#000; border:none;">WHATSAPP 💬</a>
     </div>
 </div>
 
@@ -180,3 +188,4 @@
 </script>
 </body>
 </html>
+
