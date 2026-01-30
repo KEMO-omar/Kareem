@@ -19,67 +19,61 @@
             position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
             background: rgba(10, 10, 10, 0.85); backdrop-filter: blur(15px);
             padding: 10px 25px; border-radius: 50px; border: 1px solid rgba(0, 242, 255, 0.2);
-            display: flex; gap: 15px; z-index: 1000; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: flex; gap: 20px; z-index: 1000; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-        nav a { color: #888; text-decoration: none; font-weight: 700; font-size: 0.8rem; transition: 0.3s; }
+        nav a { color: #888; text-decoration: none; font-weight: 700; font-size: 0.85rem; transition: 0.3s; }
         nav a:hover { color: var(--p); text-shadow: 0 0 10px var(--p); }
 
-        /* ٢. هيدر احترافي */
-        header { min-height: 80vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding-top: 100px; }
-        .header-icon { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--p); margin-bottom: 25px; box-shadow: 0 0 25px var(--p); cursor: pointer; transition: 0.5s; }
+        /* ٢. هيدر */
+        header { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 100px 20px 50px; }
+        .header-icon { width: 130px; height: 130px; border-radius: 50%; border: 3px solid var(--p); margin-bottom: 25px; box-shadow: 0 0 25px var(--p); cursor: pointer; transition: 0.5s; }
         .header-icon:hover { transform: scale(1.1) rotate(5deg); border-color: var(--s); }
 
-        .main-name { font-family: 'Orbitron'; font-size: clamp(30px, 8vw, 85px); letter-spacing: 5px; background: linear-gradient(to right, #fff, var(--p)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 25px; }
+        .main-name { font-family: 'Orbitron'; font-size: clamp(35px, 8vw, 85px); letter-spacing: 5px; background: linear-gradient(to right, #fff, var(--p)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 30px; }
 
-        /* صور الحروف KAREEM */
-        .avatar-box { display: flex; gap: 12px; margin-bottom: 30px; flex-wrap: wrap; justify-content: center; }
+        .avatar-box { display: flex; gap: 12px; margin-bottom: 40px; flex-wrap: wrap; justify-content: center; }
         .avatar-box img { width: 60px; height: 60px; border-radius: 50%; border: 2px solid #222; transition: 0.5s; cursor: pointer; object-fit: cover; }
-        .avatar-box img:hover { transform: scale(1.25) translateY(-5px); border-color: var(--p); }
+        .avatar-box img:hover { transform: scale(1.25) translateY(-5px); border-color: var(--p); box-shadow: 0 5px 15px rgba(0, 242, 255, 0.3); }
 
-        /* ٣. سيكشن النبذة والخدمات (نفس كتابتك الأصلية) */
-        .about-section { background: var(--glass); border: 1px solid rgba(255,255,255,0.05); padding: 40px; border-radius: 30px; margin: 20px auto; max-width: 900px; backdrop-filter: blur(10px); }
-        .about-section h3 { color: var(--p); margin-bottom: 20px; font-weight: 900; }
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; text-align: right; }
-        .service-item { background: rgba(255,255,255,0.03); padding: 15px; border-right: 3px solid var(--p); border-radius: 10px; transition: 0.3s; }
-        .service-item:hover { background: rgba(0, 242, 255, 0.05); transform: translateY(-5px); }
-        .service-item strong { color: var(--p); display: block; margin-bottom: 5px; }
+        /* سيكشن الخدمات المطور */
+        .about-section { background: var(--glass); border: 1px solid rgba(255,255,255,0.05); padding: 40px; border-radius: 30px; max-width: 1000px; backdrop-filter: blur(10px); margin-bottom: 50px; }
+        .about-section h3 { color: var(--p); margin-bottom: 20px; font-weight: 900; font-size: 1.8rem; }
+        .about-section p.intro { color: #ccc; line-height: 1.8; margin-bottom: 40px; font-size: 1.1rem; }
 
-        /* ٤. المعرض ونافذة التكبير */
-        .container { max-width: 1200px; margin: auto; padding: 20px; }
-        .main-btn { display: inline-flex; align-items: center; gap: 10px; padding: 15px 35px; background: linear-gradient(45deg, var(--p), var(--s)); color: #000; text-decoration: none; font-weight: 900; border-radius: 50px; box-shadow: 0 0 20px rgba(0, 242, 255, 0.4); transition: 0.4s; margin-bottom: 40px; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; text-align: right; }
+        .service-item { 
+            background: rgba(255,255,255,0.02); padding: 25px; 
+            border-right: 4px solid var(--p); border-radius: 15px; 
+            transition: 0.4s; position: relative;
+        }
+        .service-item:hover { background: rgba(0, 242, 255, 0.07); transform: translateY(-5px); border-right-color: var(--s); }
+        .service-item strong { color: var(--p); display: block; margin-bottom: 12px; font-size: 1.25rem; }
+        .service-item p { font-size: 0.95rem; color: #bbb; line-height: 1.8; }
+
+        /* ٣. المعرض والزر */
+        .container { max-width: 1200px; margin: auto; padding: 20px; text-align: center; }
+        .main-btn { display: inline-flex; align-items: center; gap: 10px; padding: 15px 40px; background: linear-gradient(45deg, var(--p), var(--s)); color: #000; text-decoration: none; font-weight: 900; border-radius: 50px; box-shadow: 0 0 20px rgba(0, 242, 255, 0.4); transition: 0.4s; margin-bottom: 50px; border: none; cursor: pointer; }
         .main-btn:hover { transform: scale(1.05); box-shadow: 0 0 30px var(--s); color: #fff; }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px; }
-        @media (min-width: 768px) { .grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 25px; } }
-        .card { background: var(--glass); border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); overflow: hidden; aspect-ratio: 1/1; cursor: pointer; transition: 0.4s; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; }
+        @media (min-width: 768px) { .grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 25px; } }
+        .card { background: var(--glass); border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); overflow: hidden; aspect-ratio: 1/1; cursor: pointer; }
         .card img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: 0.6s; }
         .card:hover img { opacity: 1; transform: scale(1.1); }
 
-        /* نافذة التكبير Lightbox */
-        #lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: none; align-items: center; justify-content: center; z-index: 3000; cursor: zoom-out; }
-        #lightbox img { max-width: 90%; max-height: 85%; border-radius: 10px; box-shadow: 0 0 30px var(--p); }
-
-        /* ٥. أيقونات التواصل الاجتماعي الملونة */
-        .social-icons { display: flex; justify-content: center; gap: 25px; margin-top: 60px; padding: 40px 0; }
+        /* ٤. السوشيال */
+        .social-icons { display: flex; justify-content: center; gap: 25px; margin-top: 80px; padding: 40px 0; }
         .icon-link { width: 65px; height: 65px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--glass); border: 1px solid rgba(255,255,255,0.1); color: #fff; font-size: 1.8rem; text-decoration: none; transition: 0.4s; }
-        .icon-link:hover { transform: translateY(-10px) scale(1.2); color: #fff; }
-        
-        .fb:hover { background: #1877F2; box-shadow: 0 0 20px #1877F2; border-color: transparent; }
-        .ig:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); box-shadow: 0 0 20px #dc2743; border-color: transparent; }
-        .tk:hover { background: #000; box-shadow: 0 0 20px #ff0050; border-color: #ff0050; }
-        .wa:hover { background: #25D366; box-shadow: 0 0 20px #25D366; border-color: transparent; }
+        .icon-link:hover { transform: translateY(-10px); color: #fff; }
+        .fb:hover { background: #1877F2; } .ig:hover { background: linear-gradient(45deg, #f09433, #dc2743, #bc1888); } .tk:hover { background: #000; border-color: #ff0050; } .wa:hover { background: #25D366; }
 
         canvas#particle-canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 2000; }
-        footer { text-align: center; padding: 60px; opacity: 0.3; font-size: 0.9rem; }
+        footer { text-align: center; padding: 60px; opacity: 0.3; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
 <canvas id="particle-canvas"></canvas>
-
-<div id="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="">
-</div>
 
 <nav>
     <a href="#">الرئيسية</a>
@@ -93,95 +87,87 @@
     <h1 class="main-name">KAREEM OMAR</h1>
     
     <div class="avatar-box">
-        <img src="K.png" onclick="boom(event)" onerror="this.style.display='none'">
-        <img src="A.png" onclick="boom(event)" onerror="this.style.display='none'">
-        <img src="R.png" onclick="boom(event)" onerror="this.style.display='none'">
-        <img src="E.png" onclick="boom(event)" onerror="this.style.display='none'">
-        <img src="M.png" onclick="boom(event)" onerror="this.style.display='none'">
+        <img src="K.png" title="K" onclick="boom(event)" onerror="this.style.display='none'">
+        <img src="A.png" title="A" onclick="boom(event)" onerror="this.style.display='none'">
+        <img src="R.png" title="R" onclick="boom(event)" onerror="this.style.display='none'">
+        <img src="E.png" title="E" onclick="boom(event)" onerror="this.style.display='none'">
+        <img src="M.png" title="M" onclick="boom(event)" onerror="this.style.display='none'">
     </div>
 
-    <div class="container" id="about">
-        <div class="about-section">
-            <h3>مبدع رقمي بمواصفات عالمية 🎨</h3>
-            <p>أنا كريم عمر، متخصص في دمج الفن بالتكنولوجيا لخلق تجارب بصرية فريدة تخدم المدرسين والطلاب وأصحاب المشاريع.</p>
-            
-            <div class="services-grid">
-                <div class="service-item">
-                    <strong>🌐 برمجة المواقع</strong>
-                    <p>تصميم وبرمجة مواقع ويب احترافية (Portfolios) بأحدث المؤثرات البصرية.</p>
-                </div>
-                <div class="service-item">
-                    <strong>👨‍🏫 خدمات المدرسين</strong>
-                    <p>تصميم بوسترات، مذكرات دراسية بهوية خاصة لكل مدرس، وتلخيص دروس بأسلوب إبداعي.</p>
-                </div>
-                <div class="service-item">
-                    <strong>🎓 عالم الطلاب</strong>
-                    <p>استيكرات مدرسية مطبوعة باسمك وصورتك، كشاكيل مخصصة بغلاف يحمل بياناتك، وفواصل كتب مميزة.</p>
-                </div>
-                <div class="service-item">
-                    <strong>📱 السوشيال ميديا</strong>
-                    <p>صناعة محتوى بصري وتصاميم احترافية لمنصات التواصل الاجتماعي تجذب المتابعين.</p>
-                    <br>
-                    <strong>🧩 ذكاء وسرعة</strong>
-                    <p>خبير في حل مكعب الروبيك (Rubik's Cube) المحلول بأرقام قياسية.</p>
-                </div>
+    <div class="about-section" id="about">
+        <h3>أهلاً بك في عالمي الإبداعي 🌟</h3>
+        <p class="intro">
+            أنا <b>كريم عمر</b>، متخصص في تحويل الأفكار الطموحة إلى واقع رقمي ملموس. 🚀 أجمع بين قوة البرمجة وجمال الجرافيك لأقدم لك خدمات استثنائية تجعل مشروعك متميزاً وفريداً من نوعه! 🎨✨
+        </p>
+        
+        <div class="services-grid">
+            <div class="service-item">
+                <strong><i class="fas fa-code"></i> تطوير المواقع الذكية 💻</strong>
+                <p>
+                    هل تريد واجهة احترافية تعبر عنك؟ 😎 أصمم لك مواقع بورتفوليو عصرية ومتاجر إلكترونية تتميز بالسرعة الفائقة ⚡ والتوافق التام مع الموبايل، لضمان أفضل تجربة لزوارك! 📱✨
+                </p>
+            </div>
+            <div class="service-item">
+                <strong><i class="fas fa-chalkboard-teacher"></i> الدعم التعليمي المتكامل 👨‍🏫</strong>
+                <p>
+                    حول مادتك العلمية إلى تحفة فنية! 📚 نقوم بتصميم وتنسيق المذكرات الدراسية وبوسترات الشرح بأسلوب بصري جذاب 💡 يسهل على الطلاب الفهم ويحفزهم على المذاكرة بذكاء! 🎓🏆
+                </p>
+            </div>
+            <div class="service-item">
+                <strong><i class="fas fa-graduation-cap"></i> براند الطالب المخصص 🎒</strong>
+                <p>
+                    اجعل أدواتك الدراسية تتحدث عن شخصيتك! 🤩 نصمم لك استيكرات مدرسية وأغلفة كشاكيل وفواصل كتب (Bookmarks) تحمل اسمك وصورتك بتصاميم خرافية لن تجدها عند أحد غيرك! 🔖✨
+                </p>
+            </div>
+            <div class="service-item">
+                <strong><i class="fas fa-paint-brush"></i> التصميم الجرافيكي والإبداعي 🎨</strong>
+                <p>
+                    الاحتراف يبدأ من اللوجو! ❤️ نبتكر لك شعارات فريدة وهويات بصرية كاملة لمشروعك 🎯، بالإضافة إلى تصميم الكروت الشخصية والفلايرات التي تترك انطباعاً قوياً لا ينسى! 💎🔥
+                </p>
+            </div>
+            <div class="service-item">
+                <strong><i class="fas fa-cube"></i> مهارات حل مكعب الروبيك 🧩</strong>
+                <p>
+            الذكاء، التركيز، والسرعة! 🧠 خبير في حل مكعب الروبيك بأرقام قياسية ! 🙌
+                </p>
             </div>
         </div>
+        
+        <p style="margin-top: 30px; color: var(--p); font-weight: bold; font-size: 1.1rem;">✨ هل أنت جاهز للتميز؟ تصفح معرض أعمالي بالأسفل وابدأ رحلتك الآن! 👇</p>
     </div>
 </header>
 
 <div class="container" id="gallery">
-    <div style="text-align: center;">
-        <h2 style="letter-spacing: 2px; color: var(--p); margin-bottom: 20px;">GALLERY_COLLECTION</h2>
-        <a href="https://kemo-omar.github.io/Kramlat/" target="_blank" class="main-btn">
-            دخول لموقع كيمو الاحترافي 🚀🍭
-        </a>
-    </div>
+    <h2 style="color: var(--p); margin-bottom: 25px; letter-spacing: 2px;">GALLERY_COLLECTION</h2>
+    <a href="https://kemo-omar.github.io/Kramlat/" target="_blank" class="main-btn">دخول لوقع "كرملات" 🚀🍭</a>
 
     <div class="grid" id="main-grid"></div>
 
     <div class="social-icons" id="contact">
-        <a href="https://www.facebook.com/share/1DQMkA2biL/" target="_blank" class="icon-link fb" title="فيسبوك">
-            <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="https://www.instagram.com/kareemomar1511?igsh=MWRrc2VmNHI2d3ZicQ==" target="_blank" class="icon-link ig" title="انستجرام">
-            <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://www.tiktok.com/@kareem_omar15" target="_blank" class="icon-link tk" title="تيك توك">
-            <i class="fab fa-tiktok"></i>
-        </a>
-        <a href="https://wa.me/201159562785" target="_blank" class="icon-link wa" title="واتساب">
-            <i class="fab fa-whatsapp"></i>
-        </a>
+        <a href="https://www.facebook.com/share/1DQMkA2biL/" target="_blank" class="icon-link fb"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/kareemomar1511?igsh=MWRrc2VmNHI2d3ZicQ==" target="_blank" class="icon-link ig"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.tiktok.com/@kareem_omar15" target="_blank" class="icon-link tk"><i class="fab fa-tiktok"></i></a>
+        <a href="https://wa.me/201159562785" target="_blank" class="icon-link wa"><i class="fab fa-whatsapp"></i></a>
     </div>
 </div>
 
 <footer>DESIGNED BY KAREEM OMAR © 2026</footer>
 
 <script>
-    // وظيفة تكبير الصور
-    function openZoom(src) {
-        document.getElementById('lightbox-img').src = src;
-        document.getElementById('lightbox').style.display = 'flex';
-    }
-
     const grid = document.getElementById('main-grid');
     for(let i=1; i<=21; i++) {
         const card = document.createElement('div');
         card.className = 'card';
         const img = document.createElement('img');
         img.src = `${i}.jpg`;
-        card.onclick = () => openZoom(img.src);
-        
         img.onerror = function() {
-            if (this.src.endsWith('.jpg')) { this.src = this.src.replace('.jpg', '.png'); } 
+            if (this.src.endsWith('.jpg')) { this.src = this.src.replace('.jpg', '.png'); }
             else { this.parentElement.style.display = 'none'; }
         };
         card.appendChild(img);
         grid.appendChild(card);
     }
 
-    // تأثير الجزيئات المتفجرة
     const canvas = document.getElementById('particle-canvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
