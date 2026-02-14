@@ -10,14 +10,42 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Orbitron:wght@800&display=swap" rel="stylesheet">
     
     <style>
-        :root { --p: #00f2ff; --s: #bc00ff; --bg: #050505; --glass: rgba(255, 255, 255, 0.03); }
+        :root { 
+            --p: #00f2ff; 
+            --s: #bc00ff; 
+            --bg: #050505; 
+            --text-color: #ffffff;
+            --glass: rgba(255, 255, 255, 0.03); 
+            --nav-bg: rgba(10, 10, 10, 0.85);
+            --card-border: rgba(255,255,255,0.05);
+        }
+
+        /* أنماط الوضع النهاري */
+        body.light-mode {
+            --bg: #f4f4f4;
+            --text-color: #1a1a1a;
+            --glass: rgba(0, 0, 0, 0.05);
+            --nav-bg: rgba(240, 240, 240, 0.9);
+            --card-border: rgba(0,0,0,0.1);
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        body { background: var(--bg); color: #fff; font-family: 'Cairo', sans-serif; overflow-x: hidden; }
+        body { background: var(--bg); color: var(--text-color); font-family: 'Cairo', sans-serif; overflow-x: hidden; transition: background 0.5s, color 0.5s; }
+
+        /* زر التبديل بين الوضعين */
+        .theme-switch {
+            position: fixed; bottom: 20px; left: 20px;
+            width: 50px; height: 50px; border-radius: 50%;
+            background: linear-gradient(45deg, var(--p), var(--s));
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; z-index: 3000; box-shadow: 0 0 15px var(--p);
+            border: none; color: white; font-size: 1.2rem;
+        }
 
         /* ١. منيو عائم */
         nav {
             position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
-            background: rgba(10, 10, 10, 0.85); backdrop-filter: blur(15px);
+            background: var(--nav-bg); backdrop-filter: blur(15px);
             padding: 10px 25px; border-radius: 50px; border: 1px solid rgba(0, 242, 255, 0.2);
             display: flex; gap: 20px; z-index: 1000; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
@@ -29,16 +57,16 @@
         .header-icon { width: 130px; height: 130px; border-radius: 50%; border: 3px solid var(--p); margin-bottom: 25px; box-shadow: 0 0 25px var(--p); cursor: pointer; transition: 0.5s; }
         .header-icon:hover { transform: scale(1.1) rotate(5deg); border-color: var(--s); }
 
-        .main-name { font-family: 'Orbitron'; font-size: clamp(35px, 8vw, 85px); letter-spacing: 5px; background: linear-gradient(to right, #fff, var(--p)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 30px; }
+        .main-name { font-family: 'Orbitron'; font-size: clamp(35px, 8vw, 85px); letter-spacing: 5px; background: linear-gradient(to right, var(--text-color), var(--p)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 30px; }
 
         .avatar-box { display: flex; gap: 12px; margin-bottom: 40px; flex-wrap: wrap; justify-content: center; }
         .avatar-box img { width: 60px; height: 60px; border-radius: 50%; border: 2px solid #222; transition: 0.5s; cursor: pointer; object-fit: cover; }
         .avatar-box img:hover { transform: scale(1.25) translateY(-5px); border-color: var(--p); box-shadow: 0 5px 15px rgba(0, 242, 255, 0.3); }
 
         /* سيكشن الخدمات المطور */
-        .about-section { background: var(--glass); border: 1px solid rgba(255,255,255,0.05); padding: 40px; border-radius: 30px; max-width: 1000px; backdrop-filter: blur(10px); margin-bottom: 50px; }
+        .about-section { background: var(--glass); border: 1px solid var(--card-border); padding: 40px; border-radius: 30px; max-width: 1000px; backdrop-filter: blur(10px); margin-bottom: 50px; }
         .about-section h3 { color: var(--p); margin-bottom: 20px; font-weight: 900; font-size: 1.8rem; }
-        .about-section p.intro { color: #ccc; line-height: 1.8; margin-bottom: 40px; font-size: 1.1rem; }
+        .about-section p.intro { color: var(--text-color); opacity: 0.8; line-height: 1.8; margin-bottom: 40px; font-size: 1.1rem; }
 
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; text-align: right; }
         .service-item { 
@@ -46,24 +74,27 @@
             border-right: 4px solid var(--p); border-radius: 15px; 
             transition: 0.4s; position: relative;
         }
+        body.light-mode .service-item { background: rgba(0,0,0,0.02); }
         .service-item:hover { background: rgba(0, 242, 255, 0.07); transform: translateY(-5px); border-right-color: var(--s); }
         .service-item strong { color: var(--p); display: block; margin-bottom: 12px; font-size: 1.25rem; }
-        .service-item p { font-size: 0.95rem; color: #bbb; line-height: 1.8; }
+        .service-item p { font-size: 0.95rem; color: var(--text-color); opacity: 0.7; line-height: 1.8; }
 
         /* ٣. المعرض والزر */
         .container { max-width: 1200px; margin: auto; padding: 20px; text-align: center; }
-        .main-btn { display: inline-flex; align-items: center; gap: 10px; padding: 15px 40px; background: linear-gradient(45deg, var(--p), var(--s)); color: #000; text-decoration: none; font-weight: 900; border-radius: 50px; box-shadow: 0 0 20px rgba(0, 242, 255, 0.4); transition: 0.4s; margin-bottom: 50px; border: none; cursor: pointer; }
+        .main-btn { display: inline-flex; align-items: center; gap: 10px; padding: 15px 40px; background: linear-gradient(45deg, var(--p), var(--s)); color: #000; text-decoration: none; font-weight: 900; border-radius: 50px; box-shadow: 0 0 20px rgba(0, 242, 255, 0.4); transition: 0.4s; margin-bottom: 20px; border: none; cursor: pointer; width: fit-content; }
         .main-btn:hover { transform: scale(1.05); box-shadow: 0 0 30px var(--s); color: #fff; }
+
+        .links-wrapper { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 50px; }
 
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; }
         @media (min-width: 768px) { .grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 25px; } }
-        .card { background: var(--glass); border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); overflow: hidden; aspect-ratio: 1/1; cursor: pointer; }
+        .card { background: var(--glass); border-radius: 20px; border: 1px solid var(--card-border); overflow: hidden; aspect-ratio: 1/1; cursor: pointer; }
         .card img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: 0.6s; }
         .card:hover img { opacity: 1; transform: scale(1.1); }
 
         /* ٤. السوشيال */
         .social-icons { display: flex; justify-content: center; gap: 25px; margin-top: 80px; padding: 40px 0; }
-        .icon-link { width: 65px; height: 65px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--glass); border: 1px solid rgba(255,255,255,0.1); color: #fff; font-size: 1.8rem; text-decoration: none; transition: 0.4s; }
+        .icon-link { width: 65px; height: 65px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--glass); border: 1px solid var(--card-border); color: var(--text-color); font-size: 1.8rem; text-decoration: none; transition: 0.4s; }
         .icon-link:hover { transform: translateY(-10px); color: #fff; }
         .fb:hover { background: #1877F2; } .ig:hover { background: linear-gradient(45deg, #f09433, #dc2743, #bc1888); } .tk:hover { background: #000; border-color: #ff0050; } .wa:hover { background: #25D366; }
 
@@ -72,6 +103,10 @@
     </style>
 </head>
 <body>
+
+<button class="theme-switch" onclick="toggleTheme()" title="تبديل الوضع">
+    <i class="fas fa-moon" id="theme-icon"></i>
+</button>
 
 <canvas id="particle-canvas"></canvas>
 
@@ -139,10 +174,15 @@
 
 <div class="container" id="gallery">
     <h2 style="color: var(--p); margin-bottom: 25px; letter-spacing: 2px;">GALLERY_COLLECTION</h2>
-    <a href="https://kemo-omar.github.io/Kramlat/" target="_blank" class="main-btn">موقع "كرملات " مواقع خاصه بالبرند" 🚀🍭</a>
-    <a href="https://kemo-omar.github.io/Youth-of-the-future/" target="_blank" class="main-btn">موقع شباب المستقبل  مواقع خاصه بالبراند 🚀🍭</a>
-    <a href="https://kemo-omar.github.io/Mozty/" target="_blank" class="main-btn">موقع منصتى موزتى التعليميه مواقع خاصه بمدرسين الاونلاين مدفوعه🚀🍭</a>
-    <a href="https://kemo-omar.github.io/BOOKKe/" target="_blank" class="main-btn">موقع بوك كي مواقع خاصه بالمتاجر و البيع 🚀🍭</a>
+    
+    <div class="links-wrapper">
+        <a href="https://kemo-omar.github.io/Kramlat/" target="_blank" class="main-btn">موقع "كرملات " مواقع خاصه بالبرند" 🚀🍭</a>
+        <a href="https://kemo-omar.github.io/Youth-of-the-future/" target="_blank" class="main-btn">موقع شباب المستقبل  مواقع خاصه بالبراند 🚀🍭</a>
+        <a href="https://kemo-omar.github.io/Mozty/" target="_blank" class="main-btn">موقع منصتى موزتى التعليميه مواقع خاصه بمدرسين الاونلاين مدفوعه🚀🍭</a>
+        <a href="https://kemo-omar.github.io/BOOKKe/" target="_blank" class="main-btn">موقع بوك كي مواقع خاصه بالمتاجر و البيع 🚀🍭</a>
+        <a href="https://kemo-omar.github.io/SOHOORNA/" target="_blank" class="main-btn">موقع "سحورنا" - تجربة رمضانية فريدة 🌙✨</a>
+    </div>
+
     <div class="grid" id="main-grid"></div>
 
     <div class="social-icons" id="contact">
@@ -156,6 +196,19 @@
 <footer>DESIGNED BY KAREEM OMAR © 2026</footer>
 
 <script>
+    // وظيفة تبديل الوضع
+    function toggleTheme() {
+        const body = document.body;
+        const icon = document.getElementById('theme-icon');
+        body.classList.toggle('light-mode');
+        
+        if(body.classList.contains('light-mode')) {
+            icon.classList.replace('fa-moon', 'fa-sun');
+        } else {
+            icon.classList.replace('fa-sun', 'fa-moon');
+        }
+    }
+
     const grid = document.getElementById('main-grid');
     for(let i=1; i<=21; i++) {
         const card = document.createElement('div');
