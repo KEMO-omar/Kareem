@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>KAREEM OMAR | Portfolio 2026</title>
+    <title>KAREEM OMAR | Portfolio</title>
     
     <link rel="icon" type="image/png" href="13.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -93,6 +93,14 @@
             text-transform: uppercase;
         }
 
+        /* Letters Box */
+        .letters-box { display: flex; gap: 12px; margin: 30px 0; justify-content: center; flex-wrap: wrap; }
+        .letters-box img { 
+            width: 60px; height: 60px; border-radius: 15px; border: 1px solid var(--card-border); 
+            background: var(--glass); transition: 0.4s; cursor: pointer; object-fit: cover;
+        }
+        .letters-box img:hover { transform: translateY(-10px); border-color: var(--p); box-shadow: 0 5px 20px var(--p); }
+
         /* Sections */
         .section-container { max-width: 1300px; margin: 0 auto 100px; padding: 0 30px; z-index: 2; position: relative; }
         .glass-panel {
@@ -121,7 +129,7 @@
         .service-card:hover { border-color: var(--s); transform: scale(1.02); }
         .service-card i { font-size: 2.5rem; margin-bottom: 25px; color: var(--p); display: inline-block; }
 
-        /* Gallery (Infinite Images) */
+        /* Gallery */
         .gallery-grid {
             display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 15px; margin-top: 20px;
@@ -133,7 +141,7 @@
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
         .gallery-item:hover img { transform: scale(1.1); }
 
-        /* Portfolio (Websites) */
+        /* Portfolio */
         .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
         .p-item {
             padding: 30px; background: var(--glass); border-radius: 25px; text-decoration: none; color: white;
@@ -143,8 +151,7 @@
         .p-item:hover { background: var(--gradient); border-color: transparent; }
         .p-item .site-tag { font-size: 0.7rem; background: rgba(0,0,0,0.3); padding: 4px 12px; border-radius: 50px; letter-spacing: 1px; }
 
-        /* Contact & Horizontal Social */
-        .contact-layout { display: flex; flex-direction: column; gap: 40px; }
+        /* Social */
         .social-horizontal {
             display: flex; justify-content: center; align-items: center;
             gap: 20px; flex-wrap: wrap; margin-top: 30px;
@@ -193,6 +200,15 @@
     <div class="hero-glow"></div>
     <img src="13.png" class="header-icon" alt="Kareem Omar">
     <h1 class="main-name">KAREEM OMAR</h1>
+    
+    <div class="letters-box">
+        <img src="K.png" alt="K" onerror="this.src='K.jpg'">
+        <img src="A.png" alt="A" onerror="this.src='A.jpg'">
+        <img src="R.png" alt="R" onerror="this.src='R.jpg'">
+        <img src="E.png" alt="E" onerror="this.src='E.jpg'">
+        <img src="M.png" alt="M" onerror="this.src='M.jpg'">
+    </div>
+
     <p style="font-family: 'Orbitron'; letter-spacing: 8px; opacity: 0.7; margin-top: 15px; font-weight: 600;">VISUAL ARCHITECT & DEVELOPER</p>
     <p style="margin-top: 10px; font-weight: 600; color: var(--p);">Beyond Limits • 2026</p>
 </header>
@@ -254,6 +270,16 @@
                 <h4>خبير مكعب الروبيك</h4>
                 <p>مهارات منطقية عالية في حل المكعبات بسرعات قياسية وتدريس استراتيجيات الحل.</p>
             </div>
+            <div class="service-card">
+                <i class="fas fa-file-pdf"></i>
+                <h4>الدعم التعليمي للمدرسين</h4>
+                <p>تحويل المادة العلمية إلى مذكرات وبوسترات شرح جذابة تسهل الفهم وتفتح النفس للمذاكرة.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-id-badge"></i>
+                <h4>براند الطالب المخصص</h4>
+                <p>تصميم أدوات مدرسية تحمل اسم وصورة الطالب بتصاميم إبداعية فريدة.</p>
+            </div>
         </div>
     </section>
 
@@ -291,18 +317,17 @@
     <section class="section-container reveal" id="gallery">
         <div class="glass-panel">
             <h2 class="section-title"><i class="fas fa-camera-retro"></i> معرض الإبداع البصري</h2>
-            <p style="margin-bottom: 20px; opacity: 0.7;">يتم ترتيب الأعمال عشوائياً في كل مرة لضمان تجربة متجددة.</p>
-            <div class="gallery-grid" id="imageGallery">
-                </div>
+            <p style="margin-bottom: 20px; opacity: 0.7;">يتم عرض الأعمال بتنسيق متجاوب لضمان أفضل تجربة بصرية.</p>
+            <div class="gallery-grid" id="imageGallery"></div>
         </div>
     </section>
 
     <section class="section-container reveal" id="contact">
         <div class="glass-panel" style="text-align: center;">
-            <h2 class="section-title" style="justify-content: center;"><i class="fas fa-envelope-open-text"></i> تواصل مع كريم</h2>
+            <h2 class="section-title" style="justify-content: center;"><i class="fas fa-envelope-open-text"></i> تواصل معي</h2>
             
             <form class="contact-form" id="contactForm" style="display: flex; flex-direction: column; gap: 15px; max-width: 600px; margin: 0 auto;">
-                <input type="text" id="userName" placeholder="اسمك الكريم" required style="padding: 20px; border-radius: 15px; border: 1px solid var(--card-border); background: var(--glass); color: white; font-family: 'Cairo';">
+                <input type="text" id="userName" placeholder="اسمك" required style="padding: 20px; border-radius: 15px; border: 1px solid var(--card-border); background: var(--glass); color: white; font-family: 'Cairo';">
                 <textarea id="userMsg" rows="4" placeholder="رسالتك أو فكرتك" required style="padding: 20px; border-radius: 15px; border: 1px solid var(--card-border); background: var(--glass); color: white; font-family: 'Cairo';"></textarea>
                 <button type="submit" class="submit-btn" style="padding: 20px; border-radius: 15px; background: var(--gradient); color: white; border: none; font-weight: 900; cursor: pointer; font-family: 'Cairo';">إرسال الفكرة</button>
             </form>
@@ -320,7 +345,6 @@
 <footer>KAREEM OMAR © 2026 | BEYOND THE FUTURE</footer>
 
 <script type="module">
-    // --- Firebase Logic ---
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
@@ -345,48 +369,33 @@
         const newMessageRef = push(messagesRef);
         
         set(newMessageRef, { sender: name, message: msg, timestamp: Date.now() })
-        .then(() => { alert('تم الإرسال بنجاح يا بطل!'); document.getElementById('contactForm').reset(); })
+        .then(() => { alert('تم الإرسال بنجاح '); document.getElementById('contactForm').reset(); })
         .catch(() => { alert('حدث خطأ، حاول مرة أخرى'); });
     });
 </script>
 
 <script>
-    // --- Gallery Shuffle & Infinite Loader ---
-    const galleryContainer = document.getElementById('imageGallery');
-    const imageExtensions = ['png', 'jpg', 'jpeg', 'webp'];
-    
-    // دالة للترتيب العشوائي
-    function shuffle(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[array[j]]] = [array[j], array[i]];
-        }
-        return array;
-    }
-
-    // وظيفة لتحميل الصور تلقائياً حتى تتوقف الملفات
-    async function loadGallery() {
-        let imageIndices = Array.from({length: 50}, (_, i) => i + 1); // نفترض حد أقصى 50 صورة
-        shuffle(imageIndices);
-
-        for (let i of imageIndices) {
-            // نحاول تحميل الصورة بامتداد png أولاً كافتراضي
-            const imgPath = `${i}.png`;
-            const imgElement = document.createElement('div');
-            imgElement.className = 'gallery-item';
-            imgElement.innerHTML = `<img src="${imgPath}" onerror="this.parentElement.style.display='none'" alt="Kareem Design ${i}">`;
-            galleryContainer.appendChild(imgElement);
-        }
-    }
-
-    loadGallery();
-
-    // --- Core UI Logic ---
     function toggleTheme() {
         document.body.classList.toggle('light-mode');
         const icon = document.getElementById('theme-icon');
         icon.className = document.body.classList.contains('light-mode') ? 'fas fa-sun' : 'fas fa-moon';
     }
+
+    // Gallery Loader
+    const galleryContainer = document.getElementById('imageGallery');
+    function loadGallery() {
+        for (let i = 1; i <= 21; i++) {
+            const imgElement = document.createElement('div');
+            imgElement.className = 'gallery-item';
+            const img = document.createElement('img');
+            img.src = `${i}.jpg`;
+            img.loading = "lazy";
+            img.onerror = function() { this.src = `${i}.png`; };
+            imgElement.appendChild(img);
+            galleryContainer.appendChild(imgElement);
+        }
+    }
+    loadGallery();
 
     // Particle Engine
     const canvas = document.getElementById('particle-canvas');
@@ -410,7 +419,7 @@
             if (this.y > canvas.height) this.y = 0; if (this.y < 0) this.y = canvas.height;
         }
         draw() {
-            ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--p');
+            ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--p').trim() || '#00f2ff';
             ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
         }
     }
@@ -423,7 +432,6 @@
     }
     init(); animate();
 
-    // Scroll Observer
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
     }, { threshold: 0.1 });
