@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAREEM OMAR | Messages Dashboard</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --p: #00f2ff;
+            --s: #bc00ff;
+            --bg: #030305;
+            --card-bg: rgba(15, 15, 25, 0.7);
+            --border: rgba(0, 242, 255, 0.2);
+            --text: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Cairo', sans-serif;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 242, 255, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(188, 0, 255, 0.05) 0%, transparent 40%);
+            padding: 40px 20px;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .logo-text {
+            font-family: 'Orbitron';
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(to right, var(--p), var(--s));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 5px;
+        }
+
+        .stats-bar {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 15px 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+
+        .stat-card span { display: block; font-size: 0.8rem; opacity: 0.6; }
+        .stat-card b { font-size: 1.5rem; color: var(--p); font-family: 'Orbitron'; }
+
+        /* Messages Grid */
+        #messagesList {
+            display: grid;
+            gap: 20px;
+        }
+
+        .msg-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 25px;
+            border-radius: 25px;
+            backdrop-filter: blur(15px);
+            position: relative;
+            transition: 0.3s;
+            animation: fadeIn 0.5s ease forwards;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .msg-card:hover {
+            border-color: var(--p);
+            transform: scale(1.01);
+            box-shadow: 0 10px 30px rgba(0, 242, 255, 0.1);
+        }
+
+        .msg-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 10px;
+        }
+
+        .sender-info { display: flex; align-items: center; gap: 12px; }
+        .sender-avatar {
+            width: 45px; height: 45px;
+            background: var(--gradient, linear-gradient(45deg, var(--p), var(--s)));
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 900; color: #000;
+        }
+
+        .sender-name { font-weight: 700; color: var(--p); font-size: 1.1rem; }
+        .msg-time { font-size: 0.75rem; opacity: 0.5; font-family: 'Orbitron'; }
+
+        .msg-content {
+            line-height: 1.8;
+            font-size: 1rem;
+            color: #ddd;
+            padding: 10px 0;
+        }
+
+        .loading-spinner {
+            text-align: center;
+            padding: 50px;
+            font-size: 2rem;
+            color: var(--p);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 100px;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1 class="logo-text">INBOX CONTROL</h1>
+        <p style="opacity: 0.6; margin-top: 10px;">لوحة تحكم رسائل كريم عمر 2026</p>
+    </header>
+
+    <div class="stats-bar">
+        <div class="stat-card">
+            <span>إجمالي الرسائل</span>
+            <b id="totalMsgs">0</b>
+        </div>
+        <div class="stat-card">
+            <span>الحالة</span>
+            <b style="color: #25D366; font-size: 1rem;">متصل مباشر</b>
+        </div>
+    </div>
+
+    <div id="messagesList">
+        <div class="loading-spinner"><i class="fas fa-spinner fa-spin"></i></div>
+    </div>
+</div>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+    // نفس بيانات الفايربيز الخاصة بك
+    const firebaseConfig = {
+        apiKey: "AIzaSyDW1eNmFR7DocXCIJpLHAAWmR5p475xdSQ",
+        authDomain: "saif-736ac.firebaseapp.com",
+        databaseURL: "https://saif-736ac-default-rtdb.firebaseio.com",
+        projectId: "saif-736ac",
+        storageBucket: "saif-736ac.firebasestorage.app",
+        messagingSenderId: "1082464303719",
+        appId: "1:1082464303719:web:7f6cab5071a040564f72c2"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const messagesList = document.getElementById('messagesList');
+    const totalMsgsLabel = document.getElementById('totalMsgs');
+
+    // جلب البيانات بشكل حي (Live)
+    const messagesRef = ref(db, 'portfolio_messages');
+    onValue(messagesRef, (snapshot) => {
+        messagesList.innerHTML = '';
+        const data = snapshot.val();
+        
+        if (data) {
+            const entries = Object.entries(data).reverse(); // عرض الأحدث أولاً
+            totalMsgsLabel.innerText = entries.length;
+
+            entries.forEach(([key, val]) => {
+                const date = new Date(val.timestamp).toLocaleString('ar-EG');
+                const firstLetter = val.sender ? val.sender.charAt(0).toUpperCase() : '?';
+                
+                const card = document.createElement('div');
+                card.className = 'msg-card';
+                card.innerHTML = `
+                    <div class="msg-header">
+                        <div class="sender-info">
+                            <div class="sender-avatar">${firstLetter}</div>
+                            <div>
+                                <div class="sender-name">${val.sender}</div>
+                                <div class="msg-time">${date}</div>
+                            </div>
+                        </div>
+                        <i class="fas fa-quote-right" style="opacity: 0.1; font-size: 2rem;"></i>
+                    </div>
+                    <div class="msg-content">${val.message}</div>
+                `;
+                messagesList.appendChild(card);
+            });
+        } else {
+            messagesList.innerHTML = '<div class="empty-state"><h3>لا توجد رسائل حالياً..</h3></div>';
+            totalMsgsLabel.innerText = '0';
+        }
+    });
+</script>
+
+</body>
+</html>
