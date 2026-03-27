@@ -3,30 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>KAREEM OMAR | Portfolio 2026</title>
+    <title>KAREEM OMAR | Official Portfolio</title>
     
     <link rel="icon" type="image/png" href="13.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Orbitron:wght@600;800;900&display=swap" rel="stylesheet">
     
     <style>
         :root { 
             --p: #00f2ff; 
-            --s: #bc00ff; 
-            --bg: #050508; 
+            --s: #7000ff; 
+            --bg: #030305; 
+            --card-bg: rgba(10, 10, 15, 0.7);
             --text-color: #ffffff;
-            --glass: rgba(255, 255, 255, 0.05); 
-            --nav-bg: rgba(5, 5, 8, 0.85);
-            --card-border: rgba(255, 255, 255, 0.1);
+            --glass: rgba(255, 255, 255, 0.03); 
+            --nav-bg: rgba(3, 3, 5, 0.8);
+            --card-border: rgba(0, 242, 255, 0.15);
             --gradient: linear-gradient(135deg, var(--p), var(--s));
-            --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+            --shadow: 0 10px 40px rgba(0, 0, 0, 0.9);
         }
 
         body.light-mode {
-            --bg: #f8f9fa;
-            --text-color: #121212;
-            --glass: rgba(0, 0, 0, 0.05);
-            --nav-bg: rgba(248, 249, 250, 0.9);
+            --bg: #f0f2f5;
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --text-color: #0a0a0a;
+            --glass: rgba(0, 0, 0, 0.03);
+            --nav-bg: rgba(240, 242, 245, 0.9);
             --card-border: rgba(0, 0, 0, 0.1);
         }
 
@@ -37,142 +39,134 @@
             color: var(--text-color); 
             font-family: 'Cairo', sans-serif; 
             overflow-x: hidden; 
-            transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: 0.5s ease;
         }
 
-        /* Particles Layer */
-        #particle-canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 1; opacity: 0.6; }
+        #particle-canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 1; }
 
         /* Navigation */
         nav {
-            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
-            background: var(--nav-bg); backdrop-filter: blur(12px);
-            padding: 8px 30px; border-radius: 100px; border: 1px solid var(--card-border);
-            display: flex; gap: 20px; z-index: 2000; box-shadow: var(--shadow);
-            width: max-content; transition: 0.3s;
+            position: fixed; top: 25px; left: 50%; transform: translateX(-50%);
+            background: var(--nav-bg); backdrop-filter: blur(15px);
+            padding: 10px 35px; border-radius: 50px; border: 1px solid var(--card-border);
+            display: flex; gap: 25px; z-index: 2000; box-shadow: var(--shadow);
         }
-        nav a { color: var(--text-color); text-decoration: none; font-weight: 700; font-size: 0.9rem; opacity: 0.7; transition: 0.3s; }
-        nav a:hover { opacity: 1; color: var(--p); transform: translateY(-2px); }
+        nav a { color: var(--text-color); text-decoration: none; font-weight: 600; font-size: 0.85rem; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
+        nav a i { font-size: 1rem; color: var(--p); }
+        nav a:hover { color: var(--p); transform: translateY(-2px); }
 
         /* Theme Toggle */
         .theme-switch {
             position: fixed; bottom: 30px; left: 30px;
-            width: 50px; height: 50px; border-radius: 15px;
+            width: 55px; height: 55px; border-radius: 50%;
             background: var(--gradient); border: none;
             display: flex; align-items: center; justify-content: center;
-            cursor: pointer; z-index: 3000; box-shadow: 0 0 20px rgba(0, 242, 255, 0.3);
-            color: #000; font-size: 1.2rem; transition: 0.4s;
+            cursor: pointer; z-index: 3000; box-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
+            color: white; font-size: 1.3rem; transition: 0.5s;
         }
-        .theme-switch:hover { transform: rotate(360deg) scale(1.1); }
 
-        /* Header / Hero */
+        /* Hero Section */
         header { 
             position: relative; min-height: 100vh; display: flex; flex-direction: column; 
-            align-items: center; justify-content: center; padding: 100px 20px; z-index: 2;
+            align-items: center; justify-content: center; padding: 120px 20px; z-index: 2;
         }
 
         .hero-glow {
-            position: absolute; width: 300px; height: 300px; background: var(--p);
-            filter: blur(150px); border-radius: 50%; opacity: 0.15; z-index: -1; animation: pulse 8s infinite;
+            position: absolute; width: 400px; height: 400px; background: var(--p);
+            filter: blur(180px); border-radius: 50%; opacity: 0.12; z-index: -1; animation: pulse 10s infinite;
         }
 
-        @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 0.15; } 50% { transform: scale(1.3); opacity: 0.25; } }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.4); } }
 
         .header-icon { 
-            width: 140px; height: 140px; border-radius: 35% 65% 70% 30% / 30% 30% 70% 70%;
-            border: 3px solid var(--p); margin-bottom: 30px; box-shadow: 0 0 40px rgba(0, 242, 255, 0.2);
-            transition: 0.6s ease-in-out; object-fit: cover; animation: morph 6s linear infinite;
+            width: 160px; height: 160px; border-radius: 30px;
+            border: 2px solid var(--p); margin-bottom: 35px;
+            box-shadow: 0 0 50px rgba(0, 242, 255, 0.2);
+            object-fit: cover; transform: rotate(-3deg); transition: 0.5s;
         }
-        @keyframes morph { 0%, 100% { border-radius: 35% 65% 70% 30% / 30% 30% 70% 70%; } 50% { border-radius: 50%; } }
+        .header-icon:hover { transform: rotate(0deg) scale(1.05); border-color: var(--s); }
 
         .main-name { 
-            font-family: 'Orbitron'; font-size: clamp(2.5rem, 10vw, 5.5rem); 
-            font-weight: 800; line-height: 1.1; margin-bottom: 20px;
-            background: linear-gradient(to bottom, #fff 30%, var(--p) 100%);
+            font-family: 'Orbitron'; font-size: clamp(2.5rem, 10vw, 5rem); 
+            font-weight: 900; letter-spacing: 5px; text-align: center;
+            background: linear-gradient(to bottom, #fff 40%, var(--p) 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
 
-        .avatar-box { display: flex; gap: 10px; margin-bottom: 50px; }
-        .avatar-box img { 
-            width: 55px; height: 55px; border-radius: 12px; border: 1px solid var(--card-border);
-            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); background: var(--glass); padding: 5px;
-        }
-        .avatar-box img:hover { transform: translateY(-10px) rotate(5deg); border-color: var(--s); box-shadow: 0 10px 20px rgba(188, 0, 255, 0.2); }
+        .sub-title { font-family: 'Orbitron'; font-size: 1rem; letter-spacing: 3px; opacity: 0.7; margin-top: 10px; }
 
-        /* Sections Styling */
-        .section-container { 
-            max-width: 1200px; margin: 0 auto 100px; padding: 0 25px; width: 100%; position: relative; z-index: 2;
-        }
+        /* Sections */
+        .section-container { max-width: 1200px; margin: 0 auto 120px; padding: 0 30px; z-index: 2; position: relative; }
 
         .glass-panel {
-            background: var(--glass); backdrop-filter: blur(15px);
-            border: 1px solid var(--card-border); border-radius: 40px;
-            padding: 50px 35px; box-shadow: var(--shadow);
+            background: var(--card-bg); backdrop-filter: blur(20px);
+            border: 1px solid var(--card-border); border-radius: 35px;
+            padding: 50px; box-shadow: var(--shadow);
         }
 
-        .section-title { 
-            font-size: 2rem; color: var(--p); margin-bottom: 30px; display: flex; align-items: center; gap: 15px;
-        }
-        .section-title::after { content: ""; height: 2px; flex: 1; background: linear-gradient(90deg, var(--p), transparent); }
+        .section-header { margin-bottom: 40px; }
+        .section-title { font-size: 2.2rem; font-weight: 900; color: var(--p); display: flex; align-items: center; gap: 20px; }
+        .section-title::after { content: ""; height: 2px; flex: 1; background: linear-gradient(90deg, var(--card-border), transparent); }
 
-        .intro-text { font-size: 1.25rem; line-height: 1.8; margin-bottom: 50px; opacity: 0.9; }
-
-        /* Grid Services */
-        .services-grid { 
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px;
+        /* Info Grid */
+        .info-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px;
         }
-        .service-card {
-            background: rgba(255, 255, 255, 0.02); border: 1px solid var(--card-border);
-            padding: 30px; border-radius: 25px; transition: 0.4s; position: relative; overflow: hidden;
+        .info-box {
+            background: var(--glass); padding: 25px; border-radius: 20px;
+            border: 1px solid var(--card-border); transition: 0.3s;
         }
-        .service-card:hover { 
-            transform: translateY(-10px); background: rgba(255, 255, 255, 0.05); 
-            border-color: var(--p); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        .info-box:hover { background: rgba(0, 242, 255, 0.05); transform: translateY(-5px); }
+        .info-box i { font-size: 1.5rem; color: var(--p); margin-bottom: 15px; display: block; }
+        .info-box span { display: block; font-size: 0.8rem; opacity: 0.6; margin-bottom: 5px; }
+        .info-box h3 { font-size: 1.1rem; font-weight: 700; }
+
+        /* Services */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .service-item {
+            padding: 35px; border-radius: 25px; background: var(--glass);
+            border: 1px solid var(--card-border); transition: 0.4s;
         }
-        .service-card i { font-size: 2rem; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; display: inline-block; }
-        .service-card h4 { font-size: 1.3rem; margin-bottom: 15px; color: var(--p); }
-        .service-card p { font-size: 0.95rem; opacity: 0.7; line-height: 1.6; }
+        .service-item:hover { border-color: var(--s); box-shadow: 0 0 30px rgba(112, 0, 255, 0.2); }
+        .service-item i { font-size: 2.5rem; margin-bottom: 25px; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        /* Links & Portfolio */
-        .portfolio-links { display: grid; gap: 15px; margin-bottom: 50px; }
-        .link-item {
-            display: flex; align-items: center; justify-content: space-between;
-            background: var(--gradient); padding: 20px 30px; border-radius: 20px;
-            color: #000; text-decoration: none; font-weight: 800; font-size: 1.1rem;
-            transition: 0.3s; box-shadow: 0 5px 15px rgba(0, 242, 255, 0.2);
+        /* Form */
+        .contact-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; }
+        .message-form { display: flex; flex-direction: column; gap: 20px; }
+        .input-group { position: relative; }
+        .input-group i { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: var(--p); }
+        .message-form input, .message-form textarea {
+            width: 100%; padding: 18px 50px 18px 20px; background: var(--glass);
+            border: 1px solid var(--card-border); border-radius: 15px; color: white;
+            font-family: 'Cairo'; outline: none; transition: 0.3s;
         }
-        .link-item:hover { transform: scale(1.02); color: #fff; box-shadow: 0 10px 30px rgba(188, 0, 255, 0.4); }
-        .link-item i { font-size: 1.2rem; }
-
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
-        .gallery-card { 
-            border-radius: 20px; overflow: hidden; aspect-ratio: 1; border: 1px solid var(--card-border);
-            cursor: zoom-in; position: relative;
+        .message-form input:focus, .message-form textarea:focus { border-color: var(--p); background: rgba(0, 242, 255, 0.05); }
+        .send-btn {
+            background: var(--gradient); color: white; padding: 20px; border-radius: 15px;
+            border: none; font-weight: 900; cursor: pointer; transition: 0.4s; font-family: 'Cairo';
         }
-        .gallery-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; filter: grayscale(30%); }
-        .gallery-card:hover img { transform: scale(1.1) rotate(2deg); filter: grayscale(0%); }
+        .send-btn:hover { letter-spacing: 2px; box-shadow: 0 10px 30px rgba(112, 0, 255, 0.4); }
 
-        /* Social Icons */
-        .social-flex { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 50px; }
-        .social-btn {
-            width: 60px; height: 60px; border-radius: 20px; background: var(--glass);
-            border: 1px solid var(--card-border); display: flex; align-items: center; justify-content: center;
-            color: var(--text-color); font-size: 1.5rem; text-decoration: none; transition: 0.3s;
+        /* Socials */
+        .social-sidebar { display: flex; flex-direction: column; gap: 15px; }
+        .social-link {
+            display: flex; align-items: center; gap: 20px; padding: 20px;
+            background: var(--glass); border-radius: 15px; text-decoration: none; color: white;
+            border: 1px solid var(--card-border); transition: 0.3s;
         }
-        .social-btn:hover { transform: translateY(-8px); color: #fff; border-color: var(--p); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
-        .fb:hover { background: #1877F2; } .ig:hover { background: #E4405F; } .tk:hover { background: #000; } .wa:hover { background: #25D366; }
+        .social-link:hover { transform: translateX(-10px); background: var(--gradient); }
+        .social-link i { font-size: 1.5rem; }
 
-        footer { text-align: center; padding: 50px 20px; opacity: 0.5; font-family: 'Orbitron'; font-size: 0.8rem; letter-spacing: 2px; }
-
-        /* Reveal Animation */
-        .reveal { opacity: 0; transform: translateY(40px); transition: 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        /* Reveal */
+        .reveal { opacity: 0; transform: translateY(50px); transition: 1s cubic-bezier(0.17, 0.67, 0.83, 0.67); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        @media (max-width: 768px) {
-            .main-name { font-size: 3rem; }
+        footer { text-align: center; padding: 60px; font-family: 'Orbitron'; font-size: 0.7rem; opacity: 0.4; letter-spacing: 5px; }
+
+        @media (max-width: 900px) {
+            .contact-grid { grid-template-columns: 1fr; }
+            nav { width: 95%; justify-content: space-around; padding: 10px 15px; }
             .glass-panel { padding: 30px 20px; }
-            nav { width: 90%; gap: 10px; padding: 10px; }
-            nav a { font-size: 0.75rem; }
         }
     </style>
 </head>
@@ -180,149 +174,180 @@
 
 <canvas id="particle-canvas"></canvas>
 
-<button class="theme-switch" onclick="toggleTheme()" aria-label="Toggle Theme">
-    <i class="fas fa-moon" id="theme-icon"></i>
+<button class="theme-switch" onclick="toggleTheme()">
+    <i class="fas fa-sun" id="theme-icon"></i>
 </button>
 
 <nav>
-    <a href="#home">الرئيسية</a>
-    <a href="#about">عني</a>
-    <a href="#services">الخدمات</a>
-    <a href="#portfolio">الأعمال</a>
-    <a href="#contact">تواصل</a>
+    <a href="#home"><i class="fas fa-home"></i> <span>الرئيسية</span></a>
+    <a href="#about"><i class="fas fa-user"></i> <span>عني</span></a>
+    <a href="#portfolio"><i class="fas fa-code"></i> <span>أعمالي</span></a>
+    <a href="#contact"><i class="fas fa-envelope"></i> <span>تواصل</span></a>
 </nav>
 
 <header id="home">
     <div class="hero-glow"></div>
-    <img src="13.png" class="header-icon" alt="Kareem Omar" onclick="createBurst(event)">
+    <img src="13.png" class="header-icon" alt="Kareem Omar">
     <h1 class="main-name">KAREEM OMAR</h1>
-    
-    <div class="avatar-box">
-        <img src="K.png" title="K" onclick="createBurst(event)" onerror="handleImgError(this)">
-        <img src="A.png" title="A" onclick="createBurst(event)" onerror="handleImgError(this)">
-        <img src="R.png" title="R" onclick="createBurst(event)" onerror="handleImgError(this)">
-        <img src="E.png" title="E" onclick="createBurst(event)" onerror="handleImgError(this)">
-        <img src="M.png" title="M" onclick="createBurst(event)" onerror="handleImgError(this)">
-    </div>
+    <p class="sub-title">FULL STACK DEVELOPER & DESIGNER</p>
 </header>
 
 <main>
     <section class="section-container reveal" id="about">
         <div class="glass-panel">
-            <h2 class="section-title"><i class="fas fa-rocket"></i> أهلاً بك في عالمي الإبداعي</h2>
-            <p class="intro-text">
-                أنا <b>كريم عمر</b>، متخصص في تحويل الأفكار الطموحة إلى واقع رقمي ملموس. أجمع بين قوة البرمجة وجمال الجرافيك لأقدم لك خدمات استثنائية تجعل مشروعك متميزاً وفريداً من نوعه! 🎨✨
-            </p>
+            <div class="section-header">
+                <h2 class="section-title"><i class="fas fa-id-card-alt"></i> الهوية الشخصية</h2>
+            </div>
+            <div class="info-grid">
+                <div class="info-box">
+                    <i class="fas fa-user-circle"></i>
+                    <span>الاسم بالكامل</span>
+                    <h3>كريم عمر سيد</h3>
+                </div>
+                <div class="info-box">
+                    <i class="fas fa-birthday-cake"></i>
+                    <span>تاريخ الميلاد</span>
+                    <h3>15 / 11 / 2010</h3>
+                </div>
+                <div class="info-box">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>الموقع الحالي</span>
+                    <h3>سدس الأمراء - ببا - بني سويف</h3>
+                </div>
+                <div class="info-box">
+                    <i class="fas fa-at"></i>
+                    <span>البريد الإلكتروني</span>
+                    <h3>kareemguinness@gmail.com</h3>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section class="section-container reveal" id="services">
-        <h2 class="section-title"><i class="fas fa-layer-group"></i> الخدمات والحلول الذكية</h2>
+    <section class="section-container reveal">
+        <div class="section-header">
+            <h2 class="section-title"><i class="fas fa-shapes"></i> مجالات الخبرة</h2>
+        </div>
         <div class="services-grid">
-            <div class="service-card">
-                <i class="fas fa-code"></i>
-                <h4>تطوير المواقع الذكية</h4>
-                <p>بناء مواقع بورتفوليو، متاجر إلكترونية، ومنصات متكاملة تتميز بالسرعة الفائقة والتوافق مع جميع الشاشات.</p>
+            <div class="service-item">
+                <i class="fas fa-laptop-code"></i>
+                <h3>تطوير الويب</h3>
+                <p>بناء منصات تعليمية ومتاجر إلكترونية متطورة بأنظمة حماية عالية وتشفير للمحتوى.</p>
             </div>
-            <div class="service-card">
-                <i class="fas fa-shield-halved"></i>
-                <h4>المنصات التعليمية</h4>
-                <p>تطوير أنظمة حماية المحتوى، تشفير الفيديوهات، نظام أكواد التفعيل، وامتحانات تفاعلية بتصحيح تلقائي.</p>
+            <div class="service-item">
+                <i class="fas fa-pen-nib"></i>
+                <h3>الهوية البصرية</h3>
+                <p>تصميم الشعارات، مذكرات الشرح، البوسترات العلمية، وبراند الطالب المخصص.</p>
             </div>
-            <div class="service-card">
-                <i class="fas fa-chalkboard-user"></i>
-                <h4>الدعم التعليمي</h4>
-                <p>تحويل المواد العلمية إلى مذكرات وبوسترات شرح جذابة تساعد المعلمين والطلاب على الإبداع.</p>
-            </div>
-            <div class="service-card">
-                <i class="fas fa-id-card"></i>
-                <h4>براند الطالب المخصص</h4>
-                <p>تصميم استيكرات، أغلفة كشاكيل، وفواصل كتب (Bookmarks) تحمل هويتك وصورتك بتصاميم عصرية.</p>
-            </div>
-            <div class="service-card">
-                <i class="fas fa-bezier-curve"></i>
-                <h4>التصميم الجرافيكي</h4>
-                <p>ابتكار شعارات فريدة (Logos)، هويات بصرية كاملة، كروت شخصية وفلايرات تترك انطباعاً لا ينسى.</p>
-            </div>
-            <div class="service-card">
-                <i class="fas fa-cubes"></i>
-                <h4>مهارات مكعب الروبيك</h4>
-                <p>الذكاء والتركيز والسرعة! خبير في حل مكعب الروبيك بمختلف أنواعه وأرقام قياسية مميزة.</p>
+            <div class="service-item">
+                <i class="fas fa-cube"></i>
+                <h3>مهارات ذكية</h3>
+                <p>خبير في حل مكعب الروبيك بمختلف أنواعه، مما يعكس سرعة البديهة والمنطق البرمجي.</p>
             </div>
         </div>
     </section>
 
     <section class="section-container reveal" id="portfolio">
-        <h2 class="section-title"><i class="fas fa-briefcase"></i> معرض المشاريع والروابط</h2>
-        
-        <div class="portfolio-links">
-            <a href="https://kemo-omar.github.io/Kramlat/" target="_blank" class="link-item">
-                <span>موقع "كرملات" الخاص بالبراند 🚀🍭</span> <i class="fas fa-external-link-alt"></i>
-            </a>
-            <a href="https://kemo-omar.github.io/Youth-of-the-future/" target="_blank" class="link-item">
-                <span>موقع شباب المستقبل 🌟</span> <i class="fas fa-external-link-alt"></i>
-            </a>
-            <a href="https://kemo-omar.github.io/Mozty/" target="_blank" class="link-item">
-                <span>منصة "موزتي" التعليمية 👨‍🏫</span> <i class="fas fa-external-link-alt"></i>
-            </a>
-            <a href="https://kemo-omar.github.io/BOOKKe/" target="_blank" class="link-item">
-                <span>موقع بوك كي للمتاجر 📚</span> <i class="fas fa-external-link-alt"></i>
-            </a>
-            <a href="https://kemo-omar.github.io/SOHOORNA/" target="_blank" class="link-item">
-                <span>موقع "سحورنا" الرمضاني 🌙</span> <i class="fas fa-external-link-alt"></i>
-            </a>
+        <div class="section-header">
+            <h2 class="section-title"><i class="fas fa-project-diagram"></i> معرض المشاريع</h2>
         </div>
-
-        <div class="gallery-grid" id="gallery-grid">
-            </div>
+        <div class="info-grid">
+            <a href="https://kemo-omar.github.io/Kramlat/" target="_blank" class="social-link"><i class="fas fa-rocket"></i> موقع "كرملات"</a>
+            <a href="https://kemo-omar.github.io/Youth-of-the-future/" target="_blank" class="social-link"><i class="fas fa-users"></i> شباب المستقبل</a>
+            <a href="https://kemo-omar.github.io/Mozty/" target="_blank" class="social-link"><i class="fas fa-graduation-cap"></i> منصة "موزتي"</a>
+            <a href="https://kemo-omar.github.io/SOHOORNA/" target="_blank" class="social-link"><i class="fas fa-moon"></i> موقع "سحورنا"</a>
+        </div>
     </section>
 
     <section class="section-container reveal" id="contact">
-        <div class="glass-panel" style="text-align: center;">
-            <h2 class="section-title" style="justify-content: center;">تواصل معي مباشرة</h2>
-            <div class="social-flex">
-                <a href="https://www.facebook.com/share/1DQMkA2biL/" target="_blank" class="social-btn fb"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/kareemomar1511?igsh=MWRrc2VmNHI2d3ZicQ==" target="_blank" class="social-btn ig"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.tiktok.com/@kareem_omar15" target="_blank" class="social-btn tk"><i class="fab fa-tiktok"></i></a>
-                <a href="https://wa.me/201159562785" target="_blank" class="social-btn wa"><i class="fab fa-whatsapp"></i></a>
+        <div class="glass-panel">
+            <div class="section-header">
+                <h2 class="section-title"><i class="fas fa-paper-plane"></i> صندوق الرسائل</h2>
+            </div>
+            <div class="contact-grid">
+                <form class="message-form" id="contactForm">
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="name" placeholder="الاسم الكامل" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="email" placeholder="البريد الإلكتروني" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-comment-alt" style="top: 25px;"></i>
+                        <textarea id="message" rows="5" placeholder="أكتب رسالتك هنا..." required></textarea>
+                    </div>
+                    <button type="submit" class="send-btn" id="submitBtn">إرسال عبر السيرفر</button>
+                </form>
+
+                <div class="social-sidebar">
+                    <a href="https://www.facebook.com/share/1DQMkA2biL/" target="_blank" class="social-link">
+                        <i class="fab fa-facebook-f"></i> <span>Facebook</span>
+                    </a>
+                    <a href="https://www.instagram.com/kareemomar1511" target="_blank" class="social-link">
+                        <i class="fab fa-instagram"></i> <span>Instagram</span>
+                    </a>
+                    <a href="https://www.tiktok.com/@kareem_omar15" target="_blank" class="social-link">
+                        <i class="fab fa-tiktok"></i> <span>TikTok</span>
+                    </a>
+                    <a href="https://wa.me/201159562785" target="_blank" class="social-link">
+                        <i class="fab fa-whatsapp"></i> <span>WhatsApp</span>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 </main>
 
-<footer>DESIGNED BY KAREEM OMAR © 2026</footer>
+<footer>&copy; 2026 KAREEM OMAR | ALL RIGHTS RESERVED</footer>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyDW1eNmFR7DocXCIJpLHAAWmR5p475xdSQ",
+        authDomain: "saif-736ac.firebaseapp.com",
+        databaseURL: "https://saif-736ac-default-rtdb.firebaseio.com",
+        projectId: "saif-736ac",
+        storageBucket: "saif-736ac.firebasestorage.app",
+        messagingSenderId: "1082464303719",
+        appId: "1:1082464303719:web:7f6cab5071a040564f72c2"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    document.getElementById('contactForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        const originalText = btn.innerText;
+        
+        btn.innerText = "جاري الإرسال...";
+        btn.disabled = true;
+
+        try {
+            const messagesRef = ref(db, 'portfolio_messages');
+            const newMessage = push(messagesRef);
+            await set(newMessage, {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value,
+                date: new Date().toLocaleString('ar-EG')
+            });
+            alert('تم إرسال رسالتك بنجاح إلى كريم!');
+            document.getElementById('contactForm').reset();
+        } catch (error) {
+            alert('عذراً، حدث خطأ في الاتصال بالسيرفر.');
+        } finally {
+            btn.innerText = originalText;
+            btn.disabled = false;
+        }
+    });
+</script>
 
 <script>
-    // Theme Management
-    function toggleTheme() {
-        const body = document.body;
-        const icon = document.getElementById('theme-icon');
-        body.classList.toggle('light-mode');
-        icon.className = body.classList.contains('light-mode') ? 'fas fa-sun' : 'fas fa-moon';
-        localStorage.setItem('theme', body.classList.contains('light-mode') ? 'light' : 'dark');
-    }
-
-    // Load saved theme
-    if (localStorage.getItem('theme') === 'light') toggleTheme();
-
-    // Image Error Handler
-    function handleImgError(img) {
-        const formats = ['.png', '.jpg', '.jpeg'];
-        let currentSrc = img.src;
-        // Simple logic to rotate extension if not found
-        img.style.opacity = "0.5"; 
-    }
-
-    // Build Gallery
-    const gallery = document.getElementById('gallery-grid');
-    for(let i=1; i<=21; i++) {
-        const card = document.createElement('div');
-        card.className = 'gallery-card reveal';
-        card.innerHTML = `<img src="${i}.jpg" loading="lazy" alt="Project ${i}" onerror="this.src='${i}.png'">`;
-        gallery.appendChild(card);
-    }
-
-    // Particles Engine
+    // Particle Engine
     const canvas = document.getElementById('particle-canvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
@@ -334,68 +359,55 @@
     window.addEventListener('resize', resize);
     resize();
 
-    function createBurst(e) {
-        const x = e.clientX || (e.touches ? e.touches[0].clientX : window.innerWidth/2);
-        const y = e.clientY || (e.touches ? e.touches[0].clientY : window.innerHeight/2);
-        for(let i=0; i<15; i++) {
-            particles.push({
-                x, y,
-                vx: (Math.random() - 0.5) * 8,
-                vy: (Math.random() - 0.5) * 8,
-                size: Math.random() * 3,
-                color: Math.random() > 0.5 ? '#00f2ff' : '#bc00ff',
-                alpha: 1
-            });
+    class Particle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 2;
+            this.speedX = (Math.random() - 0.5) * 0.5;
+            this.speedY = (Math.random() - 0.5) * 0.5;
+        }
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            if (this.x > canvas.width) this.x = 0;
+            if (this.x < 0) this.x = canvas.width;
+            if (this.y > canvas.height) this.y = 0;
+            if (this.y < 0) this.y = canvas.height;
+        }
+        draw() {
+            ctx.fillStyle = 'rgba(0, 242, 255, 0.2)';
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
         }
     }
 
-    window.addEventListener('click', createBurst);
+    for (let i = 0; i < 80; i++) particles.push(new Particle());
 
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particles.forEach((p, i) => {
-            p.x += p.vx;
-            p.y += p.vy;
-            p.alpha -= 0.015;
-            if(p.alpha <= 0) particles.splice(i, 1);
-            
-            ctx.globalAlpha = p.alpha;
-            ctx.fillStyle = p.color;
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-            ctx.fill();
-        });
+        particles.forEach(p => { p.update(); p.draw(); });
         requestAnimationFrame(animate);
     }
     animate();
 
-    // Intersection Observer for Reveal
+    // Theme Toggle
+    function toggleTheme() {
+        document.body.classList.toggle('light-mode');
+        const icon = document.getElementById('theme-icon');
+        icon.className = document.body.classList.contains('light-mode') ? 'fas fa-moon' : 'fas fa-sun';
+    }
+
+    // Reveal on scroll
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-            }
+            if (entry.isIntersecting) entry.target.classList.add('active');
         });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.1 });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    // Smooth Navigation active state
-    window.addEventListener('scroll', () => {
-        let current = "";
-        const sections = document.querySelectorAll('section, header');
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            if (pageYOffset >= sectionTop - 100) {
-                current = section.getAttribute('id');
-            }
-        });
-
-        document.querySelectorAll('nav a').forEach(a => {
-            a.style.opacity = a.getAttribute('href').includes(current) ? "1" : "0.7";
-            a.style.color = a.getAttribute('href').includes(current) ? "var(--p)" : "var(--text-color)";
-        });
-    });
 </script>
+
 </body>
 </html>
