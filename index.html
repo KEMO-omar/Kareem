@@ -351,9 +351,15 @@
     </section>
 </main>
 
-<footer>KAREEM OMAR © 2026 | THE FUTURE IS HERE</footer>
-
-<script type="module">
+<footer>
+    <div style="margin-bottom: 10px;">
+        <span style="color: var(--p);">#</span> DESIGNED_WITH_LOGIC 
+        <span style="color: var(--s);">#</span> CODED_WITH_PASSION
+    </div>
+    <p>KAREEM OMAR © 2026 | ARCHITECTING THE DIGITAL VOID</p>
+</footer>
+    
+    <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
@@ -419,6 +425,29 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
+<div class="cursor-dot"></div>
+<div class="cursor-outline"></div>
 
+<style>
+    .cursor-dot, .cursor-outline {
+        pointer-events: none; position: fixed; top: 0; left: 0;
+        transform: translate(-50%, -50%); border-radius: 50%; z-index: 9999;
+        transition: opacity 0.3s, transform 0.3s;
+    }
+    .cursor-dot { width: 8px; height: 8px; background-color: var(--p); }
+    .cursor-outline { 
+        width: 40px; height: 40px; border: 2px solid var(--p); 
+        transition: all 0.15s ease-out; 
+    }
+</style>
+
+<script>
+    const dot = document.querySelector(".cursor-dot");
+    const outline = document.querySelector(".cursor-outline");
+    window.addEventListener("mousemove", (e) => {
+        dot.style.left = outline.style.left = e.clientX + "px";
+        dot.style.top = outline.style.top = e.clientY + "px";
+    });
+</script>
 </body>
 </html>
