@@ -3,15 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>KAREEM OMAR | The Visual Architect</title>
+    <title>KAREEM OMAR | Official Portfolio</title>
     
-    <link rel="icon" type="image/png" href="13.png">
-    
+    <link rel="icon" type="image/jpeg" href="13.jpg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Orbitron:wght@900&display=swap" rel="stylesheet">
     
     <style>
-        /* تعريف الخطوط الخاصة بك */
+        /* الخطوط الستة */
         @font-face { font-family: 'Dahka'; src: url('ضحكه.ttf'); }
         @font-face { font-family: 'Rawnaq'; src: url('دي جي راونق.ttf'); }
         @font-face { font-family: 'Kufa'; src: url('الكوفا.ttf'); }
@@ -20,289 +18,323 @@
         @font-face { font-family: 'Belabelo'; src: url('بلابيلو.ttf'); }
 
         :root { 
-            --p: #00f2ff; --s: #bc00ff; --bg: #050508; 
-            --card-bg: rgba(15, 15, 25, 0.9); --text: #ffffff;
-            --active-font: 'Cairo', sans-serif; --glass: rgba(255, 255, 255, 0.03);
+            --p: #00f2ff; --s: #bc00ff; 
+            --bg: #050508; --text: #ffffff;
+            --card: rgba(255, 255, 255, 0.03);
+            --active-font: 'Arial', sans-serif;
         }
 
         body.light-mode {
-            --bg: #f0f4f8; --card-bg: #ffffff; --text: #1a202c;
-            --p: #007bff; --s: #6610f2;
+            --bg: #f4f4f9; --text: #1a1a1a;
+            --card: rgba(0, 0, 0, 0.05);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        body { background: var(--bg); color: var(--text); font-family: var(--active-font); overflow-x: hidden; transition: 0.5s; }
+        body { background: var(--bg); color: var(--text); font-family: var(--active-font); transition: 0.4s; overflow-x: hidden; }
 
-        /* الشاشة الافتتاحية */
-        #preloader {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #000; z-index: 9999; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; transition: 0.8s;
-        }
-        .loader-name { font-family: 'Orbitron'; font-size: 2.5rem; color: var(--p); animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+        /* Navigation */
+        nav { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.7); backdrop-filter: blur(15px); padding: 12px 25px; border-radius: 100px; border: 1px solid var(--p); display: flex; gap: 20px; z-index: 2000; }
+        nav a { color: #fff; text-decoration: none; font-size: 1.3rem; transition: 0.3s; }
+        nav a:hover { color: var(--p); transform: scale(1.2); }
 
-        /* أدوات التحكم */
-        .controls { position: fixed; top: 20px; right: 20px; display: flex; gap: 10px; z-index: 3000; }
-        .btn-ctrl { width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 1px solid var(--p); background: var(--card-bg); color: var(--p); transition: 0.3s; }
-        .btn-ctrl:hover { background: var(--p); color: #000; transform: scale(1.1); }
+        /* Controls */
+        .controls { position: fixed; top: 20px; right: 20px; z-index: 3000; display: flex; flex-direction: column; gap: 10px; }
+        .ctrl-btn { width: 45px; height: 45px; border-radius: 12px; background: linear-gradient(45deg, var(--p), var(--s)); border: none; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
 
-        .font-menu {
-            position: fixed; top: 80px; right: 20px; background: var(--card-bg);
-            padding: 15px; border-radius: 20px; border: 1px solid var(--p);
-            display: none; flex-direction: column; gap: 8px; z-index: 2999; backdrop-filter: blur(10px);
-        }
-        .f-btn { background: var(--glass); border: 1px solid rgba(255,255,255,0.1); color: var(--text); padding: 8px 15px; border-radius: 10px; cursor: pointer; text-align: right; transition: 0.2s; }
-        .f-btn:hover { background: var(--p); color: #000; }
+        .font-menu { position: fixed; top: 75px; right: 20px; background: var(--bg); border: 1px solid var(--p); padding: 10px; border-radius: 15px; display: none; flex-direction: column; gap: 5px; z-index: 2999; }
+        .font-btn { background: var(--card); border: none; color: var(--text); padding: 8px; border-radius: 8px; cursor: pointer; text-align: right; }
 
-        /* التنقل */
-        nav {
-            position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%);
-            background: rgba(5, 5, 8, 0.85); backdrop-filter: blur(20px);
-            padding: 15px 35px; border-radius: 100px; border: 1px solid rgba(0,242,255,0.3);
-            display: flex; gap: 30px; z-index: 2000;
-        }
-        nav a { color: #fff; text-decoration: none; font-size: 1.4rem; transition: 0.3s; }
-        nav a:hover { color: var(--p); transform: scale(1.4); text-shadow: 0 0 10px var(--p); }
+        /* Sections General */
+        section { padding: 80px 20px; max-width: 1100px; margin: 0 auto; }
+        .section-title { font-size: 2.2rem; color: var(--p); margin-bottom: 40px; text-align: center; border-bottom: 2px solid var(--s); display: inline-block; padding-bottom: 10px; }
 
-        /* الهيدر */
-        header { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px 20px; }
-        .main-logo { width: 140px; height: 140px; border-radius: 50%; border: 4px solid var(--p); object-fit: cover; box-shadow: 0 0 40px rgba(0, 242, 255, 0.4); margin-bottom: 25px; }
-        
-        .name-row { display: flex; gap: 12px; margin-bottom: 30px; flex-wrap: wrap; justify-content: center; }
-        .name-img { width: 55px; height: 55px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); object-fit: cover; transition: 0.4s; }
-        .name-img:hover { transform: scale(1.2) rotate(5deg); border-color: var(--p); }
+        /* Header */
+        header { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+        .main-logo { width: 140px; height: 140px; border-radius: 50%; border: 3px solid var(--p); margin-bottom: 20px; object-fit: cover; box-shadow: 0 0 25px var(--p); }
+        .p-photo { width: 65px; height: 65px; border-radius: 12px; border: 2px solid var(--s); margin: 0 5px; object-fit: cover; }
 
-        .hero-title { font-family: 'Orbitron'; font-size: clamp(2rem, 8vw, 4.5rem); letter-spacing: 5px; margin-bottom: 20px; text-shadow: 0 0 20px var(--p); }
-        .hero-card { background: var(--glass); border: 1px solid var(--p); padding: 40px; border-radius: 40px; max-width: 800px; backdrop-filter: blur(10px); animation: float 5s infinite ease-in-out; }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        /* Cards Grid */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .card { background: var(--card); padding: 30px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); text-align: center; transition: 0.3s; }
+        .card:hover { border-color: var(--p); transform: translateY(-10px); }
+        .card i { font-size: 2.5rem; color: var(--p); margin-bottom: 15px; }
 
-        /* الأقسام والمشاريع */
-        .container { max-width: 1200px; margin: 100px auto; padding: 0 30px; }
-        .title { font-size: 2.5rem; color: var(--p); margin-bottom: 50px; display: flex; align-items: center; gap: 20px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        
-        .card { background: var(--glass); padding: 35px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.1); transition: 0.4s; text-decoration: none; color: inherit; position: relative; overflow: hidden; }
-        .card:hover { transform: translateY(-12px); border-color: var(--p); background: var(--card-bg); box-shadow: 0 15px 40px rgba(0, 242, 255, 0.15); }
+        /* Contact Section */
+        .contact-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 30px; }
+        .contact-btn { padding: 15px 30px; border-radius: 50px; text-decoration: none; color: white; font-weight: bold; display: flex; align-items: center; gap: 10px; transition: 0.3s; }
+        .whatsapp { background: #25D366; box-shadow: 0 5px 15px rgba(37,211,102,0.4); }
+        .email { background: #EA4335; box-shadow: 0 5px 15px rgba(234,67,53,0.4); }
+        .github { background: #333; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
 
-        /* معرض الصور اللانهائي */
-        .gallery-wrap { width: 100%; overflow: hidden; position: relative; padding: 50px 0; }
-        .gallery-track { display: flex; gap: 20px; animation: scroll 40s linear infinite; width: max-content; }
-        .gallery-track:hover { animation-play-state: paused; }
-        .g-img { width: 300px; height: 380px; border-radius: 20px; object-fit: cover; border: 2px solid rgba(0,242,255,0.2); transition: 0.5s; }
-        .g-img:hover { transform: scale(1.08); border-color: var(--p); box-shadow: 0 0 25px var(--p); }
+        /* Gallery */
+        .gallery-container { overflow: hidden; padding: 20px 0; }
+        .gallery-track { display: flex; gap: 15px; animation: scroll 40s linear infinite; width: max-content; }
+        .gallery-img { width: 200px; height: 260px; border-radius: 15px; object-fit: cover; border: 1px solid var(--p); }
+
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-        /* الفورم والتواصل */
-        .contact-box { background: var(--card-bg); padding: 60px; border-radius: 50px; border: 1px solid var(--p); max-width: 750px; margin: 0 auto; box-shadow: 0 0 50px rgba(0,0,0,0.5); }
-        input, textarea { width: 100%; padding: 20px; margin-bottom: 20px; border-radius: 18px; background: var(--glass); border: 1px solid rgba(255,255,255,0.1); color: var(--text); font-family: inherit; outline: none; transition: 0.3s; }
-        input:focus, textarea:focus { border-color: var(--p); background: rgba(0,242,255,0.05); }
-        .send-btn { width: 100%; padding: 20px; border-radius: 18px; border: none; background: linear-gradient(90deg, var(--p), var(--s)); color: white; font-weight: 900; font-size: 1.1rem; cursor: pointer; transition: 0.4s; }
-        .send-btn:hover { letter-spacing: 3px; filter: brightness(1.2); }
-
-        .social-row { display: flex; justify-content: center; gap: 20px; margin-top: 40px; }
-        .social-link { width: 60px; height: 60px; border-radius: 20px; background: var(--glass); display: flex; align-items: center; justify-content: center; color: var(--text); text-decoration: none; border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; font-size: 1.5rem; }
-        .social-link:hover { border-color: var(--p); color: var(--p); transform: translateY(-10px); background: var(--card-bg); }
-
-        .reveal { opacity: 0; transform: translateY(50px); transition: 1.2s cubic-bezier(0.17, 0.67, 0.83, 0.67); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        footer { text-align: center; padding: 80px 20px; opacity: 0.5; font-family: 'Orbitron'; font-size: 0.8rem; letter-spacing: 5px; }
     </style>
 </head>
 <body>
 
-<div id="preloader">
-    <div class="loader-name">KAREEM OMAR</div>
-    <p style="color: var(--s); margin-top: 15px; letter-spacing: 4px;">INITIALIZING SYSTEM...</p>
-</div>
-
 <div class="controls">
-    <div class="btn-ctrl" onclick="toggleTheme()"><i class="fas fa-moon" id="tIcon"></i></div>
-    <div class="btn-ctrl" onclick="toggleFont()"><i class="fas fa-font"></i></div>
+    <button class="ctrl-btn" id="themeBtn"><i class="fas fa-adjust"></i></button>
+    <button class="ctrl-btn" onclick="toggleMenu()"><i class="fas fa-font"></i></button>
 </div>
 
-<div class="font-menu" id="fMenu">
-    <button class="f-btn" style="font-family:'Dahka'" onclick="setF('Dahka')">خط ضحكة</button>
-    <button class="f-btn" style="font-family:'Rawnaq'" onclick="setF('Rawnaq')">خط راونق</button>
-    <button class="f-btn" style="font-family:'Kufa'" onclick="setF('Kufa')">خط الكوفا</button>
-    <button class="f-btn" style="font-family:'Amira'" onclick="setF('Amira')">خط أميرة</button>
-    <button class="f-btn" style="font-family:'Galaxy'" onclick="setF('Galaxy')">خط جالاكسي</button>
-    <button class="f-btn" style="font-family:'Cairo'" onclick="setF('Cairo')">الخط الافتراضي</button>
+<div class="font-menu" id="fontMenu">
+    <button class="font-btn" style="font-family:'Dahka'" onclick="setF('Dahka')">ضحكة</button>
+    <button class="font-btn" style="font-family:'Rawnaq'" onclick="setF('Rawnaq')">راونق</button>
+    <button class="font-btn" style="font-family:'Kufa'" onclick="setF('Kufa')">الكوفا</button>
+    <button class="font-btn" style="font-family:'Amira'" onclick="setF('Amira')">أميرة</button>
+    <button class="font-btn" style="font-family:'Galaxy'" onclick="setF('Galaxy')">جالاكسي</button>
+    <button class="font-btn" style="font-family:'Belabelo'" onclick="setF('Belabelo')">بلابيلو</button>
 </div>
 
 <nav>
     <a href="#home"><i class="fas fa-home"></i></a>
-    <a href="#about"><i class="fas fa-user-astronaut"></i></a>
-    <a href="#projects"><i class="fas fa-project-diagram"></i></a>
-    <a href="#gallery"><i class="fas fa-images"></i></a>
-    <a href="#contact"><i class="fas fa-envelope"></i></a>
+    <a href="#about"><i class="fas fa-fingerprint"></i></a>
+    <a href="#services"><i class="fas fa-rocket"></i></a>
+    <a href="#works"><i class="fas fa-code-branch"></i></a>
+    <a href="#contact"><i class="fas fa-paper-plane"></i></a>
 </nav>
 
 <header id="home">
-    <img src="13.png" class="main-logo" alt="Profile">
-    
-    <div class="name-row">
-        <img src="K.png" class="name-img" alt="K" onerror="this.src='K.jpg'">
-        <img src="A.png" class="name-img" alt="A" onerror="this.src='A.jpg'">
-        <img src="R.png" class="name-img" alt="R" onerror="this.src='R.jpg'">
-        <img src="E.png" class="name-img" alt="E" onerror="this.src='E.jpg'">
-        <img src="M.png" class="name-img" alt="M" onerror="this.src='M.jpg'">
+    <img src="13.jpg" class="main-logo" alt="Logo">
+    <div style="margin-bottom: 20px;">
+        <img src="K.png" class="p-photo">
+        <img src="A.png" class="p-photo">
+        <img src="R.png" class="p-photo">
+        <img src="E.png" class="p-photo">
+        <img src="M.png" class="p-photo">
     </div>
-
-    <h1 class="hero-title">KAREEM OMAR</h1>
-    
-    <div class="hero-card">
-        <h2 style="line-height: 1.6;">"أقوم بصهر الخيال في قوالب برمجية ذكية لأصنع لك مستقبلاً يرى بالعين ويُلمس بالأيدي."</h2>
-        <p style="margin-top: 25px; color: var(--p); font-family: 'Orbitron'; font-size: 0.9rem;">FULL-STACK ENGINEER • EST. 2010 • 2026</p>
-    </div>
+    <h1 style="font-size: 3rem; font-family: 'Orbitron';">KAREEM OMAR</h1>
+    <p style="color: var(--p); letter-spacing: 5px;">THE VISUAL ARCHITECT</p>
 </header>
 
-<main>
-    <section class="container reveal" id="about">
-        <h2 class="title"><i class="fas fa-fingerprint"></i> من أنا؟</h2>
-        <div class="grid">
-            <div class="card"><h3>كريم عمر سيد</h3><p>مطور ومصمم واجهات</p></div>
-            <div class="card"><h3>الصف الأول الثانوي</h3><p>طالب متميز تقنياً</p></div>
-            <div class="card" style="border-color: var(--s);">
-                <i class="fas fa-handshake" style="color: var(--s); font-size: 2rem;"></i>
-                <h3 style="margin-top: 15px;">مصطفى محمد (عبقرينو)</h3>
-                <p>شريكي الأساسي في الإبداع</p>
-                <a href="https://mostafa7html7-pixel.github.io/AbuTaleb/" target="_blank" style="color: var(--p); display: block; margin-top: 10px;">زيارة المستودع</a>
-            </div>
+<section id="about" class="section-container reveal">
+    <h2 class="section-title"><i class="fas fa-fingerprint"></i> الهوية</h2>
+    <div class="grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+        
+        <div class="card">
+            <i class="fas fa-user-tie" style="font-size: 2rem; color: var(--p); margin-bottom: 15px;"></i>
+            <h3>الاسم</h3>
+            <p><strong>كريم عمر سيد سباق</strong></p>
+            <p>Full-Stack Software Engineer & Creative Designer</p>
         </div>
-    </section>
 
-    <section class="container reveal" id="projects">
-        <h2 class="title"><i class="fas fa-code"></i> أعمال مختارة</h2>
-        <div class="grid">
-            <a href="https://kemo-omar.github.io/SOHOORNA/" class="card"><h3>سحورنا 2026</h3><p>بوابة رمضانية ذكية</p></a>
-            <a href="https://kemo-omar.github.io/Kramlat/" class="card"><h3>مجتمع كرملات</h3><p>منصة تفاعلية ترفيهية</p></a>
-            <a href="https://kemo-omar.github.io/Mozty/" class="card"><h3>منصة موزتي</h3><p>نظام تعليمي متطور</p></a>
+        <a href="https://mostafa7html7-pixel.github.io/AbuTaleb/#works" target="_blank" class="card" style="text-decoration: none; color: inherit; border-color: var(--s);">
+            <i class="fas fa-handshake" style="font-size: 2rem; color: var(--s); margin-bottom: 15px;"></i>
+            <h3>الشريك الاستراتيجي</h3>
+            <p><strong>مصطفى محمد (عبقرينو)</strong></p>
+            <p style="font-size: 0.8rem; color: var(--p);">اضغط لزيارة بروفايل الشريك 🔗</p>
+        </a>
+
+        <div class="card">
+            <i class="fas fa-graduation-cap" style="font-size: 2rem; color: var(--p); margin-bottom: 15px;"></i>
+            <h3>المسار الدراسي</h3>
+            <p>طالب بالصف الأول الثانوي</p>
+            <p>تاريخ الميلاد: 15/11/2010</p>
         </div>
-    </section>
 
-    <section class="container reveal" id="gallery">
-        <h2 class="title"><i class="fas fa-photo-video"></i> معرض الإبداع</h2>
-        <div class="gallery-wrap">
-            <div class="gallery-track" id="gTrack">
-                </div>
+        <div class="card">
+            <i class="fas fa-map-marker-alt" style="font-size: 2rem; color: var(--p); margin-bottom: 15px;"></i>
+            <h3>العنوان</h3>
+            <p>سدس الأمراء - ببا - بني سويف</p>
         </div>
-    </section>
 
-    <section class="container reveal" id="contact">
-        <div class="contact-box">
-            <h2 style="text-align: center; margin-bottom: 40px;">لنبدأ رحلتك الرقمية</h2>
-            <form id="cForm">
-                <input type="text" id="uName" placeholder="اسمك الكريم" required>
-                <textarea id="uMsg" rows="5" placeholder="ما هو مشروعك القادم؟" required></textarea>
-                <button type="submit" class="send-btn">إرسال الرؤية</button>
-            </form>
+        <div class="card">
+            <i class="fas fa-phone-alt" style="font-size: 2rem; color: var(--p); margin-bottom: 15px;"></i>
+            <h3>رقم التواصل</h3>
+            <p dir="ltr">01159562785</p>
+        </div>
+
+        <div class="card">
+            <i class="fas fa-eye" style="font-size: 2rem; color: var(--p); margin-bottom: 15px;"></i>
+            <h3>الرؤية</h3>
+            <p>دمج الفن بالتكنولوجيا الرقمية لخلق تجارب مستخدم استثنائية.</p>
+        </div>
+
+    </div>
+</section>
+<section id="services" class="section-container reveal">
+    <h2 class="section-title"><i class="fas fa-cubes"></i> الخدمات الاحترافية</h2>
+    <div class="grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+        
+        <div class="card">
+            <i class="fas fa-code-branch" style="font-size: 2.5rem; color: var(--p); margin-bottom: 15px;"></i>
+            <h4>Full-Stack Development</h4>
+            <p>تطوير تطبيقات ويب متكاملة باستخدام HTML, CSS, JS, Python و Dart مع ربط قواعد بيانات Firebase.</p>
+        </div>
+
+        <div class="card">
+            <i class="fas fa-wand-magic-sparkles" style="font-size: 2.5rem; color: var(--p); margin-bottom: 15px;"></i>
+            <h4>Creative Graphic Design</h4>
+            <p>تصميم هويات بصرية وشعارات احترافية باستخدام Canva و Picsart برؤية فنية عصرية.</p>
+        </div>
+
+        <div class="card">
+            <i class="fas fa-user-secret" style="font-size: 2.5rem; color: var(--p); margin-bottom: 15px;"></i>
+            <h4>Cybersecurity & Ethical Hacking</h4>
+            <p>دراسة وتطبيق أنظمة الحماية واكتشاف الثغرات الأمنية لتأمين المواقع والمنصات الرقمية.</p>
+        </div>
+
+        <div class="card">
+            <i class="fas fa-cloud-upload-alt" style="font-size: 2.5rem; color: var(--p); margin-bottom: 15px;"></i>
+            <h4>Cloud Solutions & Hosting</h4>
+            <p>إدارة واستضافة المشاريع على GitHub Pages وربطها بأنظمة المزامنة الفورية للمستخدمين.</p>
+        </div>
+
+        <div class="card">
+            <i class="fas fa-rocket" style="font-size: 2.5rem; color: var(--p); margin-bottom: 15px;"></i>
+            <h4>Smart Educational Systems</h4>
+            <p>بناء منصات تعليمية تفاعلية مثل Sapora Rocket لربط المعلمين بالطلاب تقنياً.</p>
+        </div>
+
+        <div class="card">
+            <i class="fas fa-cube" style="font-size: 2.5rem; color: var(--p); margin-bottom: 15px;"></i>
+            <h4>Speedcubing Consulting</h4>
+            <p>تقديم خبرات في حل الألغاز المعقدة وتدريبات السرعة لمكعب روبيك والمكعبات الاحترافية.</p>
+        </div>
+
+    </div>
+</section>
+    <section id="works" class="section-container reveal">
+    <h2 class="section-title"><i class="fas fa-briefcase"></i> المعرض الرقمي للأعمال</h2>
+    
+    <div class="portfolio-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+        
+        <a href="https://kemo-omar.github.io/Kramlat/" target="_blank" class="p-item">
+            <i class="fas fa-users" style="font-size: 2rem; color: var(--p); margin-bottom: 15px;"></i>
+            <h3>مجتمع كرملات</h3>
+            <p>شبكة إبداعية لإدارة التحديات والمسابقات بتصميم عصري وجذاب للبراند.</p>
+        </a>
+
+        <a href="https://kemo-omar.github.io/Youth-of-the-future/" target="_blank" class="p-item">
+            <i class="fas fa-rocket" style="font-size: 2rem; color: var(--p); margin-bottom: 15px;"></i>
+            <h3>شباب المستقبل</h3>
+            <p>منصة طموحة تهدف لتمكين الشباب وتوفير موارد تعليمية وتقنية متقدمة.</p>
+        </a>
+
+        <a href="https://kemo-omar.github.io/Mozty/" target="_blank" class="p-item">
+            <i class="fas fa-chalkboard-teacher" style="font-size: 2rem; color: var(--p); margin-bottom: 15px;"></i>
+            <h3>منصة موزتي التعليمية</h3>
+            <p>نظام ذكي لإدارة المحتوى الدراسي والتفاعل بين المعلم والطالب باحترافية.</p>
+        </a>
+
+        <a href="https://kemo-omar.github.io/BOOKKe/" target="_blank" class="p-item">
+            <i class="fas fa-book-open" style="font-size: 2rem; color: var(--p); margin-bottom: 15px;"></i>
+            <h3>بوك كي - BOOKKe</h3>
+            <p>متجر إلكتروني متكامل للكتب يجمع بين سهولة التصفح وتجربة التسوق الرقمي.</p>
+        </a>
+
+        <a href="https://kemo-omar.github.io/SOHOORNA/" target="_blank" class="p-item">
+            <i class="fas fa-moon" style="font-size: 2rem; color: var(--p); margin-bottom: 15px;"></i>
+            <h3>سحورنا 2026</h3>
+            <p>بوابة رمضانية تفاعلية لمتابعة التوقيتات والخدمات الرمضانية بروح عصرية.</p>
+        </a>
+
+        <a href="https://kemo-omar.github.io/Kareem/" target="_blank" class="p-item">
+            <i class="fas fa-drafting-compass" style="font-size: 2rem; color: var(--p); margin-bottom: 15px;"></i>
+            <h3>بورتفوليو المعماري 2026</h3>
+            <p>هذا الموقع الذي تتصفحه الآن، مصمم بهوية بصرية حديثة وتأثيرات النيون.</p>
+        </a>
+
+        <div class="p-item" style="cursor: default; opacity: 0.9;">
+            <i class="fas fa-terminal" style="font-size: 2rem; color: var(--s); margin-bottom: 15px;"></i>
+            <h3>Sapora Rocket</h3>
+            <p>نظام السبورة التفاعلية الذكية المتزامن لربط شاشات الفصول وأجهزة الطلاب.</p>
+        </div>
+
+        <div class="p-item" style="cursor: default; opacity: 0.9;">
+            <i class="fas fa-cube" style="font-size: 2rem; color: var(--s); margin-bottom: 15px;"></i>
+            <h3>Speed Cubing Timer</h3>
+            <p>عداد ذكي متخصص لممارسي رياضة الـ Speedcubing مع تحليل البيانات.</p>
+        </div>
+
+        <div class="p-item" style="cursor: default; opacity: 0.9;">
+            <i class="fas fa-shield-alt" style="font-size: 2rem; color: var(--s); margin-bottom: 15px;"></i>
+            <h3>CyberShield Roadmap</h3>
+            <p>مشروع تعليمي لخرائط طريق تعلم الأمن السيبراني للمبتدئين.</p>
+        </div>
+
+        <div class="p-item" style="cursor: default; opacity: 0.9;">
+            <i class="fas fa-database" style="font-size: 2rem; color: var(--s); margin-bottom: 15px;"></i>
+            <h3>Firebase Sync Tool</h3>
+            <p>أداة داخلية قمت بتطويرها لمزامنة قواعد بيانات Firebase في الزمن الحقيقي.</p>
+        </div>
+
+    </div>
+</section>
+
+<section id="gallery">
+    <h2 class="section-title">المعرض (JPG)</h2>
+    <div class="gallery-container">
+        <div class="gallery-track" id="track"></div>
+    </div>
+</section>
+
+<section id="contact" style="padding: 80px 20px; text-align: center;">
+    <h2 class="section-title">تواصل معي</h2>
+    <div class="card" style="max-width: 800px; margin: 0 auto; background: var(--card); border: 1px solid var(--p); padding: 40px; border-radius: 30px;">
+        <p style="margin-bottom: 30px; font-size: 1.2rem;">للتواصل المباشر مع <strong>كريم عمر</strong> عبر المنصات الرسمية:</p>
+        
+        <div class="contact-links" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
             
-            <div class="social-row">
-                <a href="https://wa.me/201159562785" class="social-link"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://github.com/KEMO-omar" class="social-link"><i class="fab fa-github"></i></a>
-            </div>
+            <a href="https://www.facebook.com/share/1DQMkA2biL/" target="_blank" class="contact-btn" style="background: #1877F2;">
+                <i class="fab fa-facebook-f"></i> Facebook
+            </a>
+            
+            <a href="https://www.instagram.com/kareemomar1511?igsh=MWRrc2VmNHI2d3ZicQ==" target="_blank" class="contact-btn" style="background: #E1306C;">
+                <i class="fab fa-instagram"></i> Instagram
+            </a>
+            
+            <a href="https://www.tiktok.com/@kareem_omar15" target="_blank" class="contact-btn" style="background: #000000;">
+                <i class="fab fa-tiktok"></i> TikTok
+            </a>
+            
+            <a href="https://wa.me/201159562785" target="_blank" class="contact-btn" style="background: #25D366;">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+
+            <a href="mailto:kareemguinness@gmail.com" class="contact-btn" style="background: #EA4335;">
+                <i class="far fa-envelope"></i> Gmail
+            </a>
+
+            <a href="https://github.com/kemo-omar" target="_blank" class="contact-btn" style="background: #333;">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+
         </div>
-    </section>
-</main>
-
-<footer><p>KAREEM OMAR © 2026 | DESIGNED BY KEMO-OMAR</p></footer>
-
-<script type="module">
-    // ربط Firebase الخاص بك
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
-    
-    const firebaseConfig = { 
-        apiKey: "AIzaSyDW1eNmFR7DocXCIJpLHAAWmR5p475xdSQ", 
-        authDomain: "saif-736ac.firebaseapp.com", 
-        databaseURL: "https://saif-736ac-default-rtdb.firebaseio.com", 
-        projectId: "saif-736ac", 
-        storageBucket: "saif-736ac.firebasestorage.app", 
-        messagingSenderId: "1082464303719", 
-        appId: "1:1082464303719:web:7f6cab5071a040564f72c2" 
-    };
-    
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
-
-    document.getElementById('cForm').addEventListener('submit', (e) => {
-        e.preventDefault();
-        const data = { 
-            sender: document.getElementById('uName').value, 
-            message: document.getElementById('uMsg').value, 
-            time: new Date().toLocaleString() 
-        };
-        set(push(ref(db, 'portfolio_messages')), data).then(() => {
-            alert('تم استلام رؤيتك بنجاح!');
-            document.getElementById('cForm').reset();
-        });
-    });
-</script>
+    </div>
+</section>
 
 <script>
-    // التحكم بالثيم والخطوط
-    function toggleTheme() {
+    // Theme Switch
+    const btn = document.getElementById('themeBtn');
+    btn.onclick = () => {
         document.body.classList.toggle('light-mode');
-        const icon = document.getElementById('tIcon');
-        icon.classList.toggle('fa-moon');
-        icon.classList.toggle('fa-sun');
-    }
+    };
 
-    function toggleFont() {
-        const m = document.getElementById('fMenu');
+    // Fonts
+    function toggleMenu() {
+        const m = document.getElementById('fontMenu');
         m.style.display = (m.style.display === 'flex') ? 'none' : 'flex';
     }
-
     function setF(f) {
         document.body.style.setProperty('--active-font', f);
-        toggleFont();
+        toggleMenu();
     }
 
-    // المعرض الذكي: التحقق التلقائي من الامتداد (JPG أو PNG)
-    const track = document.getElementById('gTrack');
-    const total = 21;
-
-    function buildGallery() {
-        // نكرر المصفوفة مرتين لضمان استمرارية الحركة
-        for (let i = 0; i < 2; i++) {
-            for (let n = 1; n <= total; n++) {
-                const img = document.createElement('img');
-                img.className = 'g-img';
-                img.loading = 'lazy';
-                
-                // المحاولة الأولى: تحميل كـ jpg
-                img.src = `${n}.jpg`;
-                
-                // إذا فشل الـ jpg، سيحاول تلقائياً تحميل الـ png
-                img.onerror = function() {
-                    if (!this.dataset.tried) {
-                        this.dataset.tried = "true";
-                        this.src = `${this.src.replace('.jpg', '.png')}`;
-                    } else {
-                        this.style.display = 'none'; // إخفاء إذا فشل الاثنين
-                    }
-                };
-                
-                track.appendChild(img);
-            }
+    // Gallery Images (1.jpg to 21.jpg)
+    const t = document.getElementById('track');
+    for(let i=0; i<2; i++) {
+        for(let j=1; j<=21; j++) {
+            const img = document.createElement('img');
+            img.src = `${j}.jpg`;
+            img.className = 'gallery-img';
+            t.appendChild(img);
         }
     }
-
-    // تشغيل الأنيميشن عند الظهور
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
-    }, { threshold: 0.1 });
-
-    window.onload = () => {
-        buildGallery();
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-        setTimeout(() => {
-            const p = document.getElementById('preloader');
-            p.style.opacity = '0';
-            setTimeout(() => p.remove(), 800);
-        }, 1500);
-    };
 </script>
 </body>
 </html>
