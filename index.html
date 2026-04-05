@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* الخطوط الستة */
+        /* الخطوط الستة المخصصة */
         @font-face { font-family: 'Dahka'; src: url('ضحكه.ttf'); }
         @font-face { font-family: 'Rawnaq'; src: url('دي جي راونق.ttf'); }
         @font-face { font-family: 'Kufa'; src: url('الكوفا.ttf'); }
@@ -66,6 +66,11 @@
         .email { background: #EA4335; box-shadow: 0 5px 15px rgba(234,67,53,0.4); }
         .github { background: #333; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
 
+        /* Portfolio Items */
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .p-item { background: var(--card); padding: 25px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); text-decoration: none; color: var(--text); transition: 0.3s; display: block; text-align: center; }
+        .p-item:hover { border-color: var(--s); transform: scale(1.03); }
+
         /* Gallery */
         .gallery-container { overflow: hidden; padding: 20px 0; }
         .gallery-track { display: flex; gap: 15px; animation: scroll 40s linear infinite; width: max-content; }
@@ -101,11 +106,11 @@
 <header id="home">
     <img src="13.jpg" class="main-logo" alt="Logo">
     <div style="margin-bottom: 20px;">
-        <img src="K.png" class="p-photo">
-        <img src="A.png" class="p-photo">
-        <img src="R.png" class="p-photo">
-        <img src="E.png" class="p-photo">
-        <img src="M.png" class="p-photo">
+        <img src="K.png" class="p-photo" alt="K">
+        <img src="A.png" class="p-photo" alt="A">
+        <img src="R.png" class="p-photo" alt="R">
+        <img src="E.png" class="p-photo" alt="E">
+        <img src="M.png" class="p-photo" alt="M">
     </div>
     <h1 style="font-size: 3rem; font-family: 'Orbitron';">KAREEM OMAR</h1>
     <p style="color: var(--p); letter-spacing: 5px;">THE VISUAL ARCHITECT</p>
@@ -113,95 +118,97 @@
 
 <section id="about" class="section-container reveal">
     <h2 class="section-title"><i class="fas fa-fingerprint"></i> الهوية</h2>
-    <div class="grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+    <div class="grid">
         
         <div class="card">
-            <i class="fas fa-user-tie" style="font-size: 2rem; color: var(--p); margin-bottom: 15px;"></i>
+            <i class="fas fa-user-tie"></i>
             <h3>الاسم</h3>
             <p><strong>كريم عمر سيد سباق</strong></p>
             <p>Full-Stack Software Engineer & Creative Designer</p>
         </div>
 
         <a href="https://mostafa7html7-pixel.github.io/AbuTaleb/#works" target="_blank" class="card" style="text-decoration: none; color: inherit; border-color: var(--s);">
-            <i class="fas fa-handshake" style="font-size: 2rem; color: var(--s); margin-bottom: 15px;"></i>
+            <i class="fas fa-handshake" style="color: var(--s);"></i>
             <h3>الشريك الاستراتيجي</h3>
             <p><strong>مصطفى محمد (عبقرينو)</strong></p>
             <p style="font-size: 0.8rem; color: var(--p);">اضغط لزيارة بروفايل الشريك 🔗</p>
         </a>
 
         <div class="card">
-            <i class="fas fa-graduation-cap" style="font-size: 2rem; color: var(--p); margin-bottom: 15px;"></i>
+            <i class="fas fa-graduation-cap"></i>
             <h3>المسار الدراسي</h3>
             <p>طالب بالصف الأول الثانوي</p>
             <p>تاريخ الميلاد: 15/11/2010</p>
         </div>
 
         <div class="card">
-            <i class="fas fa-map-marker-alt" style="font-size: 2rem; color: var(--p); margin-bottom: 15px;"></i>
+            <i class="fas fa-map-marker-alt"></i>
             <h3>العنوان</h3>
             <p>سدس الأمراء - ببا - بني سويف</p>
         </div>
 
         <div class="card">
-            <i class="fas fa-phone-alt" style="font-size: 2rem; color: var(--p); margin-bottom: 15px;"></i>
+            <i class="fas fa-phone-alt"></i>
             <h3>رقم التواصل</h3>
             <p dir="ltr">01159562785</p>
         </div>
 
         <div class="card">
-            <i class="fas fa-eye" style="font-size: 2rem; color: var(--p); margin-bottom: 15px;"></i>
+            <i class="fas fa-eye"></i>
             <h3>الرؤية</h3>
             <p>دمج الفن بالتكنولوجيا الرقمية لخلق تجارب مستخدم استثنائية.</p>
         </div>
 
     </div>
 </section>
+
 <section id="services" class="section-container reveal">
     <h2 class="section-title"><i class="fas fa-cubes"></i> الخدمات الاحترافية</h2>
-    <div class="grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+    <div class="grid">
         
         <div class="card">
-            <i class="fas fa-code-branch" style="font-size: 2.5rem; color: var(--p); margin-bottom: 15px;"></i>
+            <i class="fas fa-code-branch"></i>
             <h4>Full-Stack Development</h4>
             <p>تطوير تطبيقات ويب متكاملة باستخدام HTML, CSS, JS, Python و Dart مع ربط قواعد بيانات Firebase.</p>
         </div>
 
         <div class="card">
-            <i class="fas fa-wand-magic-sparkles" style="font-size: 2.5rem; color: var(--p); margin-bottom: 15px;"></i>
+            <i class="fas fa-wand-magic-sparkles"></i>
             <h4>Creative Graphic Design</h4>
             <p>تصميم هويات بصرية وشعارات احترافية باستخدام Canva و Picsart برؤية فنية عصرية.</p>
         </div>
 
         <div class="card">
-            <i class="fas fa-user-secret" style="font-size: 2.5rem; color: var(--p); margin-bottom: 15px;"></i>
+            <i class="fas fa-user-secret"></i>
             <h4>Cybersecurity & Ethical Hacking</h4>
             <p>دراسة وتطبيق أنظمة الحماية واكتشاف الثغرات الأمنية لتأمين المواقع والمنصات الرقمية.</p>
         </div>
 
         <div class="card">
-            <i class="fas fa-cloud-upload-alt" style="font-size: 2.5rem; color: var(--p); margin-bottom: 15px;"></i>
+            <i class="fas fa-cloud-upload-alt"></i>
             <h4>Cloud Solutions & Hosting</h4>
             <p>إدارة واستضافة المشاريع على GitHub Pages وربطها بأنظمة المزامنة الفورية للمستخدمين.</p>
         </div>
 
         <div class="card">
-            <i class="fas fa-rocket" style="font-size: 2.5rem; color: var(--p); margin-bottom: 15px;"></i>
+            <i class="fas fa-rocket"></i>
             <h4>Smart Educational Systems</h4>
             <p>بناء منصات تعليمية تفاعلية مثل Sapora Rocket لربط المعلمين بالطلاب تقنياً.</p>
         </div>
 
         <div class="card">
-            <i class="fas fa-cube" style="font-size: 2.5rem; color: var(--p); margin-bottom: 15px;"></i>
+            <i class="fas fa-cube"></i>
             <h4>Speedcubing Consulting</h4>
             <p>تقديم خبرات في حل الألغاز المعقدة وتدريبات السرعة لمكعب روبيك والمكعبات الاحترافية.</p>
         </div>
 
     </div>
 </section>
-    <section id="works" class="section-container reveal">
+
+<section id="works" class="section-container reveal">
     <h2 class="section-title"><i class="fas fa-briefcase"></i> المعرض الرقمي للأعمال</h2>
     
-    <div class="portfolio-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+    <div class="portfolio-grid">
         
         <a href="https://kemo-omar.github.io/Kramlat/" target="_blank" class="p-item">
             <i class="fas fa-users" style="font-size: 2rem; color: var(--p); margin-bottom: 15px;"></i>
@@ -278,7 +285,7 @@
     <div class="card" style="max-width: 800px; margin: 0 auto; background: var(--card); border: 1px solid var(--p); padding: 40px; border-radius: 30px;">
         <p style="margin-bottom: 30px; font-size: 1.2rem;">للتواصل المباشر مع <strong>كريم عمر</strong> عبر المنصات الرسمية:</p>
         
-        <div class="contact-links" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
+        <div class="contact-links">
             
             <a href="https://www.facebook.com/share/1DQMkA2biL/" target="_blank" class="contact-btn" style="background: #1877F2;">
                 <i class="fab fa-facebook-f"></i> Facebook
@@ -315,7 +322,7 @@
         document.body.classList.toggle('light-mode');
     };
 
-    // Fonts
+    // Fonts Logic
     function toggleMenu() {
         const m = document.getElementById('fontMenu');
         m.style.display = (m.style.display === 'flex') ? 'none' : 'flex';
@@ -325,8 +332,9 @@
         toggleMenu();
     }
 
-    // Gallery Images (1.jpg to 21.jpg)
+    // Gallery Images Generation (1.jpg to 21.jpg)
     const t = document.getElementById('track');
+    // Repeating twice for seamless scrolling
     for(let i=0; i<2; i++) {
         for(let j=1; j<=21; j++) {
             const img = document.createElement('img');
