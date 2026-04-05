@@ -6,6 +6,7 @@
     <title>KAREEM OMAR | The Visual Architect</title>
     
     <link rel="icon" type="image/png" href="13.png">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Orbitron:wght@900&display=swap" rel="stylesheet">
     <style>
@@ -36,9 +37,11 @@
         --text-color: #1a202c;
         --glass: rgba(0, 0, 0, 0.05);
         --card-border: #cbd5e0;
+        --p: #007bff;
+        --s: #6610f2;
     }
 
-    /* 3. الإعدادات العامة */
+    /* 3. الإعدادات العامة - تم تفعيل الماوس الطبيعي */
     * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
     
     body { 
@@ -92,16 +95,27 @@
     /* 7. الهيدر */
     header { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px; }
     
-    .personal-row { display: flex; gap: 10px; margin-bottom: 25px; flex-wrap: wrap; justify-content: center; }
-    .p-photo { 
-        width: 75px; height: 75px; border-radius: 18px; border: 2px solid var(--p); 
-        object-fit: cover; transition: 0.5s;
+    /* ستايل اللوجو الرئيسي 13.png */
+    .profile-logo {
+        width: 130px; height: 130px; border-radius: 50%;
+        border: 4px solid var(--p); object-fit: cover;
+        box-shadow: 0 0 30px rgba(0, 242, 255, 0.5);
+        margin-bottom: 20px; transition: 0.5s;
     }
-    .p-photo:hover { transform: scale(1.2) rotate(8deg); border-color: var(--s); box-shadow: 0 0 25px var(--s); }
+    .profile-logo:hover { transform: scale(1.05); border-color: var(--s); box-shadow: 0 0 40px rgba(188, 0, 255, 0.6); }
+
+    /* ستايل صور الأحرف K,A,R,E,M.png */
+    .letters-row { display: flex; gap: 10px; margin-bottom: 25px; flex-wrap: wrap; justify-content: center; }
+    .letter-photo { 
+        width: 60px; height: 60px; border-radius: 12px; border: 2px solid rgba(255,255,255,0.2); 
+        object-fit: cover; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        background: rgba(255,255,255,0.05);
+    }
+    .letter-photo:hover { transform: scale(1.15) translateY(-5px); border-color: var(--p); box-shadow: 0 5px 15px rgba(0, 242, 255, 0.3); }
 
     .main-name { 
         font-family: 'Orbitron'; font-size: clamp(2.5rem, 9vw, 5rem); 
-        letter-spacing: 8px; margin: 20px 0; color: var(--text-color); 
+        letter-spacing: 8px; margin: 15px 0; color: var(--text-color); 
         text-shadow: 0 0 30px var(--p); 
     }
     
@@ -162,17 +176,6 @@
     .reveal.active { opacity: 1; transform: translateY(0); }
 
     footer { text-align: center; padding: 60px 20px; opacity: 0.6; font-family: 'Orbitron'; font-size: 0.9rem; letter-spacing: 4px; }
-
-    /* 11. الماوس المخصص */
-    .cursor-dot, .cursor-outline {
-        pointer-events: none; position: fixed; top: 0; left: 0;
-        transform: translate(-50%, -50%); border-radius: 50%; z-index: 9999;
-    }
-    .cursor-dot { width: 10px; height: 10px; background-color: var(--p); }
-    .cursor-outline { 
-        width: 45px; height: 45px; border: 2px solid var(--p); 
-        transition: all 0.2s ease-out; 
-    }
     </style>
 </head>
 <body>
@@ -207,13 +210,16 @@
 </nav>
 
 <header id="home">
-    <div class="personal-row">
-        <img src="K.png" class="p-photo" alt="K">
-        <img src="A.png" class="p-photo" alt="A">
-        <img src="R.png" class="p-photo" alt="R">
-        <img src="E.png" class="p-photo" alt="E">
-        <img src="M.png" class="p-photo" alt="M">
+    <img src="13.png" class="profile-logo" alt="KAREEM OMAR Logo">
+
+    <div class="letters-row">
+        <img src="K.png" class="letter-photo" alt="K" onerror="this.style.display='none'">
+        <img src="A.png" class="letter-photo" alt="A" onerror="this.style.display='none'">
+        <img src="R.png" class="letter-photo" alt="R" onerror="this.style.display='none'">
+        <img src="E.png" class="letter-photo" alt="E" onerror="this.style.display='none'">
+        <img src="M.png" class="letter-photo" alt="M" onerror="this.style.display='none'">
     </div>
+    
     <h1 class="main-name">KAREEM OMAR</h1>
     <div class="id-box">
         <h2 style="line-height: 1.8; font-weight: 700;">"أنا كريم عمر.. أقوم بتحويل الأفكار المعنوية إلى واقع رقمي ملموس، أصهر الخيال في قوالب برمجية ذكية لأصنع لك مستقبلاً يرى بالعين ويُلمس بالأيدي."</h2>
@@ -230,7 +236,7 @@
             <div class="card-item"><i class="fas fa-school"></i><h3>الصف الأول الثانوي</h3></div>
             <div class="card-item" style="border: 1px solid var(--s); background: rgba(188, 0, 255, 0.05);">
                 <i class="fas fa-handshake" style="color: var(--s);"></i>
-                <label style="display:block;opacity:0.6;font-size:0.8rem;">شريكي الاساسي</label>
+                <label style="display:block;opacity:0.6;font-size:0.8rem;margin-top:10px;">شريكي الاساسي</label>
                 <h3>مصطفى محمد (عبقرينو)</h3>
                 <a href="https://mostafa7html7-pixel.github.io/AbuTaleb/#works" target="_blank" style="color: var(--p); text-decoration: none; font-size: 0.8rem; display: block; margin-top: 10px;"><i class="fas fa-link"></i> زيارة البروفايل</a>
             </div>
@@ -269,7 +275,7 @@
                 <textarea id="userMsg" rows="5" placeholder="رؤيتك القادمة؟" required></textarea>
                 <button type="submit" style="width:100%; padding:18px; border-radius:15px; border:none; background:linear-gradient(45deg, var(--p), var(--s)); color:white; font-weight:900; cursor:pointer;">إرسال الرؤية</button>
             </form>
-            <div style="display:flex; justify-content:center; gap:15px; margin-top:30px;">
+            <div style="display:flex; justify-content:center; gap:15px; margin-top:30px; flex-wrap: wrap;">
                 <a href="https://wa.me/201159562785" class="social-btn"><i class="fab fa-whatsapp"></i></a>
                 <a href="https://github.com/KEMO-omar" class="social-btn"><i class="fab fa-github"></i></a>
             </div>
@@ -278,8 +284,6 @@
 </main>
 
 <footer><p>KAREEM OMAR © 2026 | ARCHITECTING THE DIGITAL VOID</p></footer>
-
-<div class="cursor-dot"></div><div class="cursor-outline"></div>
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
@@ -305,17 +309,16 @@
     window.addEventListener('load', hidePreloader);
     setTimeout(hidePreloader, 1500); // إخفاء إجباري بعد ثانية ونصف
 
-    // الماوس والوضع الليلي والمعرض
-    const dot = document.querySelector(".cursor-dot");
-    const outline = document.querySelector(".cursor-outline");
-    window.addEventListener("mousemove", (e) => {
-        dot.style.left = outline.style.left = e.clientX + "px";
-        dot.style.top = outline.style.top = e.clientY + "px";
-    });
+    // تم حذف سكريبت حركة الماوس
 
     function toggleTheme() {
         document.body.classList.toggle('light-mode');
-        document.getElementById('themeIcon').classList.toggle('fa-sun');
+        const icon = document.getElementById('themeIcon');
+        if(document.body.classList.contains('light-mode')) {
+            icon.classList.replace('fa-moon', 'fa-sun');
+        } else {
+            icon.classList.replace('fa-sun', 'fa-moon');
+        }
     }
 
     function toggleFontMenu() {
@@ -328,14 +331,40 @@
         toggleFontMenu();
     }
 
+    // سكريبت المعرض الذكي للتعامل مع الامتدادات المختلفة للصور الـ 21
     const track = document.getElementById('galleryTrack');
     function loadImages() {
-        const imgs = Array.from({length: 21}, (_, i) => i + 1);
-        [...imgs, ...imgs].forEach(n => {
-            const i = document.createElement('img');
-            i.src = `${n}.jpg`; i.className = 'gallery-img';
-            i.onerror = () => { i.src = `${n}.png`; };
-            track.appendChild(i);
+        const totalImages = 21;
+        // مصفوفة تحتوي على أرقام الصور مرتين لعمل تأثير الدوران اللانهائي
+        const imageNumbers = [];
+        for(let i=1; i<=totalImages; i++) imageNumbers.push(i);
+        const doubleArray = [...imageNumbers, ...imageNumbers];
+
+        doubleArray.forEach(num => {
+            const imgContainer = document.createElement('div');
+            imgContainer.className = 'gallery-item-container'; // ستايل اختياري للحاوية إذا لزم الأمر
+            
+            const img = document.createElement('img');
+            img.className = 'gallery-img';
+            img.loading = 'lazy'; // تحسين الأداء
+            img.alt = `Creative Work ${num}`;
+            
+            // المحاولة الأولى: امتداد .jpg
+            img.src = `${num}.jpg`;
+            
+            // إذا فشل تحميل .jpg، جرب .png
+            img.onerror = function() {
+                // نتحقق لمنع الدخول في حلقة مفرغة إذا فشل الـ png أيضاً
+                if (!this.getAttribute('data-tried-png')) {
+                    this.setAttribute('data-tried-png', 'true');
+                    this.src = `${num}.png`;
+                } else {
+                    // إذا فشل كلاهما، يمكن وضع صورة احتياطية أو إخفاء العنصر
+                    this.style.display = 'none'; 
+                }
+            };
+            
+            track.appendChild(img);
         });
     }
     loadImages();
