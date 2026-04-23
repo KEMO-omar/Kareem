@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* الخطوط الستة المخصصة */
+        /* الخطوط */
         @font-face { font-family: 'Dahka'; src: url('ضحكه.ttf'); }
         @font-face { font-family: 'Rawnaq'; src: url('دي جي راونق.ttf'); }
         @font-face { font-family: 'Kufa'; src: url('الكوفا.ttf'); }
@@ -44,7 +44,7 @@
         .font-menu { position: fixed; top: 75px; right: 20px; background: var(--bg); border: 1px solid var(--p); padding: 10px; border-radius: 15px; display: none; flex-direction: column; gap: 5px; z-index: 2999; }
         .font-btn { background: var(--card); border: none; color: var(--text); padding: 8px; border-radius: 8px; cursor: pointer; text-align: right; }
 
-        /* Sections General */
+        /* Sections */
         section { padding: 80px 20px; max-width: 1100px; margin: 0 auto; }
         .section-title { font-size: 2.2rem; color: var(--p); margin-bottom: 40px; text-align: center; border-bottom: 2px solid var(--s); display: inline-block; padding-bottom: 10px; }
 
@@ -53,58 +53,51 @@
         .main-logo { width: 140px; height: 140px; border-radius: 50%; border: 3px solid var(--p); margin-bottom: 20px; object-fit: cover; box-shadow: 0 0 25px var(--p); }
         .p-photo { width: 65px; height: 65px; border-radius: 12px; border: 2px solid var(--s); margin: 0 5px; object-fit: cover; }
 
-        /* Cards Grid */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .card { background: var(--card); padding: 30px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); text-align: center; transition: 0.3s; }
-        .card:hover { border-color: var(--p); transform: translateY(-10px); }
-        .card i { font-size: 2.5rem; color: var(--p); margin-bottom: 15px; }
-
-        /* Gallery - Infinite Loop Fix */
+        /* Gallery - الحل النهائي للانيميشن اللانهائي */
         .gallery-container { 
             overflow: hidden; 
             padding: 40px 0; 
-            width: 100vw; 
+            width: 100%; 
+            background: rgba(0,0,0,0.2);
             position: relative;
-            left: 50%;
-            right: 50%;
-            margin-left: -50vw;
-            margin-right: -50vw;
         }
+
         .gallery-track { 
             display: flex; 
-            gap: 15px; 
-            width: max-content; 
-            animation: scroll 35s linear infinite; 
+            gap: 20px; 
+            width: max-content; /* مهم جداً لترك الصور بجانب بعضها */
+            animation: infiniteScroll 40s linear infinite; 
             will-change: transform;
         }
+
         .gallery-img { 
-            width: 250px; 
-            height: 350px; 
+            width: 280px; 
+            height: 380px; 
             border-radius: 20px; 
             object-fit: cover; 
             border: 2px solid var(--p); 
             flex-shrink: 0;
-            transition: 0.4s ease;
-        }
-        .gallery-img:hover {
-            transform: scale(1.05);
-            border-color: var(--s);
-            box-shadow: 0 0 20px var(--p);
+            transition: 0.5s ease;
         }
 
-        @keyframes scroll { 
+        .gallery-img:hover {
+            transform: scale(1.05) translateY(-10px);
+            border-color: var(--s);
+            box-shadow: 0 10px 30px rgba(0, 242, 255, 0.3);
+        }
+
+        /* الانيميشن يتحرك لنصف العرض فقط لأننا سنكرر الصور مرتين */
+        @keyframes infiniteScroll { 
             0% { transform: translateX(0); } 
             100% { transform: translateX(-50%); } 
         }
 
         .gallery-track:hover { animation-play-state: paused; }
 
-        /* Contact Section */
-        .contact-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 30px; }
-        .contact-btn { padding: 15px 30px; border-radius: 50px; text-decoration: none; color: white; font-weight: bold; display: flex; align-items: center; gap: 10px; transition: 0.3s; }
-        
+        /* باقي الستايل */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .card { background: var(--card); padding: 30px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); text-align: center; transition: 0.3s; }
         .p-item { background: var(--card); padding: 25px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); text-decoration: none; color: var(--text); transition: 0.3s; display: block; text-align: center; }
-        .p-item:hover { border-color: var(--s); transform: scale(1.03); }
     </style>
 </head>
 <body>
@@ -133,85 +126,24 @@
 
 <header id="home">
     <img src="13.jpg" class="main-logo" alt="Logo">
-    <div style="margin-bottom: 20px;">
-        <img src="K.png" class="p-photo" alt="K">
-        <img src="A.png" class="p-photo" alt="A">
-        <img src="R.png" class="p-photo" alt="R">
-        <img src="E.png" class="p-photo" alt="E">
-        <img src="M.png" class="p-photo" alt="M">
-    </div>
-    <h1 style="font-size: 3rem; font-family: 'Orbitron';">KAREEM OMAR</h1>
+    <h1 style="font-size: 3.5rem; font-family: 'Orbitron';">KAREEM OMAR</h1>
     <p style="color: var(--p); letter-spacing: 5px;">THE VISUAL ARCHITECT</p>
 </header>
 
-<section id="about">
-    <h2 class="section-title"><i class="fas fa-fingerprint"></i> الهوية</h2>
-    <div class="grid">
-        <div class="card">
-            <i class="fas fa-user-tie"></i>
-            <h3>الاسم</h3>
-            <p><strong>كريم عمر سيد سباق</strong></p>
-            <p>Full-Stack Software Engineer & Creative Designer</p>
-        </div>
-        <a href="https://mostafa7html7-pixel.github.io/AbuTaleb/#works" target="_blank" class="card" style="text-decoration: none; color: inherit; border-color: var(--s);">
-            <i class="fas fa-handshake" style="color: var(--s);"></i>
-            <h3>الشريك الاستراتيجي</h3>
-            <p><strong>مصطفى محمد (عبقرينو)</strong></p>
-            <p style="font-size: 0.8rem; color: var(--p);">اضغط لزيارة بروفايل الشريك 🔗</p>
-        </a>
-        <div class="card">
-            <i class="fas fa-graduation-cap"></i>
-            <h3>المسار الدراسي</h3>
-            <p>طالب بالصف الأول الثانوي</p>
-        </div>
-        <div class="card">
-            <i class="fas fa-map-marker-alt"></i>
-            <h3>العنوان</h3>
-            <p>بني سويف - ببا</p>
-        </div>
-    </div>
-</section>
-
-<section id="services">
-    <h2 class="section-title"><i class="fas fa-cubes"></i> الخدمات</h2>
-    <div class="grid">
-        <div class="card"><i class="fas fa-code"></i><h4>تطوير المواقع</h4></div>
-        <div class="card"><i class="fas fa-paint-brush"></i><h4>تصميم جرافيك</h4></div>
-        <div class="card"><i class="fas fa-shield-alt"></i><h4>أمن سيبراني</h4></div>
-        <div class="card"><i class="fas fa-cube"></i><h4>Speedcubing</h4></div>
-    </div>
-</section>
-
-<section id="works">
-    <h2 class="section-title"><i class="fas fa-briefcase"></i> الأعمال</h2>
-    <div class="grid">
-        <a href="https://kemo-omar.github.io/SOHOORNA/" target="_blank" class="p-item"><h3>سحورنا 2026</h3></a>
-        <a href="https://kemo-omar.github.io/Kramlat/" target="_blank" class="p-item"><h3>مجتمع كرملات</h3></a>
-    </div>
-</section>
-
 <section id="gallery">
-    <h2 class="section-title">المعرض المرئي</h2>
+    <h2 class="section-title">المعرض الرقمي</h2>
     <div class="gallery-container">
-        <div class="gallery-track" id="track"></div>
-    </div>
-</section>
-
-<section id="contact">
-    <h2 class="section-title">تواصل معي</h2>
-    <div class="contact-links">
-        <a href="https://wa.me/201159562785" target="_blank" class="contact-btn" style="background: #25D366;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-        <a href="https://github.com/kemo-omar" target="_blank" class="contact-btn" style="background: #333;"><i class="fab fa-github"></i> GitHub</a>
-        <a href="mailto:kareemguinness@gmail.com" class="contact-btn" style="background: #EA4335;"><i class="far fa-envelope"></i> Gmail</a>
+        <div class="gallery-track" id="track">
+            </div>
     </div>
 </section>
 
 <script>
-    // Theme Switch
+    // تغيير الثيم
     const btn = document.getElementById('themeBtn');
     btn.onclick = () => document.body.classList.toggle('light-mode');
 
-    // Fonts Logic
+    // القائمة والخطوط
     function toggleMenu() {
         const m = document.getElementById('fontMenu');
         m.style.display = (m.style.display === 'flex') ? 'none' : 'flex';
@@ -221,17 +153,22 @@
         toggleMenu();
     }
 
-    // Infinite Gallery Logic
+    // منطق التكرار اللانهائي الصحيح
     window.onload = function() {
         const t = document.getElementById('track');
         if(t) {
-            const count = 21;
-            let imagesHTML = '';
-            for(let j=1; j<=count; j++) {
-                imagesHTML += `<img src="${j}.jpg" class="gallery-img" onerror="this.style.display='none'">`;
+            const imagesCount = 21; 
+            let content = '';
+
+            // ننشئ HTML لـ 21 صورة
+            for(let j=1; j<=imagesCount; j++) {
+                content += `<img src="${j}.jpg" class="gallery-img" onerror="this.style.display='none'">`;
             }
-            // نكرر المحتوى مرتين لضمان استمرارية الحركة
-            t.innerHTML = imagesHTML + imagesHTML;
+
+            // السر هنا: نضع الصور مرتين داخل التراك (Track)
+            // المجموعة الثانية تبدأ فور انتهاء الأولى، ولأن الانيميشن يتحرك لـ 50%- فقط،
+            // فإنه سيعود للبداية بشكل غير ملحوظ تماماً.
+            t.innerHTML = content + content;
         }
     };
 </script>
