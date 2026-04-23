@@ -59,24 +59,49 @@
         .card:hover { border-color: var(--p); transform: translateY(-10px); }
         .card i { font-size: 2.5rem; color: var(--p); margin-bottom: 15px; }
 
-        /* Contact Section */
-        .contact-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 30px; }
-        .contact-btn { padding: 15px 30px; border-radius: 50px; text-decoration: none; color: white; font-weight: bold; display: flex; align-items: center; gap: 10px; transition: 0.3s; }
-        .whatsapp { background: #25D366; box-shadow: 0 5px 15px rgba(37,211,102,0.4); }
-        .email { background: #EA4335; box-shadow: 0 5px 15px rgba(234,67,53,0.4); }
-        .github { background: #333; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
-
         /* Portfolio Items */
         .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
         .p-item { background: var(--card); padding: 25px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); text-decoration: none; color: var(--text); transition: 0.3s; display: block; text-align: center; }
         .p-item:hover { border-color: var(--s); transform: scale(1.03); }
 
-        /* Gallery */
-        .gallery-container { overflow: hidden; padding: 20px 0; }
-        .gallery-track { display: flex; gap: 15px; animation: scroll 40s linear infinite; width: max-content; }
-        .gallery-img { width: 200px; height: 260px; border-radius: 15px; object-fit: cover; border: 1px solid var(--p); }
+        /* Gallery - Infinite Scroll Fix */
+        .gallery-container { 
+            overflow: hidden; 
+            padding: 40px 0; 
+            width: 100%;
+            position: relative;
+        }
+        
+        .gallery-track { 
+            display: flex; 
+            gap: 15px; 
+            width: max-content; 
+            animation: scroll 40s linear infinite; 
+        }
 
-        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .gallery-img { 
+            width: 220px; 
+            height: 300px; 
+            border-radius: 15px; 
+            object-fit: cover; 
+            border: 2px solid var(--p);
+            flex-shrink: 0; /* منع انضغاط الصور */
+        }
+
+        /* تحسين الأنيميشن ليعتمد على نصف العرض تماماً */
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* توقف الحركة عند التمرير بالماوس */
+        .gallery-track:hover {
+            animation-play-state: paused;
+        }
+
+        /* Contact Section */
+        .contact-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 30px; }
+        .contact-btn { padding: 15px 30px; border-radius: 50px; text-decoration: none; color: white; font-weight: bold; display: flex; align-items: center; gap: 10px; transition: 0.3s; }
     </style>
 </head>
 <body>
@@ -116,213 +141,108 @@
     <p style="color: var(--p); letter-spacing: 5px;">THE VISUAL ARCHITECT</p>
 </header>
 
-<section id="about" class="section-container reveal">
+<section id="about">
     <h2 class="section-title"><i class="fas fa-fingerprint"></i> الهوية</h2>
     <div class="grid">
-        
         <div class="card">
             <i class="fas fa-user-tie"></i>
             <h3>الاسم</h3>
             <p><strong>كريم عمر سيد سباق</strong></p>
             <p>Full-Stack Software Engineer & Creative Designer</p>
         </div>
-
         <a href="https://mostafa7html7-pixel.github.io/AbuTaleb/#works" target="_blank" class="card" style="text-decoration: none; color: inherit; border-color: var(--s);">
             <i class="fas fa-handshake" style="color: var(--s);"></i>
             <h3>الشريك الاستراتيجي</h3>
             <p><strong>مصطفى محمد (عبقرينو)</strong></p>
             <p style="font-size: 0.8rem; color: var(--p);">اضغط لزيارة بروفايل الشريك 🔗</p>
         </a>
-
         <div class="card">
             <i class="fas fa-graduation-cap"></i>
             <h3>المسار الدراسي</h3>
             <p>طالب بالصف الأول الثانوي</p>
             <p>تاريخ الميلاد: 15/11/2010</p>
         </div>
-
         <div class="card">
             <i class="fas fa-map-marker-alt"></i>
             <h3>العنوان</h3>
             <p>سدس الأمراء - ببا - بني سويف</p>
         </div>
-
-        <div class="card">
-            <i class="fas fa-phone-alt"></i>
-            <h3>رقم التواصل</h3>
-            <p dir="ltr">01159562785</p>
-        </div>
-
-        <div class="card">
-            <i class="fas fa-eye"></i>
-            <h3>الرؤية</h3>
-            <p>دمج الفن بالتكنولوجيا الرقمية لخلق تجارب مستخدم استثنائية.</p>
-        </div>
-
     </div>
 </section>
 
-<section id="services" class="section-container reveal">
+<section id="services">
     <h2 class="section-title"><i class="fas fa-cubes"></i> الخدمات الاحترافية</h2>
     <div class="grid">
-        
         <div class="card">
             <i class="fas fa-code-branch"></i>
             <h4>Full-Stack Development</h4>
-            <p>تطوير تطبيقات ويب متكاملة باستخدام HTML, CSS, JS, Python و Dart مع ربط قواعد بيانات Firebase.</p>
+            <p>تطوير تطبيقات ويب باستخدام HTML, CSS, JS, Python و Firebase.</p>
         </div>
-
         <div class="card">
             <i class="fas fa-wand-magic-sparkles"></i>
             <h4>Creative Graphic Design</h4>
-            <p>تصميم هويات بصرية وشعارات احترافية باستخدام Canva و Picsart برؤية فنية عصرية.</p>
+            <p>تصميم هويات بصرية وشعارات احترافية برؤية فنية عصرية.</p>
         </div>
-
-        <div class="card">
-            <i class="fas fa-user-secret"></i>
-            <h4>Cybersecurity & Ethical Hacking</h4>
-            <p>دراسة وتطبيق أنظمة الحماية واكتشاف الثغرات الأمنية لتأمين المواقع والمنصات الرقمية.</p>
-        </div>
-
-        <div class="card">
-            <i class="fas fa-cloud-upload-alt"></i>
-            <h4>Cloud Solutions & Hosting</h4>
-            <p>إدارة واستضافة المشاريع على GitHub Pages وربطها بأنظمة المزامنة الفورية للمستخدمين.</p>
-        </div>
-
         <div class="card">
             <i class="fas fa-rocket"></i>
             <h4>Smart Educational Systems</h4>
-            <p>بناء منصات تعليمية تفاعلية مثل Sapora Rocket لربط المعلمين بالطلاب تقنياً.</p>
+            <p>بناء منصات تعليمية تفاعلية لربط المعلمين بالطلاب تقنياً.</p>
         </div>
-
         <div class="card">
             <i class="fas fa-cube"></i>
             <h4>Speedcubing Consulting</h4>
-            <p>تقديم خبرات في حل الألغاز المعقدة وتدريبات السرعة لمكعب روبيك والمكعبات الاحترافية.</p>
+            <p>تقديم خبرات في حل الألغاز المعقدة وتدريبات السرعة لمكعب روبيك.</p>
         </div>
-
     </div>
 </section>
 
-<section id="works" class="section-container reveal">
+<section id="works">
     <h2 class="section-title"><i class="fas fa-briefcase"></i> المعرض الرقمي للأعمال</h2>
-    
     <div class="portfolio-grid">
-        
         <a href="https://kemo-omar.github.io/Kramlat/" target="_blank" class="p-item">
-            <i class="fas fa-users" style="font-size: 2rem; color: var(--p); margin-bottom: 15px;"></i>
+            <i class="fas fa-users" style="color: var(--p);"></i>
             <h3>مجتمع كرملات</h3>
-            <p>شبكة إبداعية لإدارة التحديات والمسابقات بتصميم عصري وجذاب للبراند.</p>
         </a>
-
         <a href="https://kemo-omar.github.io/Youth-of-the-future/" target="_blank" class="p-item">
-            <i class="fas fa-rocket" style="font-size: 2rem; color: var(--p); margin-bottom: 15px;"></i>
+            <i class="fas fa-rocket" style="color: var(--p);"></i>
             <h3>شباب المستقبل</h3>
-            <p>منصة طموحة تهدف لتمكين الشباب وتوفير موارد تعليمية وتقنية متقدمة.</p>
         </a>
-
-        <a href="https://kemo-omar.github.io/Mozty/" target="_blank" class="p-item">
-            <i class="fas fa-chalkboard-teacher" style="font-size: 2rem; color: var(--p); margin-bottom: 15px;"></i>
-            <h3>منصة موزتي التعليمية</h3>
-            <p>نظام ذكي لإدارة المحتوى الدراسي والتفاعل بين المعلم والطالب باحترافية.</p>
-        </a>
-
-        <a href="https://kemo-omar.github.io/BOOKKe/" target="_blank" class="p-item">
-            <i class="fas fa-book-open" style="font-size: 2rem; color: var(--p); margin-bottom: 15px;"></i>
-            <h3>بوك كي - BOOKKe</h3>
-            <p>متجر إلكتروني متكامل للكتب يجمع بين سهولة التصفح وتجربة التسوق الرقمي.</p>
-        </a>
-
         <a href="https://kemo-omar.github.io/SOHOORNA/" target="_blank" class="p-item">
-            <i class="fas fa-moon" style="font-size: 2rem; color: var(--p); margin-bottom: 15px;"></i>
+            <i class="fas fa-moon" style="color: var(--p);"></i>
             <h3>سحورنا 2026</h3>
-            <p>بوابة رمضانية تفاعلية لمتابعة التوقيتات والخدمات الرمضانية بروح عصرية.</p>
         </a>
-
-        <a href="https://kemo-omar.github.io/Kareem/" target="_blank" class="p-item">
-            <i class="fas fa-drafting-compass" style="font-size: 2rem; color: var(--p); margin-bottom: 15px;"></i>
-            <h3>بورتفوليو المعماري 2026</h3>
-            <p>هذا الموقع الذي تتصفحه الآن، مصمم بهوية بصرية حديثة وتأثيرات النيون.</p>
-        </a>
-
-        <div class="p-item" style="cursor: default; opacity: 0.9;">
-            <i class="fas fa-terminal" style="font-size: 2rem; color: var(--s); margin-bottom: 15px;"></i>
+        <div class="p-item">
+            <i class="fas fa-terminal" style="color: var(--s);"></i>
             <h3>Sapora Rocket</h3>
-            <p>نظام السبورة التفاعلية الذكية المتزامن لربط شاشات الفصول وأجهزة الطلاب.</p>
         </div>
-
-        <div class="p-item" style="cursor: default; opacity: 0.9;">
-            <i class="fas fa-cube" style="font-size: 2rem; color: var(--s); margin-bottom: 15px;"></i>
-            <h3>Speed Cubing Timer</h3>
-            <p>عداد ذكي متخصص لممارسي رياضة الـ Speedcubing مع تحليل البيانات.</p>
-        </div>
-
-        <div class="p-item" style="cursor: default; opacity: 0.9;">
-            <i class="fas fa-shield-alt" style="font-size: 2rem; color: var(--s); margin-bottom: 15px;"></i>
-            <h3>CyberShield Roadmap</h3>
-            <p>مشروع تعليمي لخرائط طريق تعلم الأمن السيبراني للمبتدئين.</p>
-        </div>
-
-        <div class="p-item" style="cursor: default; opacity: 0.9;">
-            <i class="fas fa-database" style="font-size: 2rem; color: var(--s); margin-bottom: 15px;"></i>
-            <h3>Firebase Sync Tool</h3>
-            <p>أداة داخلية قمت بتطويرها لمزامنة قواعد بيانات Firebase في الزمن الحقيقي.</p>
-        </div>
-
     </div>
 </section>
 
 <section id="gallery">
-    <h2 class="section-title">المعرض (JPG)</h2>
+    <h2 class="section-title">المعرض المرئي</h2>
     <div class="gallery-container">
-        <div class="gallery-track" id="track"></div>
+        <div class="gallery-track" id="track">
+            </div>
     </div>
 </section>
 
-<section id="contact" style="padding: 80px 20px; text-align: center;">
+<section id="contact" style="text-align: center;">
     <h2 class="section-title">تواصل معي</h2>
-    <div class="card" style="max-width: 800px; margin: 0 auto; background: var(--card); border: 1px solid var(--p); padding: 40px; border-radius: 30px;">
-        <p style="margin-bottom: 30px; font-size: 1.2rem;">للتواصل المباشر مع <strong>كريم عمر</strong> عبر المنصات الرسمية:</p>
-        
+    <div class="card" style="max-width: 800px; margin: 0 auto; border: 1px solid var(--p);">
         <div class="contact-links">
-            
-            <a href="https://www.facebook.com/share/1DQMkA2biL/" target="_blank" class="contact-btn" style="background: #1877F2;">
-                <i class="fab fa-facebook-f"></i> Facebook
-            </a>
-            
-            <a href="https://www.instagram.com/kareemomar1511?igsh=MWRrc2VmNHI2d3ZicQ==" target="_blank" class="contact-btn" style="background: #E1306C;">
-                <i class="fab fa-instagram"></i> Instagram
-            </a>
-            
-            <a href="https://www.tiktok.com/@kareem_omar15" target="_blank" class="contact-btn" style="background: #000000;">
-                <i class="fab fa-tiktok"></i> TikTok
-            </a>
-            
-            <a href="https://wa.me/201159562785" target="_blank" class="contact-btn" style="background: #25D366;">
-                <i class="fab fa-whatsapp"></i> WhatsApp
-            </a>
-
-            <a href="mailto:kareemguinness@gmail.com" class="contact-btn" style="background: #EA4335;">
-                <i class="far fa-envelope"></i> Gmail
-            </a>
-
-            <a href="https://github.com/kemo-omar" target="_blank" class="contact-btn" style="background: #333;">
-                <i class="fab fa-github"></i> GitHub
-            </a>
-
+            <a href="https://wa.me/201159562785" target="_blank" class="contact-btn" style="background: #25D366;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            <a href="https://github.com/kemo-omar" target="_blank" class="contact-btn" style="background: #333;"><i class="fab fa-github"></i> GitHub</a>
+            <a href="mailto:kareemguinness@gmail.com" class="contact-btn" style="background: #EA4335;"><i class="far fa-envelope"></i> Gmail</a>
         </div>
     </div>
 </section>
 
 <script>
-    // Theme Switch
+    // تغيير الثيم
     const btn = document.getElementById('themeBtn');
-    btn.onclick = () => {
-        document.body.classList.toggle('light-mode');
-    };
+    btn.onclick = () => document.body.classList.toggle('light-mode');
 
-    // Fonts Logic
+    // تغيير الخطوط
     function toggleMenu() {
         const m = document.getElementById('fontMenu');
         m.style.display = (m.style.display === 'flex') ? 'none' : 'flex';
@@ -332,32 +252,22 @@
         toggleMenu();
     }
 
-    // انتظر حتى يتم تحميل كل عناصر الصفحة أولاً
+    // توليد صور المعرض اللانهائي
     window.onload = function() {
         const t = document.getElementById('track');
-        
         if(t) {
-            // استخدام DocumentFragment لتحسين الأداء
             const fragment = document.createDocumentFragment();
-            
-            // التكرار مرتين لضمان عمل الـ Infinite Scroll بسلاسة
+            // تكرار الصور مرتين بالضبط لتحقيق تأثير اللانهائية
             for(let i=0; i<2; i++) {
                 for(let j=1; j<=21; j++) {
                     const img = document.createElement('img');
-                    img.src = `${j}.jpg`; // تأكد أن الصور بنفس المجلد وبامتداد .jpg صغير
+                    img.src = `${j}.jpg`;
                     img.className = 'gallery-img';
-                    
-                    // إضافة معالج خطأ في حال لم تكن الصورة موجودة
-                    img.onerror = function() {
-                        this.style.display = 'none'; // إخفاء الصورة لو لم تفتح
-                    };
-                    
+                    img.onerror = function() { this.style.display = 'none'; };
                     fragment.appendChild(img);
                 }
             }
             t.appendChild(fragment);
-        } else {
-            console.error("عنصر الـ track غير موجود في الصفحة!");
         }
     };
 </script>
