@@ -332,17 +332,34 @@
         toggleMenu();
     }
 
-    // Gallery Images Generation (1.jpg to 21.jpg)
-    const t = document.getElementById('track');
-    // Repeating twice for seamless scrolling
-    for(let i=0; i<2; i++) {
-        for(let j=1; j<=21; j++) {
-            const img = document.createElement('img');
-            img.src = `${j}.jpg`;
-            img.className = 'gallery-img';
-            t.appendChild(img);
+    // انتظر حتى يتم تحميل كل عناصر الصفحة أولاً
+    window.onload = function() {
+        const t = document.getElementById('track');
+        
+        if(t) {
+            // استخدام DocumentFragment لتحسين الأداء
+            const fragment = document.createDocumentFragment();
+            
+            // التكرار مرتين لضمان عمل الـ Infinite Scroll بسلاسة
+            for(let i=0; i<2; i++) {
+                for(let j=1; j<=21; j++) {
+                    const img = document.createElement('img');
+                    img.src = `${j}.jpg`; // تأكد أن الصور بنفس المجلد وبامتداد .jpg صغير
+                    img.className = 'gallery-img';
+                    
+                    // إضافة معالج خطأ في حال لم تكن الصورة موجودة
+                    img.onerror = function() {
+                        this.style.display = 'none'; // إخفاء الصورة لو لم تفتح
+                    };
+                    
+                    fragment.appendChild(img);
+                }
+            }
+            t.appendChild(fragment);
+        } else {
+            console.error("عنصر الـ track غير موجود في الصفحة!");
         }
-    }
+    };
 </script>
 </body>
 </html>
