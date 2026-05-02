@@ -75,7 +75,15 @@
         .whatsapp { background: #25D366; box-shadow: 0 5px 15px rgba(37,211,102,0.4); }
         .email { background: #EA4335; box-shadow: 0 5px 15px rgba(234,67,53,0.4); }
         .github { background: #333; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .etisalat-cash { background: #ec0c32; box-shadow: 0 5px 15px rgba(236, 12, 50, 0.4); transition: 0.3s;
+}
 
+.etisalat-cash:hover {
+    background: #c00a28;
+    box-shadow: 0 8px 20px rgba(236, 12, 50, 0.6);
+    transform: translateY(-3px);
+}
+        
         /* Portfolio Items */
         .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
         .p-item { background: var(--card); padding: 25px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); text-decoration: none; color: var(--text); transition: 0.3s; display: block; text-align: center; }
@@ -88,49 +96,6 @@
 
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
    
-    /* كارد اتصالات كاش في قسم التواصل */
-.payment-card-new {
-    width: 100%;
-    max-width: 500px;
-    height: 200px;
-    margin: 30px auto; /* مسافة بين الكارد وكلام التواصل */
-    background: url('e.png') center/cover no-repeat;
-    border-radius: 20px;
-    position: relative;
-    overflow: hidden;
-    border: 1px solid rgba(236, 12, 50, 0.4);
-    cursor: pointer;
-    transition: 0.4s;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end; 
-    padding-right: 30px;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.4);
-}
-
-.payment-card-new:hover {
-    transform: scale(1.03);
-    border-color: #ec0c32;
-    box-shadow: 0 0 20px rgba(236, 12, 50, 0.5);
-}
-
-.wallet-number {
-    font-family: 'Orbitron', sans-serif;
-    color: white;
-    font-size: 1.4rem;
-    font-weight: bold;
-    background: rgba(0, 0, 0, 0.4);
-    padding: 10px 20px;
-    border-radius: 12px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.1);
-}
-
-/* تأثير الموبايل */
-@media (max-width: 480px) {
-    .payment-card-new { height: 160px; padding-right: 15px; }
-    .wallet-number { font-size: 1.1rem; }
-}
         
     </style>
 </head>
@@ -339,13 +304,12 @@
     <h2 class="section-title">تواصل معي</h2>
     <div class="card" style="max-width: 800px; margin: 0 auto; background: var(--card); border: 1px solid var(--p); padding: 40px; border-radius: 30px;">
         <p style="margin-bottom: 30px; font-size: 1.2rem;">للتواصل المباشر مع <strong>كريم عمر</strong> عبر المنصات الرسمية:</p>
+
+
+            <a href="https://flous.page.link/RjGZ" target="_blank" class="contact-btn etisalat-cash">
+                <i class="fas fa-wallet"></i> E& Cash
+            </a>
         
-        <div class="contact-links">
-            <div class="payment-card-new" onclick="copyWalletNumber(this)" title="محفظة e& ">
-    <div class="wallet-number" id="wallet-num">01101258549</div>
-            </div>
-            
-            
             <a href="https://www.facebook.com/share/1DQMkA2biL/" target="_blank" class="contact-btn" style="background: #1877F2;">
                 <i class="fab fa-facebook-f"></i> Facebook
             </a>
@@ -402,21 +366,7 @@
             t.appendChild(img);
         }
     }
-    function copyWalletNumber(element) {
-    const num = document.getElementById('wallet-num').innerText;
-    navigator.clipboard.writeText(num).then(() => {
-        const display = document.getElementById('wallet-num');
-        const originalText = display.innerText;
-        
-        display.innerText = "تم النسخ! ✅";
-        display.style.color = "#25D366"; 
-        
-        setTimeout(() => {
-            display.innerText = originalText;
-            display.style.color = "white";
-        }, 2000);
-    });
-    }
+    
     
 </script>
 </body>
