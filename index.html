@@ -69,14 +69,7 @@
         .card:hover { border-color: var(--p); transform: translateY(-10px); }
         .card i { font-size: 2.5rem; color: var(--p); margin-bottom: 15px; }
 
-        /* Contact Section */
-        .contact-links { 
-    display: flex; 
-    flex-wrap: wrap; 
-    justify-content: center; 
-    gap: 15px 25px; /* الرقم الأول للمسافة الرأسية، والثاني للأفقية */
-    margin-top: 30px; 
-}
+ 
         .contact-btn { padding: 15px 30px; border-radius: 50px; text-decoration: none; color: white; font-weight: bold; display: flex; align-items: center; gap: 10px; transition: 0.3s; }
         .whatsapp { background: #25D366; box-shadow: 0 5px 15px rgba(37,211,102,0.4); }
         .email { background: #EA4335; box-shadow: 0 5px 15px rgba(234,67,53,0.4); }
@@ -307,19 +300,16 @@
     <h2 class="section-title">المعرض (JPG)</h2>
     <div class="gallery-container">
         <div class="gallery-track" id="track"></div>
-    </div>
-</section>
-
-<section id="contact" style="padding: 80px 20px; text-align: center;">
+    </div><section id="contact" style="padding: 80px 20px; text-align: center;">
     <h2 class="section-title">تواصل معي</h2>
     <div class="card" style="max-width: 800px; margin: 0 auto; background: var(--card); border: 1px solid var(--p); padding: 40px; border-radius: 30px;">
         <p style="margin-bottom: 30px; font-size: 1.2rem;">للتواصل المباشر مع <strong>كريم عمر</strong> عبر المنصات الرسمية:</p>
 
-
+        <div class="contact-links">
             <a href="https://flous.page.link/RjGZ" target="_blank" class="contact-btn etisalat-cash">
                 <i class="fas fa-wallet"></i> E& Cash
             </a>
-        
+            
             <a href="https://www.facebook.com/share/1DQMkA2biL/" target="_blank" class="contact-btn" style="background: #1877F2;">
                 <i class="fab fa-facebook-f"></i> Facebook
             </a>
@@ -343,10 +333,10 @@
             <a href="https://github.com/kemo-omar" target="_blank" class="contact-btn" style="background: #333;">
                 <i class="fab fa-github"></i> GitHub
             </a>
-
         </div>
     </div>
 </section>
+
 
 <script>
     // Theme Switch
