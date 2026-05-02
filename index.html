@@ -87,6 +87,51 @@
         .gallery-img { width: 200px; height: 260px; border-radius: 15px; object-fit: cover; border: 1px solid var(--p); }
 
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* كارد اتصالات كاش الجديد */
+.payment-card-new {
+    width: 100%;
+    max-width: 450px;
+    height: 220px;
+    margin: 20px auto;
+    background: url('e.png') center/cover no-repeat;
+    border-radius: 25px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid rgba(236, 12, 50, 0.3);
+    cursor: pointer;
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* وضع الرقم في الحتة المنورة يمين */
+    padding-right: 40px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+.payment-card-new:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(236, 12, 50, 0.5);
+    border-color: #ec0c32;
+}
+
+.wallet-number {
+    font-family: 'Orbitron', sans-serif;
+    color: white;
+    font-size: 1.6rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+    background: rgba(0, 0, 0, 0.3);
+    padding: 8px 18px;
+    border-radius: 12px;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.payment-card-new:active {
+    transform: scale(0.95);
+}
+        
     </style>
 </head>
 <body>
@@ -167,6 +212,11 @@
             <i class="fas fa-eye"></i>
             <h3>الرؤية</h3>
             <p>دمج الفن بالتكنولوجيا الرقمية لخلق تجارب مستخدم استثنائية.</p>
+
+            <div class="payment-card-new" onclick="copyWalletNumber(this)">
+    <div class="wallet-number" id="wallet-num">01101258549</div>
+            </div>
+            
         </div>
 
     </div>
@@ -353,6 +403,27 @@
             t.appendChild(img);
         }
     }
+    function copyWalletNumber(element) {
+    const num = document.getElementById('wallet-num').innerText;
+    
+    // عملية النسخ
+    navigator.clipboard.writeText(num).then(() => {
+        const display = document.getElementById('wallet-num');
+        const originalText = display.innerText;
+        
+        // الأكشن اللي هيحصل لما تدوس
+        display.innerText = "تم النسخ! ✅";
+        display.style.color = "#25D366"; // لون أخضر للنجاح
+        
+        setTimeout(() => {
+            display.innerText = originalText;
+            display.style.color = "white";
+        }, 2000);
+    }).catch(err => {
+        console.error('فشل النسخ: ', err);
+    });
+    }
+    
 </script>
 </body>
 </html>
