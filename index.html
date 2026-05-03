@@ -63,28 +63,58 @@
         .main-logo { width: 140px; height: 140px; border-radius: 50%; border: 3px solid var(--p); margin-bottom: 20px; object-fit: cover; box-shadow: 0 0 25px var(--p); }
         .p-photo { width: 65px; height: 65px; border-radius: 12px; border: 2px solid var(--s); margin: 0 5px; object-fit: cover; }
 
-        /* Cards Grid */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .card { background: var(--card); padding: 30px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); text-align: center; transition: 0.3s; }
-        .card:hover { border-color: var(--p); transform: translateY(-10px); }
-        .card i { font-size: 2.5rem; color: var(--p); margin-bottom: 15px; }
-
- 
-        .contact-btn { padding: 15px 30px; border-radius: 50px; text-decoration: none; color: white; font-weight: bold; display: flex; align-items: center; gap: 10px; transition: 0.3s; }
-        .whatsapp { background: #25D366; box-shadow: 0 5px 15px rgba(37,211,102,0.4); }
-        .email { background: #EA4335; box-shadow: 0 5px 15px rgba(234,67,53,0.4); }
-        .github { background: #333; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
-        .etisalat-cash { 
-    background: #ec0c32; /* لون اتصالات الأحمر الرسمي */
-    box-shadow: 0 5px 15px rgba(236, 12, 50, 0.4); 
-    transition: 0.3s;
+/* الحاوية الأساسية للروابط */
+.contact-links {
+    display: grid;
+    /* في الموبايل: زرار واحد بعرض الشاشة */
+    grid-template-columns: 1fr; 
+    gap: 15px;
+    width: 100%;
+    max-width: 900px; /* عشان ميكبرش بزيادة في الكمبيوتر */
+    margin: 0 auto;
+    padding: 20px;
 }
 
-.etisalat-cash:hover {
-    background: #c00a28;
-    box-shadow: 0 8px 20px rgba(236, 12, 50, 0.6);
-    transform: translateY(-3px);
+/* التنسيق العام لكل الزرار */
+.contact-btn {
+    padding: 18px 25px;
+    border-radius: 15px; /* شكل "مربع بحواف دائرية" أحدث من الـ 50px */
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* سنترت الكلام والأيقونة */
+    gap: 12px;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
 }
+
+/* تأثير عند المرور بالماوس أو اللمس */
+.contact-btn:hover {
+    transform: translateY(-5px);
+    filter: brightness(1.2); /* بيفتح اللون شوية بدل ما تكتب كود لكل لون */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* إعدادات الشاشات الكبيرة (كمبيوتر / تابلت) */
+@media (min-width: 768px) {
+    .contact-links {
+        /* يعرض 3 زراير في كل صف */
+        grid-template-columns: repeat(3, 1fr); 
+    }
+
+    /* حركة ذكية للزرار السابع (جيت هاب) عشان ميبقاش شكله وحش لوحده */
+    .contact-links a:last-child {
+        grid-column: span 3; /* يفرش بعرض الـ 3 صفوف لوحده تحتهم */
+        width: 50%; /* أو خليه 100% حسب ذوقك */
+        margin: 0 auto;
+    }
+}
+
+/* الألوان الخاصة بالظلال (Shadows) لكل تطبيق */
+.etisalat-cash { box-shadow: 0 5px 15px rgba(236, 12, 50, 0.3); background: #ec0c32; }
+/* باقي الألوان أنت كاتبها Inline في الـ HTML فمش محتاجة CSS هنا */
 
         
         /* Portfolio Items */
