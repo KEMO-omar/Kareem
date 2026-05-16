@@ -64,27 +64,28 @@
         .p-photo { width: 65px; height: 65px; border-radius: 12px; border: 2px solid var(--s); margin: 0 5px; object-fit: cover; }
 
 /* الحاوية الأساسية للروابط */
+/* الحاوية الأساسية للروابط */
 .contact-links {
     display: grid;
-    /* في الموبايل: زرار واحد بعرض الشاشة */
+    /* في الموبايل: زرار واحد كامل العرض لشاشة مريحة في اللمس */
     grid-template-columns: 1fr; 
     gap: 15px;
     width: 100%;
-    max-width: 900px; /* عشان ميكبرش بزيادة في الكمبيوتر */
+    max-width: 900px; 
     margin: 0 auto;
     padding: 20px;
 }
 
-/* التنسيق العام لكل الزرار */
+/* التنسيق العام لكل الأزرار */
 .contact-btn {
     padding: 18px 25px;
-    border-radius: 15px; /* شكل "مربع بحواف دائرية" أحدث من الـ 50px */
+    border-radius: 15px; 
     text-decoration: none;
     color: white;
     font-weight: bold;
     display: flex;
     align-items: center;
-    justify-content: center; /* سنترت الكلام والأيقونة */
+    justify-content: center; 
     gap: 12px;
     transition: all 0.3s ease;
     font-size: 1.1rem;
@@ -93,22 +94,22 @@
 /* تأثير عند المرور بالماوس أو اللمس */
 .contact-btn:hover {
     transform: translateY(-5px);
-    filter: brightness(1.2); /* بيفتح اللون شوية بدل ما تكتب كود لكل لون */
+    filter: brightness(1.2); 
     box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
-/* إعدادات الشاشات الكبيرة (كمبيوتر / تابلت) */
+/* إعدادات الشاشات الكبيرة (كمبيوتر / تابلت) - تم التحديث لـ 8 أزرار */
 @media (min-width: 768px) {
     .contact-links {
-        /* يعرض 3 زراير في كل صف */
-        grid-template-columns: repeat(3, 1fr); 
+        /* بما إنهم 8 زراير، فـ 4 في كل صف هيكون شكلهم مسطرة ومتناسق جداً */
+        grid-template-columns: repeat(4, 1fr); 
     }
 
-    /* حركة ذكية للزرار السابع (جيت هاب) عشان ميبقاش شكله وحش لوحده */
+    /* إلغاء التوزيع القديم للزرار الأخير لأن العدد أصبح زوجياً وموزوناً بالعرض */
     .contact-links a:last-child {
-        grid-column: span 3; /* يفرش بعرض الـ 3 صفوف لوحده تحتهم */
-        width: 50%; /* أو خليه 100% حسب ذوقك */
-        margin: 0 auto;
+        grid-column: auto; 
+        width: 100%;
+        margin: 0;
     }
 }
 
