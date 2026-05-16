@@ -63,49 +63,58 @@
         .main-logo { width: 140px; height: 140px; border-radius: 50%; border: 3px solid var(--p); margin-bottom: 20px; object-fit: cover; box-shadow: 0 0 25px var(--p); }
         .p-photo { width: 65px; height: 65px; border-radius: 12px; border: 2px solid var(--s); margin: 0 5px; object-fit: cover; }
 
-/* الحاوية الأساسية للروابط */
-/* الحاوية الأساسية للروابط */
+/* الحاوية الأساسية للروابط *//* الحاوية الأساسية للروابط - حماية كاملة من الخروج بره الحاوية */
 .contact-links {
     display: grid;
-    /* في الموبايل: زرار واحد كامل العرض لشاشة مريحة في اللمس */
-    grid-template-columns: 1fr; 
-    gap: 15px;
+    /* في الموبايل العادي: زرار كامل العرض، وفي وضع الكمبيوتر من الموبايل: يلتف تلقائياً */
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); 
+    gap: 12px;
     width: 100%;
     max-width: 900px; 
     margin: 0 auto;
-    padding: 20px;
+    padding: 15px;
+    box-sizing: border-box;
 }
 
 /* التنسيق العام لكل الأزرار */
 .contact-btn {
-    padding: 18px 25px;
-    border-radius: 15px; 
+    padding: 14px 10px; /* بادينج متناسق يمنع تمدد الزرار */
+    border-radius: 12px; 
     text-decoration: none;
     color: white;
     font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: center; 
-    gap: 12px;
+    gap: 8px;
     transition: all 0.3s ease;
-    font-size: 1.1rem;
+    font-size: 1rem; 
+    box-sizing: border-box;
+    white-space: nowrap; /* يمنع النص من الانقسام لسطرين وتشوية التصميم */
 }
 
 /* تأثير عند المرور بالماوس أو اللمس */
 .contact-btn:hover {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
     filter: brightness(1.2); 
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
 }
 
-/* إعدادات الشاشات الكبيرة (كمبيوتر / تابلت) - تم التحديث لـ 8 أزرار */
+/* إعدادات الشاشات الكبيرة الحقيقية (شاشات الكمبيوتر واللاب توب) */
 @media (min-width: 768px) {
     .contact-links {
-        /* بما إنهم 8 زراير، فـ 4 في كل صف هيكون شكلهم مسطرة ومتناسق جداً */
+        /* رص الأزرار 4 في كل صف بشكل هندسي مسطرة */
         grid-template-columns: repeat(4, 1fr); 
+        gap: 15px;
+        padding: 20px;
     }
 
-    /* إلغاء التوزيع القديم للزرار الأخير لأن العدد أصبح زوجياً وموزوناً بالعرض */
+    .contact-btn {
+        padding: 18px 25px;
+        font-size: 1.1rem;
+        border-radius: 15px;
+    }
+
     .contact-links a:last-child {
         grid-column: auto; 
         width: 100%;
@@ -115,6 +124,7 @@
 
 /* الألوان الخاصة بالظلال (Shadows) لكل تطبيق */
 .etisalat-cash { box-shadow: 0 5px 15px rgba(236, 12, 50, 0.3); background: #ec0c32; }
+
 /* باقي الألوان أنت كاتبها Inline في الـ HTML فمش محتاجة CSS هنا */
 
         
