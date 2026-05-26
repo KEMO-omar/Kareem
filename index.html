@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>KAREEM OMAR | THE VISUAL ARCHITECT</title>
     
-    <!-- Meta Tags للـ SEO ومواقع التواصل -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://kemo-omar.github.io/Kareem/">
     <meta property="og:title" content="KAREEM OMAR | THE VISUAL ARCHITECT">
@@ -13,9 +12,8 @@
     <meta property="og:image" content="https://kemo-omar.github.io/Kareem/13.jpg">
     <link rel="icon" type="image/jpeg" href="13.jpg">
     
-    <!-- الخطوط والأيقونات -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;800;900&family=Noto+Kufi+Arabic:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700;800&family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     
     <style>
         /* الخطوط الستة المخصصة الخاصة بك */
@@ -27,19 +25,19 @@
         @font-face { font-family: 'Belabelo'; src: url('بلابيلو.ttf'); }
 
         :root { 
-            --p: #00f2ff; 
-            --s: #bc00ff; 
-            --bg: #030305; 
+            --p: #00ffaa; /* لون نيون أخضر سايبر جديد */
+            --s: #0077ff; /* أزرق كهربائي */
+            --bg: #0a0b10; 
+            --card-bg: rgba(16, 18, 27, 0.7);
             --text: #ffffff;
-            --card: rgba(255, 255, 255, 0.02);
-            --border: rgba(255, 255, 255, 0.05);
-            --active-font: 'Noto Kufi Arabic', sans-serif;
+            --border: rgba(255, 255, 255, 0.08);
+            --active-font: 'Cairo', sans-serif;
         }
 
         body.light-mode {
-            --bg: #f8f9fa; 
-            --text: #0b0c10;
-            --card: rgba(0, 0, 0, 0.03);
+            --bg: #f0f2f5; 
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --text: #111424;
             --border: rgba(0, 0, 0, 0.08);
         }
 
@@ -48,153 +46,133 @@
             background: var(--bg); 
             color: var(--text); 
             font-family: var(--active-font); 
-            transition: background 0.5s, color 0.5s; 
+            transition: 0.4s; 
             overflow-x: hidden; 
         }
 
-        /* بقع ضوئية خلفية للتصميم المعاصر */
-        .blob {
-            position: absolute; width: 300px; height: 300px; background: var(--p);
-            filter: blur(150px); opacity: 0.1; z-index: -1; border-radius: 50%;
-        }
-        .blob.s { background: var(--s); right: 10%; top: 30%; }
-
-        /* شاشة إنترو سينمائية فخمة */
-        #intro-screen {
+        /* شاشة إنترو الـ Terminal البرمجية */
+        #intro-terminal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #000; z-index: 9999; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; transition: opacity 0.8s ease, transform 0.8s ease;
+            background: #050508; z-index: 9999; display: flex; justify-content: center;
+            align-items: center; font-family: monospace; padding: 20px;
+            transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.1, 1, 0.1, 1);
         }
-        #intro-screen.fade-out { opacity: 0; pointer-events: none; transform: scale(1.02); }
-        .intro-logo {
-            font-family: 'Orbitron', sans-serif; font-size: clamp(1.8rem, 5vw, 3rem);
-            font-weight: 900; background: linear-gradient(45deg, var(--p), var(--s));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            letter-spacing: 5px; text-align: center; margin-bottom: 15px;
-        }
-
-        /* أنيميشن التمرير والظهور التدريجي السلس */
-        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.215, 0.610, 0.355, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-        /* التحكم والمود المستقبلي */
-        .controls { position: fixed; top: 25px; right: 25px; z-index: 3000; display: flex; gap: 12px; }
-        .ctrl-btn { width: 48px; height: 48px; border-radius: 50%; background: var(--card); border: 1px solid var(--border); color: var(--text); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; backdrop-filter: blur(10px); transition: 0.3s; }
-        .ctrl-btn:hover { border-color: var(--p); box-shadow: 0 0 15px var(--p); color: var(--p); }
-
-        .font-menu { position: fixed; top: 85px; right: 25px; background: rgba(5,5,8,0.95); border: 1px solid var(--border); padding: 12px; border-radius: 20px; display: none; flex-direction: column; gap: 8px; z-index: 2999; backdrop-filter: blur(20px); }
-        .font-btn { background: transparent; border: none; color: #fff; padding: 10px 20px; border-radius: 10px; cursor: pointer; text-align: right; transition: 0.2s; font-size: 0.95rem; }
-        .font-btn:hover { background: linear-gradient(90deg, var(--p), var(--s)); color: #000; font-weight: bold; }
-
-        /* القائمة العائمة السفلية */
-        nav { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%); background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(25px); padding: 10px 30px; border-radius: 100px; border: 1px solid var(--border); display: flex; gap: 25px; z-index: 2000; box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
-        nav a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 1.2rem; transition: 0.3s; }
-        nav a:hover { color: var(--p); transform: translateY(-3px) scale(1.1); text-shadow: 0 0 10px var(--p); }
-
-        /* أقسام العرض */
-        section { padding: 100px 24px; max-width: 1200px; margin: 0 auto; position: relative; }
-        .section-title { font-family: 'Orbitron', 'Noto Kufi Arabic'; font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 900; letter-spacing: -1px; margin-bottom: 50px; text-align: center; position: relative; }
-        .section-title span { background: linear-gradient(90deg, var(--p), var(--s)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-
-        /* الهيدر الرئيسي البصري */
-        header { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; position: relative; padding: 40px 20px; }
-        .hero-banner { position: relative; margin-bottom: 30px; }
-        .main-logo { width: 160px; height: 160px; border-radius: 40px; border: 1px solid var(--border); object-fit: cover; transform: rotate(-6deg); transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .hero-banner:hover .main-logo { transform: rotate(0deg) scale(1.05); border-color: var(--p); box-shadow: 0 20px 50px rgba(0, 242, 255, 0.15); }
+        #intro-terminal.slide-up { opacity: 0; pointer-events: none; transform: translateY(-100%); }
+        .terminal-box { width: 100%; max-width: 500px; color: var(--p); text-align: left; direction: ltr; }
+        .terminal-line { white-space: nowrap; overflow: hidden; border-right: 2px solid transparent; width: 0; margin-bottom: 8px; font-size: 0.9rem; }
         
-        .letters-container { display: flex; justify-content: center; gap: 8px; margin-bottom: 25px; }
-        .p-photo { width: clamp(40px, 9vw, 60px); height: clamp(40px, 9vw, 60px); border-radius: 14px; border: 1px solid var(--border); object-fit: cover; filter: grayscale(40%); transition: 0.3s; }
-        .p-photo:hover { filter: grayscale(0%); transform: translateY(-8px); border-color: var(--s); box-shadow: 0 10px 20px rgba(188, 0, 255, 0.2); }
+        @keyframes type { from { width: 0 } to { width: 100% } }
+        @keyframes blink { 50% { border-color: var(--p) } }
+
+        /* الأقسام بحركات تفاعلية ناعمة */
+        .reveal { opacity: 0; transform: scale(0.96) translateY(20px); transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .reveal.active { opacity: 1; transform: scale(1) translateY(0); }
+
+        /* أدوات التحكم الدائرية */
+        .controls { position: fixed; top: 20px; right: 20px; z-index: 3000; display: flex; gap: 10px; }
+        .ctrl-btn { width: 45px; height: 45px; border-radius: 14px; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; backdrop-filter: blur(10px); transition: 0.3s; }
+        .ctrl-btn:hover { border-color: var(--p); color: var(--p); box-shadow: 0 0 15px rgba(0, 255, 170, 0.3); }
+
+        .font-menu { position: fixed; top: 75px; right: 20px; background: var(--card-bg); border: 1px solid var(--border); padding: 10px; border-radius: 18px; display: none; flex-direction: column; gap: 5px; z-index: 2999; backdrop-filter: blur(15px); }
+        .font-btn { background: transparent; border: none; color: var(--text); padding: 8px 16px; border-radius: 10px; cursor: pointer; text-align: right; transition: 0.2s; }
+        .font-btn:hover { background: var(--p); color: #000; font-weight: bold; }
+
+        /* القائمة العائمة العلوية الأنيقة */
+        nav { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: rgba(10, 11, 16, 0.7); backdrop-filter: blur(20px); padding: 8px 20px; border-radius: 20px; border: 1px solid var(--border); display: flex; gap: 18px; z-index: 2000; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        nav a { color: var(--text); opacity: 0.6; text-decoration: none; font-size: 1.1rem; transition: 0.3s; padding: 6px; }
+        nav a:hover { opacity: 1; color: var(--p); transform: translateY(-2px); }
+
+        /* واجهة الهيدر التجريدية الجديدة */
+        header { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; position: relative; padding: 20px; }
+        .hero-avatar-wrapper { position: relative; margin-bottom: 30px; }
+        .hero-avatar-wrapper::after { content: ''; position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px; border: 1px dashed var(--p); border-radius: 50%; animation: spin 20s linear infinite; opacity: 0.5; }
+        .main-logo { width: 140px; height: 140px; border-radius: 50%; border: 2px solid var(--border); object-fit: cover; position: relative; z-index: 2; }
         
-        header h1 { font-family: 'Orbitron', sans-serif; font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 900; line-height: 1; letter-spacing: 2px; color: var(--text); }
-        header p { color: var(--p); font-family: 'Orbitron'; letter-spacing: 8px; font-size: clamp(0.75rem, 2.5vw, 1.1rem); margin-top: 15px; text-transform: uppercase; opacity: 0.8; }
+        .letters-row { display: flex; justify-content: center; gap: 6px; margin: 20px 0; }
+        .p-photo { width: clamp(40px, 8vw, 55px); height: clamp(40px, 8vw, 55px); border-radius: 50%; border: 1px solid var(--border); object-fit: cover; transition: 0.3s; }
+        .p-photo:hover { transform: scale(1.15) translateY(-5px); border-color: var(--p); box-shadow: 0 5px 15px rgba(0,255,170,0.3); }
 
-        /* نظام شبكة الكروت المعاصرة */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 20px; }
-        .card { background: var(--card); border: 1px solid var(--border); padding: 40px 30px; border-radius: 24px; transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); display: flex; flex-direction: column; position: relative; overflow: hidden; }
-        .card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(130deg, transparent, rgba(255,255,255,0.02)); opacity: 0; transition: 0.4s; }
-        .card:hover { transform: translateY(-8px); border-color: rgba(255,255,255,0.15); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
-        .card:hover::before { opacity: 1; }
+        header h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(2.2rem, 7vw, 4rem); font-weight: 800; text-transform: uppercase; letter-spacing: -1px; line-height: 1; }
+        header p { color: var(--p); font-family: 'Plus Jakarta Sans'; font-size: clamp(0.8rem, 2.5vw, 1.05rem); letter-spacing: 6px; text-transform: uppercase; margin-top: 15px; font-weight: 700; opacity: 0.9; }
+
+        /* الأقسام والمساحات الحرة */
+        section { padding: 90px 20px; max-width: 1150px; margin: 0 auto; }
+        .section-header { margin-bottom: 45px; text-align: right; }
+        .section-header h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 900; position: relative; display: inline-block; }
+        .section-header h2::after { content: ''; position: absolute; bottom: -6px; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--p), var(--s)); border-radius: 2px; }
+
+        /* نظام الشبكة الهندسي للكروت */
+        .grid-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .neo-card { background: var(--card-bg); border: 1px solid var(--border); padding: 35px 25px; border-radius: 24px; transition: 0.3s ease; position: relative; display: flex; flex-direction: column; gap: 15px; }
+        .neo-card:hover { transform: translateY(-5px); border-color: rgba(0, 255, 170, 0.25); box-shadow: 0 15px 35px rgba(0,0,0,0.2); }
+        .neo-card i { font-size: 1.8rem; color: var(--p); width: max-content; }
+        .neo-card h3, .neo-card h4 { font-size: 1.25rem; font-weight: 700; }
+        .neo-card p { font-size: 0.95rem; line-height: 1.6; color: rgba(255,255,255,0.65); }
+        body.light-mode .neo-card p { color: rgba(0,0,0,0.7); }
+
+        /* كرت المنصة المشترك المطور */
+        .collab-card { border-left: 3px solid var(--p); background: linear-gradient(135deg, rgba(0,255,170,0.02), transparent); text-decoration: none; color: inherit; }
+        .collab-card:hover { border-left-color: var(--s); }
+
+        /* المعرض الجديد كلياً: معرض المشاريع والمنصات الحقيقية الاحترافي */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .project-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: 0.3s; height: 100%; }
+        .project-card:hover { transform: translateY(-5px); border-color: var(--s); box-shadow: 0 12px 25px rgba(0, 119, 255, 0.15); }
         
-        .card i { font-size: 2rem; background: linear-gradient(45deg, var(--p), var(--s)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 25px; width: max-content; }
-        .card h3, .card h4 { font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; color: var(--text); }
-        .card p { font-size: 0.95rem; line-height: 1.7; color: rgba(255, 255, 255, 0.6); font-weight: 400; }
-        body.light-mode .card p { color: rgba(0,0,0,0.65); }
-
-        /* الكرت المشترك المطور */
-        .joint-card { border-color: var(--p); background: linear-gradient(145deg, rgba(0, 242, 255, 0.02), transparent); text-decoration: none; }
-        .joint-card:hover { border-color: var(--s); box-shadow: 0 20px 40px rgba(188, 0, 255, 0.1); }
-
-        /* معرض الأعمال الفني الجديد */
-        .works-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .work-box { background: var(--card); border: 1px solid var(--border); padding: 30px; border-radius: 20px; text-decoration: none; color: inherit; transition: 0.3s ease; display: flex; flex-direction: column; height: 100%; justify-content: space-between; }
-        .work-box:hover { border-color: var(--p); transform: scale(1.02); background: rgba(255,255,255,0.04); }
-        .work-top i { font-size: 1.8rem; color: var(--p); margin-bottom: 20px; display: block; }
-        .work-top h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 10px; }
-        .work-box .badge { font-family: 'Orbitron'; font-size: 0.75rem; letter-spacing: 1px; color: var(--s); font-weight: bold; margin-top: 15px; text-transform: uppercase; }
-
-        /* قلب نظام المعرض رأساً على عقب (Grid فني يعرض كل الصور الـ 21) */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-        .gallery-item {
-            position: relative; overflow: hidden; border-radius: 16px; 
-            border: 1px solid var(--border); aspect-ratio: 3/4; cursor: pointer; transition: 0.4s;
-        }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s ease; filter: brightness(0.85); }
-        .gallery-item:hover { border-color: var(--p); box-shadow: 0 10px 25px rgba(0, 242, 255, 0.2); transform: translateY(-5px); }
-        .gallery-item:hover img { transform: scale(1.08); filter: brightness(1.1); }
-
-        /* منطقة التواصل الحرة المتطابقة */
-        .contact-box { background: var(--card); border: 1px solid var(--border); padding: 50px 30px; border-radius: 32px; max-width: 900px; margin: 0 auto; text-align: center; backdrop-filter: blur(20px); }
-        .contact-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-top: 35px; width: 100%; box-sizing: border-box; }
+        /* محاكاة متصفح داخل الكرت تدي فخامة بصرية للشغل */
+        .project-preview { background: #161823; height: 140px; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 1px solid var(--border); position: relative; }
+        .project-preview i { font-size: 2.5rem; color: var(--s); transition: 0.3s; }
+        .project-card:hover .project-preview i { transform: scale(1.1) rotate(-5deg); color: var(--p); }
         
-        .contact-btn {
-            padding: 16px 12px; border-radius: 14px; text-decoration: none; color: white;
+        .project-info { padding: 25px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
+        .project-info h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; }
+        .project-info p { font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.5; }
+        .project-tag { font-family: 'Plus Jakarta Sans'; font-size: 0.75rem; font-weight: 700; color: var(--p); margin-top: 15px; letter-spacing: 1px; text-transform: uppercase; }
+
+        /* قسم الاتصال والروابط المترابطة بالتوافق الملي */
+        .contact-panel { background: var(--card-bg); border: 1px solid var(--border); border-radius: 28px; padding: 45px 25px; text-align: center; backdrop-filter: blur(10px); max-width: 900px; margin: 0 auto; }
+        .links-flex-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-top: 35px; width: 100%; box-sizing: border-box; }
+        
+        .action-link {
+            padding: 15px 10px; border-radius: 12px; text-decoration: none; color: #fff;
             font-weight: 700; display: flex; align-items: center; justify-content: center;
-            gap: 10px; transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); font-size: 0.95rem; white-space: nowrap; box-sizing: border-box;
+            gap: 8px; transition: 0.25s ease; font-size: 0.95rem; white-space: nowrap; box-sizing: border-box;
         }
-        .contact-btn:hover { transform: translateY(-5px); filter: brightness(1.15); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        .action-link:hover { transform: translateY(-4px); filter: brightness(1.15); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
 
-        /* التعديل المخصص لـ تيلدا كارد سوداء وبلوجو متميز ~ */
-        .telda-btn { 
+        /* تعديل زر تيلدا كارد السوداء بالكامل وعلامة الـ متميزاً وهندسياً ~ */
+        .telda-black { 
             background: #000000 !important; 
             color: #ffffff !important; 
-            border: 1px solid rgba(255,255,255,0.15); 
-            font-family: 'Orbitron', 'Noto Kufi Arabic';
+            border: 1px solid rgba(255,255,255,0.15);
             box-shadow: 0 4px 15px rgba(255,255,255,0.05);
         }
-        .telda-btn:hover { border-color: #ffffff; box-shadow: 0 6px 20px rgba(255,255,255,0.15); }
-        .telda-logo { font-size: 1.4rem; font-weight: 900; line-height: 1; }
+        .telda-black:hover { border-color: #ffffff; box-shadow: 0 6px 20px rgba(255,255,255,0.2); }
+        .t-symbol { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.3rem; font-weight: 900; line-height: 1; }
 
-        .etisalat-cash { background: #ec0c32; box-shadow: 0 4px 15px rgba(236,12,50,0.2); }
+        .ec-red { background: #ec0c32; }
 
-        /* التجاوب مع الأجهزة الذكية الكبيرة */
+        @keyframes spin { to { transform: rotate(360deg); } }
+
         @media (min-width: 768px) {
-            .contact-links { grid-template-columns: repeat(3, 1fr); gap: 15px; }
-            .gallery-grid { grid-template-columns: repeat(5, 1fr); gap: 20px; }
-            .contact-btn { font-size: 1.05rem; padding: 18px 15px; }
+            .links-flex-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+            .projects-grid { grid-template-columns: repeat(3, 1fr); }
+            .action-link { font-size: 1rem; padding: 16px 15px; }
         }
     </style>
 </head>
 <body>
 
-<div class="blob"></div>
-<div class="blob s"></div>
-
-<!-- شاشة الإنترو المحدثة بالكامل -->
-<div id="intro-screen">
-    <div class="intro-logo">KAREEM OMAR</div>
-    <div style="color: rgba(255,255,255,0.4); font-family:'Orbitron'; font-size: 0.8rem; letter-spacing: 4px;">THE VISUAL ARCHITECT &bull; 2026</div>
+<!-- شاشة الإنترو للـ Terminal البرمجية التفاعلية -->
+<div id="intro-terminal">
+    <div class="terminal-box" id="terminalBox">
+        <!-- الأسطر البرمجية هيتم كتابتها تلقائياً بواسطة الـ JS بالأسفل -->
+    </div>
 </div>
 
-<!-- أدوات التحكم في المظهر والخطوط -->
 <div class="controls">
-    <button class="ctrl-btn" id="themeBtn" title="تغيير الوضع"><i class="fas fa-adjust"></i></button>
-    <button class="ctrl-btn" onclick="toggleMenu()" title="تغيير الخطوط"><i class="fas fa-font"></i></button>
+    <button class="ctrl-btn" id="themeBtn" title="الوضع الليلي/النهاري"><i class="fas fa-adjust"></i></button>
+    <button class="ctrl-btn" onclick="toggleMenu()" title="تغيير الخطوط المخصصة"><i class="fas fa-font"></i></button>
 </div>
 
 <div class="font-menu" id="fontMenu">
@@ -206,22 +184,21 @@
     <button class="font-btn" style="font-family:'Belabelo'" onclick="setF('Belabelo')">بلابيلو</button>
 </div>
 
-<!-- شريط التنقل السفلي المعلق -->
+<!-- قائمة التنقل المينيماليزم العائمة -->
 <nav>
-    <a href="#home"><i class="fas fa-layer-group"></i></a>
-    <a href="#about"><i class="fas fa-fingerprint"></i></a>
-    <a href="#services"><i class="fas fa-wand-magic-sparkles"></i></a>
-    <a href="#works"><i class="fas fa-code-branch"></i></a>
-    <a href="#gallery"><i class="fas fa-images"></i></a>
-    <a href="#contact"><i class="fas fa-envelope"></i></a>
+    <a href="#home"><i class="fas fa-terminal"></i></a>
+    <a href="#about"><i class="fas fa-id-card"></i></a>
+    <a href="#services"><i class="fas fa-sliders"></i></a>
+    <a href="#works"><i class="fas fa-cubes"></i></a>
+    <a href="#contact"><i class="fas fa-paper-plane"></i></a>
 </nav>
 
-<!-- الهيدر الاستعراضي الجديد -->
+<!-- الهيدر التجريدي المحدث -->
 <header id="home">
-    <div class="hero-banner">
+    <div class="hero-avatar-wrapper">
         <img src="13.jpg" class="main-logo" alt="Kareem Omar">
     </div>
-    <div class="letters-container">
+    <div class="letters-row">
         <img src="K.png" class="p-photo" alt="K">
         <img src="A.png" class="p-photo" alt="A">
         <img src="R.png" class="p-photo" alt="R">
@@ -232,246 +209,210 @@
     <p>The Visual Architect</p>
 </header>
 
-<!-- قسم الهوية الشخصية والشبكة المدمجة -->
+<!-- قسم الهوية الرقمية والكروت الهندسية -->
 <section id="about" class="reveal">
-    <h2 class="section-title"><span>01 /</span> الهوية الرقمية</h2>
-    <div class="grid">
+    <div class="section-header">
+        <h2>بنية الهوية الشخصية</h2>
+    </div>
+    <div class="grid-layout">
         
-        <div class="card">
-            <i class="fas fa-user-astronaut"></i>
-            <h3>الاسم الكامل</h3>
+        <div class="neo-card">
+            <i class="fas fa-code"></i>
+            <h3>المسمى الإبداعي</h3>
             <p><strong>كريم عمر سيد سباق</strong></p>
-            <p style="margin-top: 5px;">Full-Stack Software Engineer & Creative Designer</p>
+            <p>Full-Stack Software Engineer & Creative UI/UX Designer</p>
         </div>
 
-        <!-- بروفايل المنصة المشترك بينك وبين مصطفى بالرابط الجديد تفاعلياً -->
-        <a href="https://akmtoa.github.io/akmtoa/" target="_blank" class="card joint-card">
-            <i class="fas fa-code-merge"></i>
-            <h3>المنصة البرمجية المشتركة</h3>
+        <!-- الكرت الإستراتيجي المشترك المطور والمحدث بالكامل برابط akmtoa -->
+        <a href="https://akmtoa.github.io/akmtoa/" target="_blank" class="neo-card collab-card">
+            <i class="fas fa-network-wired"></i>
+            <h3>المنصة التقنية المشتركة</h3>
             <p><strong>Kareem & Abqarino (AKMTOA)</strong></p>
-            <p style="margin-top: 10px; color: var(--p); font-size: 0.85rem;">انقر لزيارة المنصة المشتركة واستعراض الكود المستقبلي 🔗</p>
+            <p style="font-size: 0.85rem; color: var(--s); margin-top: 5px;">انقر لتصفح ملف المشاريع والأكواد المشتركة مع عبقرينو 🔗</p>
         </a>
 
-        <div class="card">
+        <div class="neo-card">
             <i class="fas fa-graduation-cap"></i>
-            <h3>الخط الأكاديمي</h3>
-            <p>طالب بالصف الأول الثانوي</p>
-            <p>مواليد: 15 نوفمبر 2010</p>
+            <h3>المرحلة الأكاديمية</h3>
+            <p>طالب بالصف الثاني الثانوي (Class of 2026)</p>
+            <p>تاريخ الميلاد: 15/11/2010</p>
         </div>
 
-        <div class="card">
-            <i class="fas fa-map-location-dot"></i>
-            <h3>الموقع الجغرافي</h3>
+        <div class="neo-card">
+            <i class="fas fa-location-crosshairs"></i>
+            <h3>نطاق العمل والإقامة</h3>
             <p>جمهورية مصر العربية</p>
             <p>سدس الأمراء - ببا - بني سويف</p>
         </div>
 
-        <div class="card">
-            <i class="fas fa-headset"></i>
-            <h3>الخط المباشر</h3>
-            <p dir="ltr" style="font-weight: bold; letter-spacing: 1px;">+20 1101258549</p>
+        <div class="neo-card">
+            <i class="fas fa-mobile-screen-button"></i>
+            <h3>قناة الاتصال الفوري</h3>
+            <p dir="ltr" style="font-weight: 700; color: var(--p);">01101258549</p>
         </div>
 
-        <div class="card">
-            <i class="fas fa-compass-drafting"></i>
-            <h3>الفلسفة الفنية</h3>
-            <p>دمج البنية الهندسية البرمجية بالفن البصري المعاصر لإنتاج تجارب مستخدم استثنائية.</p>
+        <div class="neo-card">
+            <i class="fas fa-atom"></i>
+            <h3>الفلسفة التصميمية</h3>
+            <p>تطوير واجهات مستخدم مذهلة بصرياً مبنية على خوارزميات برمجية قوية وخالية من الأخطاء.</p>
         </div>
 
     </div>
 </section>
 
-<!-- الخدمات الاحترافية -->
+<!-- قسـم مهارات ومسارات الخبرة -->
 <section id="services" class="reveal">
-    <h2 class="section-title"><span>02 /</span> مسارات الخبرة</h2>
-    <div class="grid">
+    <div class="section-header">
+        <h2>مجالات التخصص الاحترافي</h2>
+    </div>
+    <div class="grid-layout">
         
-        <div class="card">
-            <i class="fas fa-cubes-stacked"></i>
+        <div class="neo-card">
+            <i class="fas fa-layer-group"></i>
             <h4>Full-Stack Development</h4>
-            <p>تطوير بنية الويب المتكاملة (HTML5, CSS3, JS, Python, Dart) والمزامنة الحية عبر قواعد بيانات Firebase.</p>
+            <p>بناء وهندسة تطبيقات ومواقع الويب المتكاملة (HTML, CSS, JS, Python, Dart) وربطها بـ Firebase.</p>
         </div>
 
-        <div class="card">
-            <i class="fas fa-bezier-curve"></i>
+        <div class="neo-card">
+            <i class="fas fa-crop-simple"></i>
             <h4>Creative Graphic Design</h4>
-            <p>بناء الهويات البصرية والشعارات الإبداعية الحديثة برؤية فنية تجريدية متقدمة.</p>
+            <p>تصميم الشعارات الاحترافية والهويات البصرية الكاملة باستخدام أدوات Canva و Picsart برؤية فنية عصرية.</p>
         </div>
 
-        <div class="card">
-            <i class="fas fa-user-shield"></i>
-            <h4>Cybersecurity Research</h4>
-            <p>تحليل الأنظمة الرقمية واكتشاف الثغرات الأمنية وتأمين الواجهات الخلفية للمنصات.</p>
+        <div class="neo-card">
+            <i class="fas fa-key"></i>
+            <h4>Cybersecurity & Protection</h4>
+            <p>دراسة وفحص الثغرات الأمنية في تطبيقات الويب لحماية البيانات وتأمين الخوادم والمنصات.</p>
         </div>
 
-        <div class="card">
-            <i class="fas fa-server"></i>
-            <h4>Cloud & Devops Hosting</h4>
-            <p>إدارة بيئات العمل واستضافة وتوزيع المشاريع السحابية فورا عبر منصة GitHub Pages.</p>
+        <div class="neo-card">
+            <i class="fas fa-cloud-arrow-up"></i>
+            <h4>Cloud Operations & Hosting</h4>
+            <p>إدارة بيئات التطوير واستضافة المشاريع الحية بمرونة كاملة بالاعتماد على GitHub Pages.</p>
         </div>
 
-        <div class="card">
-            <i class="fas fa-graduation-cap"></i>
-            <h4>Smart Educational Solutions</h4>
-            <p>هندسة المنصات التعليمية المزامنة ذكياً لربط الفصول والشاشات التفاعلية كمنصة Sapora Rocket.</p>
+        <div class="neo-card">
+            <i class="fas fa-chalkboard"></i>
+            <h4>Smart Educational Systems</h4>
+            <p>تطوير المنصات والحلول التعليمية التفاعلية اللحظية لربط الفصول الدراسية كمنصة Sapora Rocket.</p>
         </div>
 
-        <div class="card">
+        <div class="neo-card">
             <i class="fas fa-cube"></i>
-            <h4>Speedcubing Analysis</h4>
-            <p>تحليل حلول خوارزميات مكعب روبيك والمكعبات المعقدة وتطوير أدوات القياس الزمني الاحترافي.</p>
+            <h4>Speedcubing R&D</h4>
+            <p>تقديم استشارات وخوارزميات حلول مكعب روبيك وتطوير أدوات لحساب وتحليل الفترات الزمنية.</p>
         </div>
 
     </div>
 </section>
 
-<!-- المعرض الرقمي للأعمال والمنصات المنفذة -->
+<!-- قسـم المعرض بعد قلبه وإعادة صياغته ليعرض مشاريعك الحقيقية بشكل مبهر وفخم جداً -->
 <section id="works" class="reveal">
-    <h2 class="section-title"><span>03 /</span> المعرض البرمجي</h2>
-    <div class="works-grid">
+    <div class="section-header">
+        <h2>معرض المنصات الحية</h2>
+    </div>
+    <div class="projects-grid">
         
-        <a href="https://kemo-omar.github.io/Kramlat/" target="_blank" class="work-box">
-            <div class="work-top">
-                <i class="fas fa-users-viewfinder"></i>
+        <a href="https://kemo-omar.github.io/Kramlat/" target="_blank" class="project-card">
+            <div class="project-preview"><i class="fas fa-users-rectangle"></i></div>
+            <div class="project-info">
                 <h3>مجتمع كرملات</h3>
-                <p>شبكة تفاعلية تهدف لإدارة وتصميم المسابقات الكبرى بأسلوب بصري فريد.</p>
+                <p>بيئة رقمية مخصصة لإدارة المسابقات الإبداعية والتحديات بتجربة مستخدم عصرية.</p>
+                <div class="project-tag">Web Platform</div>
             </div>
-            <div class="badge">Live Platform</div>
         </a>
 
-        <a href="https://kemo-omar.github.io/Youth-of-the-future/" target="_blank" class="work-box">
-            <div class="work-top">
-                <i class="fas fa-user-astronaut"></i>
+        <a href="https://kemo-omar.github.io/Youth-of-the-future/" target="_blank" class="project-card">
+            <div class="project-preview"><i class="fas fa-graduation-cap"></i></div>
+            <div class="project-info">
                 <h3>شباب المستقبل</h3>
-                <p>بوابة رقمية شبابية متطورة لتوفير الموارد والمراجع البرمجية والأكاديمية الهامة.</p>
+                <p>منصة تعليمية متطورة توفر للطلاب والشباب موارد وأدوات تقنية وأكاديمية هامة.</p>
+                <div class="project-tag">Educational</div>
             </div>
-            <div class="badge">Live Platform</div>
         </a>
 
-        <a href="https://kemo-omar.github.io/Mozty/" target="_blank" class="work-box">
-            <div class="work-top">
-                <i class="fas fa-graduation-cap"></i>
+        <a href="https://kemo-omar.github.io/Mozty/" target="_blank" class="project-card">
+            <div class="project-preview"><i class="fas fa-chalkboard-user"></i></div>
+            <div class="project-info">
                 <h3>منصة موزتي التعليمية</h3>
-                <p>نظام ذكي لإدارة الكورسات الدراسية والمناهج والتواصل المباشر مع المعلم.</p>
+                <p>نظام ذكي تفاعلي مخصص لإدارة الحصص وشرح المناهج الدراسية وربط المعلم بالطالب.</p>
+                <div class="project-tag">E-Learning</div>
             </div>
-            <div class="badge">Live Platform</div>
         </a>
 
-        <a href="https://kemo-omar.github.io/BOOKKe/" target="_blank" class="work-box">
-            <div class="work-top">
-                <i class="fas fa-store"></i>
+        <a href="https://kemo-omar.github.io/BOOKKe/" target="_blank" class="project-card">
+            <div class="project-preview"><i class="fas fa-shopping-bag"></i></div>
+            <div class="project-info">
                 <h3>بوك كي - BOOKKe</h3>
-                <p>واجهة متجر إلكتروني عصري للكتب يجمع الفخامة البصرية وسهولة التنقل المطلق.</p>
+                <p>واجهة متجر رقمي متكامل لعرض وبيع الكتب بأسلوب تصفح مريح وجذاب بصرياً.</p>
+                <div class="project-tag">E-Commerce</div>
             </div>
-            <div class="badge">Live Platform</div>
         </a>
 
-        <a href="https://kemo-omar.github.io/SOHOORNA/" target="_blank" class="work-box">
-            <div class="work-top">
-                <i class="fas fa-moon"></i>
+        <a href="https://kemo-omar.github.io/SOHOORNA/" target="_blank" class="project-card">
+            <div class="project-preview"><i class="fas fa-moon"></i></div>
+            <div class="project-info">
                 <h3>سحورنا 2026</h3>
-                <p>بوابة رمضانية ذكية صممت في عام 2026 لمتابعة المواعيد والخدمات الإيمانية برؤية نيون.</p>
+                <p>منصة تفاعلية رمضانية حديثة أطلقت لمتابعة الإمساكيات والخدمات والمواقيت بدقة.</p>
+                <div class="project-tag">Ramadan Hub</div>
             </div>
-            <div class="badge">Live Platform</div>
         </a>
 
-        <a href="https://kemo-omar.github.io/Kareem/" target="_blank" class="work-box">
-            <div class="work-top">
-                <i class="fas fa-compass-drafting"></i>
+        <a href="https://kemo-omar.github.io/Kareem/" target="_blank" class="project-card">
+            <div class="project-preview"><i class="fas fa-compass-drafting"></i></div>
+            <div class="project-info">
                 <h3>البورتفوليو المعماري</h3>
-                <p>الإصدار الحالي المستقبلي من معرض أعمالك الشخصي المبني بأحدث تقنيات الفرونت إند.</p>
+                <p>النسخة الحالية المتطورة من معرض أعمالك الشخصي وهويتك الهندسية على الويب.</p>
+                <div class="project-tag">Portfolio Site</div>
             </div>
-            <div class="badge">Current Site</div>
         </a>
 
-        <div class="work-box" style="opacity: 0.85;">
-            <div class="work-top">
-                <i class="fas fa-display"></i>
-                <h3>Sapora Rocket</h3>
-                <p>السبورة التفاعلية المتزامنة في الوقت الفعلي لربط شاشات الفصول بالطلاب.</p>
-            </div>
-            <div class="badge" style="color:var(--s)">Internal System</div>
-        </div>
-
-        <div class="work-box" style="opacity: 0.85;">
-            <div class="work-top">
-                <i class="fas fa-stopwatch"></i>
-                <h3>Speed Cubing Timer</h3>
-                <p>مؤقت ذكي متقدم لتحليل وحساب سرعات حل مكعبات روبيك مع تخزين البيانات.</p>
-            </div>
-            <div class="badge" style="color:var(--s)">Internal System</div>
-        </div>
-
-        <div class="work-box" style="opacity: 0.85;">
-            <div class="work-top">
-                <i class="fas fa-shield-halved"></i>
-                <h3>CyberShield Roadmap</h3>
-                <p>مسارات تعليمية وتوجيهية متكاملة للمبتدئين في مجال الأمن السيبراني والحماية.</p>
-            </div>
-            <div class="badge" style="color:var(--s)">Concept Project</div>
-        </div>
-
-        <div class="work-box" style="opacity: 0.85;">
-            <div class="work-top">
-                <i class="fas fa-database"></i>
-                <h3>Firebase Sync Tool</h3>
-                <p>أداة مخصصة لربط ومزامنة تحديثات قواعد البيانات دون الحاجة لإعادة تحميل الصفحة.</p>
-            </div>
-            <div class="badge" style="color:var(--s)">Developer Tool</div>
-        </div>
-
     </div>
 </section>
 
-<!-- المعرض بعد قلبه رأساً على عقب ليعرض الـ 21 صورة كاملة دفعة واحدة -->
-<section id="gallery" class="reveal">
-    <h2 class="section-title"><span>04 /</span> المعرض الفني البصري</h2>
-    <div class="gallery-grid" id="photoGrid">
-        <!-- سيتم توليد الـ 21 صورة كاملة هنا برمجياً بواسطة الـ JavaScript -->
-    </div>
-</section>
-    
-<!-- قسم التواصل السريع والشبكات المالية والمجتمعية -->
+<!-- قسـم الاتصال والشبكات المدمج بالكامل بالتوافق المطلق -->
 <section id="contact" class="reveal">
-    <h2 class="section-title"><span>05 /</span> اتصال فوري</h2>
-    <div class="contact-box">
-        <p>ابدأ مشروعك القادم أو أرسل استفسارك مباشرة إلى <strong>كريم عمر</strong> عبر القنوات الرسمية:</p>
+    <div class="section-header">
+        <h2>تكامل وبوابات التواصل</h2>
+    </div>
+    <div class="contact-panel">
+        <p style="font-size: 1.05rem; margin-bottom: 25px;">يمكنك بدء التعاون أو إرسال المدفوعات والمعاملات المالية لـ <strong>كريم عمر</strong>:</p>
 
-        <div class="contact-links">
-            <!-- زرار تيلدا كارد باللون الأسود بالكامل والشعار ~ التزاماً بالهوية المطلوبة -->
-            <a href="https://telda.me/kemoomar15" target="_blank" class="contact-btn telda-btn">
-                <span class="telda-logo">~</span> Telda Card
+        <div class="links-flex-grid">
+            <!-- كرت تيلدا كارد باللون الأسود بالكامل وشعارهم المميز ~ التزاماً بالهوية المطلوبة -->
+            <a href="https://telda.xyz/download?phone=201101258549" target="_blank" class="action-link telda-black">
+                <span class="t-symbol">~</span> Telda Card
             </a>
 
-            <a href="https://flous.page.link/RjGZ" target="_blank" class="contact-btn etisalat-cash">
+            <a href="https://flous.page.link/RjGZ" target="_blank" class="action-link ec-red">
                 <i class="fas fa-wallet"></i> E& Cash
             </a>
             
-            <a href="https://www.facebook.com/profile.php?id=61588954905696" target="_blank" class="contact-btn" style="background: #1877F2;">
+            <a href="https://www.facebook.com/profile.php?id=61588954905696" target="_blank" class="action-link" style="background: #1877F2;">
                 <i class="fab fa-facebook-f"></i> Facebook
             </a>
             
-            <a href="https://www.instagram.com/kemo_omar15?igsh=MWRrc2VmNHI2d3ZicQ==" target="_blank" class="contact-btn" style="background: #E1306C;">
+            <a href="https://www.instagram.com/kemo_omar15?igsh=MWRrc2VmNHI2d3ZicQ==" target="_blank" class="action-link" style="background: #E1306C;">
                 <i class="fab fa-instagram"></i> Instagram
             </a>
             
-            <a href="https://www.tiktok.com/@kemo_omar15" target="_blank" class="contact-btn" style="background: #000000; border: 1px solid rgba(255,255,255,0.15)">
+            <a href="https://www.tiktok.com/@kemo_omar15" target="_blank" class="action-link" style="background: #000000; border: 1px solid rgba(255,255,255,0.12);">
                 <i class="fab fa-tiktok"></i> TikTok
             </a>
             
-            <a href="https://wa.me/201101258549" target="_blank" class="contact-btn" style="background: #25D366;">
+            <a href="https://wa.me/201101258549" target="_blank" class="action-link" style="background: #25D366;">
                 <i class="fab fa-whatsapp"></i> WhatsApp
             </a>
 
-            <a href="https://t.me/kemo_omar15" target="_blank" class="contact-btn" style="background: #24A1DE;">
+            <a href="https://t.me/kemo_omar15" target="_blank" class="action-link" style="background: #24A1DE;">
                 <i class="fab fa-telegram-plane"></i> Telegram
             </a>
             
-            <a href="mailto:kareemguinness@gmail.com" class="contact-btn" style="background: #EA4335;">
+            <a href="mailto:kareemguinness@gmail.com" class="action-link" style="background: #EA4335;">
                 <i class="far fa-envelope"></i> Gmail
             </a>
 
-            <a href="https://github.com/kemo-omar" target="_blank" class="contact-btn" style="background: #24292e;">
+            <a href="https://github.com/kemo-omar" target="_blank" class="action-link" style="background: #24292e;">
                 <i class="fab fa-github"></i> GitHub
             </a>
         </div>
@@ -479,30 +420,36 @@
 </section>
 
 <script>
-    // التحكم بشاشة الإنترو الفخمة والناعمة عند بداية التشغيل
-    window.addEventListener('DOMContentLoaded', () => {
-        setTimeout(() => {
-            const intro = document.getElementById('intro-screen');
-            intro.classList.add('fade-out');
-        }, 1500); 
-    });
+    // لوجيك إنترو الـ Terminal البرمجية التفاعلية
+    const terminalLines = [
+        "Initializing Kareem_Omar_Core_v2026...",
+        "Connecting to AKMTOA database... SUCCESS",
+        "Loading UI/UX glassmorphism models...",
+        "Setting active font family parameters...",
+        "Boot complete. Welcome, Architect."
+    ];
+    
+    const box = document.getElementById('terminalBox');
+    let lineIdx = 0;
 
-    // توليد وعرض كل الـ 21 صورة بالكامل في الـ Grid رأساً على عقب
-    const photoGrid = document.getElementById('photoGrid');
-    for(let j = 1; j <= 21; j++) {
-        const item = document.createElement('div');
-        item.className = 'gallery-item';
-        
-        const img = document.createElement('img');
-        img.src = `${j}.jpg`;
-        img.alt = `Creative Image ${j}`;
-        img.loading = 'lazy'; // تسريع الموقع والتحميل الذكي للصور
-        
-        item.appendChild(img);
-        photoGrid.appendChild(item);
+    function printTerminal() {
+        if(lineIdx < terminalLines.length) {
+            const p = document.createElement('div');
+            p.className = 'terminal-line';
+            p.style.animation = 'type 1.5s steps(40) forwards, blink .75s step-end infinite';
+            p.innerText = `> ${terminalLines[lineIdx]}`;
+            box.appendChild(p);
+            lineIdx++;
+            setTimeout(printTerminal, 600);
+        } else {
+            setTimeout(() => {
+                document.getElementById('intro-terminal').classList.add('slide-up');
+            }, 1000);
+        }
     }
+    window.addEventListener('DOMContentLoaded', printTerminal);
 
-    // تتبع الحركة التفاعلية للسكرول لظهور العناصر بنعومة فائقة
+    // مراقبة السكرول والأنيميشن التفاعلي للكروت والأقسام
     const revealElements = document.querySelectorAll('.reveal');
     const scrollObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
@@ -515,19 +462,19 @@
 
     revealElements.forEach(el => scrollObserver.observe(el));
 
-    // لوجيك تغيير السيم والألوان (Light / Dark)
+    // لوجيك تغيير السيم (Light / Dark)
     const themeBtn = document.getElementById('themeBtn');
     themeBtn.onclick = () => {
         document.body.classList.toggle('light-mode');
     };
 
-    // لوجيك تغيير خطوط التصميم الستة
+    // لوجيك تغيير الخطوط الستة المخصصة
     function toggleMenu() {
         const m = document.getElementById('fontMenu');
         m.style.display = (m.style.display === 'flex') ? 'none' : 'flex';
     }
-    function setF(fontFamilyName) {
-        document.body.style.setProperty('--active-font', fontFamilyName);
+    function setF(fName) {
+        document.body.style.setProperty('--active-font', fName);
         toggleMenu();
     }
 </script>
