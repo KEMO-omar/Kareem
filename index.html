@@ -13,7 +13,7 @@
     <link rel="icon" type="image/jpeg" href="13.jpg">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700;800&family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
     <style>
         /* الخطوط الستة المخصصة الخاصة بك */
@@ -24,236 +24,828 @@
         @font-face { font-family: 'Galaxy'; src: url('جالاكسي.ttf'); }
         @font-face { font-family: 'Belabelo'; src: url('بلابيلو.ttf'); }
 
-        :root { 
-            --p: #00ffaa; /* لون نيون أخضر سايبر جديد */
-            --s: #0077ff; /* أزرق كهربائي */
-            --bg: #0a0b10; 
-            --card-bg: rgba(16, 18, 27, 0.7);
-            --text: #ffffff;
-            --border: rgba(255, 255, 255, 0.08);
+        :root {
+            --p: #00f5a8;
+            --p-soft: rgba(0, 245, 168, 0.14);
+            --s: #2b7fff;
+            --s-soft: rgba(43, 127, 255, 0.16);
+            --gold: #ffd166;
+            --gold-soft: rgba(255, 209, 102, 0.16);
+            --bg: #06080f;
+            --bg-gradient:
+                radial-gradient(circle at 12% 15%, rgba(0, 245, 168, 0.14), transparent 36%),
+                radial-gradient(circle at 88% 20%, rgba(43, 127, 255, 0.18), transparent 40%),
+                radial-gradient(circle at 50% 82%, rgba(168, 85, 247, 0.10), transparent 45%);
+            --card-bg: rgba(15, 19, 32, 0.58);
+            --card-bg-hover: rgba(21, 27, 45, 0.72);
+            --nav-bg: rgba(11, 14, 24, 0.68);
+            --preview-bg: linear-gradient(135deg, rgba(20, 26, 44, 0.9), rgba(11, 15, 26, 0.95));
+            --input-bg: rgba(8, 11, 19, 0.65);
+            --text: #f8fafc;
+            --text-muted: rgba(226, 232, 240, 0.74);
+            --border: rgba(255, 255, 255, 0.10);
+            --border-highlight: rgba(255, 255, 255, 0.18);
+            --shadow-card: 0 20px 50px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.10);
+            --shadow-hover: 0 26px 60px rgba(0, 0, 0, 0.45), 0 0 28px rgba(0, 245, 168, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            --title-grad: linear-gradient(135deg, #ffffff 30%, #00f5a8 80%, #2b7fff 100%);
+            --grid-dot: rgba(255, 255, 255, 0.08);
+            --shape-fill: rgba(255, 255, 255, 0.03);
+            --shape-border: rgba(255, 255, 255, 0.09);
+            --btn-text: #041014;
             --active-font: 'Cairo', sans-serif;
         }
 
+        /* الوضع الفاتح الفخم (Frosted Daylight Pearl Glass) */
         body.light-mode {
-            --bg: #f0f2f5; 
-            --card-bg: rgba(255, 255, 255, 0.85);
-            --text: #111424;
-            --border: rgba(0, 0, 0, 0.08);
+            --p: #059669;
+            --p-soft: rgba(5, 150, 105, 0.12);
+            --s: #2563eb;
+            --s-soft: rgba(37, 99, 235, 0.12);
+            --gold: #d97706;
+            --gold-soft: rgba(217, 119, 6, 0.14);
+            --bg: #f1f5fb;
+            --bg-gradient:
+                radial-gradient(circle at 12% 14%, rgba(16, 185, 129, 0.16), transparent 40%),
+                radial-gradient(circle at 86% 18%, rgba(59, 130, 246, 0.18), transparent 44%),
+                radial-gradient(circle at 50% 85%, rgba(245, 158, 11, 0.10), transparent 45%),
+                linear-gradient(180deg, #f8fafd 0%, #eaf0f8 100%);
+            --card-bg: rgba(255, 255, 255, 0.72);
+            --card-bg-hover: rgba(255, 255, 255, 0.90);
+            --nav-bg: rgba(255, 255, 255, 0.78);
+            --preview-bg: linear-gradient(135deg, rgba(37, 99, 235, 0.09), rgba(5, 150, 105, 0.09));
+            --input-bg: rgba(255, 255, 255, 0.85);
+            --text: #0f172a;
+            --text-muted: #475569;
+            --border: rgba(15, 23, 42, 0.08);
+            --border-highlight: rgba(255, 255, 255, 0.95);
+            --shadow-card: 0 14px 36px rgba(15, 23, 42, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+            --shadow-hover: 0 22px 48px rgba(37, 99, 235, 0.12), inset 0 1px 0 rgba(255, 255, 255, 1);
+            --title-grad: linear-gradient(135deg, #0f172a 30%, #059669 78%, #2563eb 100%);
+            --grid-dot: rgba(15, 23, 42, 0.08);
+            --shape-fill: rgba(255, 255, 255, 0.45);
+            --shape-border: rgba(37, 99, 235, 0.14);
+            --btn-text: #ffffff;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        body { 
-            background: var(--bg); 
-            color: var(--text); 
-            font-family: var(--active-font); 
-            transition: 0.4s; 
-            overflow-x: hidden; 
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--active-font);
+            transition: background-color 0.45s ease, color 0.35s ease;
+            overflow-x: hidden;
+            position: relative;
         }
+
+        /* الخلفية الفخمة والأشكال الهندسية الزجاجية العائمة */
+        .bg-aura {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -3;
+            background: var(--bg-gradient);
+            transition: background 0.5s ease;
+        }
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -2;
+            background-image: radial-gradient(var(--grid-dot) 1.1px, transparent 1.1px);
+            background-size: 28px 28px;
+            mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.85), transparent 88%);
+            -webkit-mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.85), transparent 88%);
+        }
+        .geo-layer {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .geo-shape {
+            position: absolute;
+            background: var(--shape-fill);
+            border: 1px solid var(--shape-border);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+        }
+        .geo-1 {
+            width: 240px; height: 240px;
+            border-radius: 38% 62% 55% 45% / 44% 38% 62% 56%;
+            top: 8%; left: -60px;
+            animation: floatSlow 14s ease-in-out infinite;
+        }
+        .geo-2 {
+            width: 140px; height: 140px;
+            border-radius: 28px;
+            transform: rotate(28deg);
+            top: 22%; right: 5%;
+            animation: floatRotate 18s ease-in-out infinite;
+        }
+        .geo-3 {
+            width: 190px; height: 190px;
+            border-radius: 50%;
+            bottom: 12%; right: -50px;
+            border-style: dashed;
+            animation: spinSlow 36s linear infinite;
+        }
+        .geo-4 {
+            width: 110px; height: 110px;
+            border-radius: 24px;
+            bottom: 24%; left: 6%;
+            transform: rotate(-18deg);
+            animation: floatSlow 12s ease-in-out infinite reverse;
+        }
+
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-22px) translateX(12px); }
+        }
+        @keyframes floatRotate {
+            0%, 100% { transform: rotate(28deg) translateY(0); }
+            50% { transform: rotate(42deg) translateY(-18px); }
+        }
+        @keyframes spinSlow { to { transform: rotate(360deg); } }
 
         /* شاشة إنترو الـ Terminal البرمجية */
         #intro-terminal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #050508; z-index: 9999; display: flex; justify-content: center;
+            background: #05070e; z-index: 9999; display: flex; justify-content: center;
             align-items: center; font-family: monospace; padding: 20px;
-            transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.1, 1, 0.1, 1);
+            transition: opacity 0.6s ease, transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
         }
         #intro-terminal.slide-up { opacity: 0; pointer-events: none; transform: translateY(-100%); }
-        .terminal-box { width: 100%; max-width: 500px; color: var(--p); text-align: left; direction: ltr; }
-        .terminal-line { white-space: nowrap; overflow: hidden; border-right: 2px solid transparent; width: 0; margin-bottom: 8px; font-size: 0.9rem; }
+        .terminal-box { width: 100%; max-width: 560px; color: #00f5a8; text-align: left; direction: ltr; }
+        .terminal-line { white-space: nowrap; overflow: hidden; border-right: 2px solid transparent; width: 0; margin-bottom: 8px; font-size: 0.92rem; }
+        .terminal-line.bday-line { color: #ffd166; font-weight: bold; }
+        .skip-intro-btn {
+            position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+            background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16);
+            color: #cbd5e1; padding: 7px 16px; border-radius: 999px; font-family: inherit;
+            font-size: 0.8rem; cursor: pointer; transition: 0.25s;
+        }
+        .skip-intro-btn:hover { background: rgba(0, 245, 168, 0.16); color: #00f5a8; border-color: #00f5a8; }
 
         @keyframes type { from { width: 0 } to { width: 100% } }
-        @keyframes blink { 50% { border-color: var(--p) } }
+        @keyframes blink { 50% { border-color: #00f5a8 } }
 
         /* الأقسام بحركات تفاعلية ناعمة */
-        .reveal { opacity: 0; transform: scale(0.96) translateY(20px); transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .reveal { opacity: 0; transform: scale(0.97) translateY(22px); transition: all 0.65s cubic-bezier(0.165, 0.84, 0.44, 1); }
         .reveal.active { opacity: 1; transform: scale(1) translateY(0); }
 
-        /* أدوات التحكم الدائرية */
-        .controls { position: fixed; top: 20px; right: 20px; z-index: 3000; display: flex; gap: 10px; }
-        .ctrl-btn { width: 45px; height: 45px; border-radius: 14px; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; backdrop-filter: blur(10px); transition: 0.3s; }
-        .ctrl-btn:hover { border-color: var(--p); color: var(--p); box-shadow: 0 0 15px rgba(0, 255, 170, 0.3); }
+        /* أدوات التحكم العلوية الزجاجية */
+        .controls { position: fixed; top: 18px; right: 18px; z-index: 3000; display: flex; gap: 10px; }
+        .ctrl-btn {
+            width: 44px; height: 44px; border-radius: 15px;
+            background: var(--nav-bg); border: 1px solid var(--border);
+            color: var(--text); cursor: pointer; display: flex; align-items: center;
+            justify-content: center; font-size: 1.05rem;
+            backdrop-filter: blur(18px) saturate(160%);
+            -webkit-backdrop-filter: blur(18px) saturate(160%);
+            transition: 0.28s; box-shadow: var(--shadow-card);
+        }
+        .ctrl-btn:hover { border-color: var(--p); color: var(--p); transform: translateY(-2px); box-shadow: 0 10px 24px var(--p-soft); }
 
-        .font-menu { position: fixed; top: 75px; right: 20px; background: var(--card-bg); border: 1px solid var(--border); padding: 10px; border-radius: 18px; display: none; flex-direction: column; gap: 5px; z-index: 2999; backdrop-filter: blur(15px); }
-        .font-btn { background: transparent; border: none; color: var(--text); padding: 8px 16px; border-radius: 10px; cursor: pointer; text-align: right; transition: 0.2s; }
-        .font-btn:hover { background: var(--p); color: #000; font-weight: bold; }
+        .font-menu {
+            position: fixed; top: 72px; right: 18px;
+            background: var(--card-bg); border: 1px solid var(--border);
+            padding: 10px; border-radius: 20px; display: none; flex-direction: column;
+            gap: 5px; z-index: 2999; min-width: 150px;
+            backdrop-filter: blur(24px) saturate(170%);
+            -webkit-backdrop-filter: blur(24px) saturate(170%);
+            box-shadow: var(--shadow-card);
+        }
+        .font-btn {
+            background: transparent; border: none; color: var(--text);
+            padding: 9px 16px; border-radius: 12px; cursor: pointer;
+            text-align: right; transition: 0.2s; font-size: 0.96rem;
+        }
+        .font-btn:hover, .font-btn.active-font-item { background: var(--p); color: var(--btn-text); font-weight: 800; }
 
         /* القائمة العائمة العلوية الأنيقة */
-        nav { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: rgba(10, 11, 16, 0.7); backdrop-filter: blur(20px); padding: 8px 20px; border-radius: 20px; border: 1px solid var(--border); display: flex; gap: 18px; z-index: 2000; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-        nav a { color: var(--text); opacity: 0.6; text-decoration: none; font-size: 1.1rem; transition: 0.3s; padding: 6px; }
-        nav a:hover { opacity: 1; color: var(--p); transform: translateY(-2px); }
+        nav {
+            position: fixed; top: 18px; left: 50%; transform: translateX(-50%);
+            background: var(--nav-bg);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            padding: 7px 14px; border-radius: 22px; border: 1px solid var(--border);
+            display: flex; gap: 8px; z-index: 2000; box-shadow: var(--shadow-card);
+        }
+        nav a {
+            color: var(--text); opacity: 0.65; text-decoration: none; font-size: 1.05rem;
+            transition: 0.28s; padding: 8px 11px; border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        nav a:hover, nav a.active-nav { opacity: 1; color: var(--p); background: var(--p-soft); transform: translateY(-1px); }
 
-        /* واجهة الهيدر التجريدية الجديدة */
-        header { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; position: relative; padding: 20px; }
-        .hero-avatar-wrapper { position: relative; margin-bottom: 30px; }
-        .hero-avatar-wrapper::after { content: ''; position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px; border: 1px dashed var(--p); border-radius: 50%; animation: spin 20s linear infinite; opacity: 0.5; }
-        .main-logo { width: 140px; height: 140px; border-radius: 50%; border: 2px solid var(--border); object-fit: cover; position: relative; z-index: 2; }
+        /* واجهة الهيدر الفخمة */
+        header {
+            min-height: 100vh; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; text-align: center;
+            position: relative; padding: 105px 20px 60px;
+        }
+        .hero-glass-frame {
+            position: relative;
+            max-width: 780px;
+            width: 100%;
+            padding: 46px 28px 38px;
+            border-radius: 36px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(26px) saturate(165%);
+            -webkit-backdrop-filter: blur(26px) saturate(165%);
+            box-shadow: var(--shadow-card);
+        }
+        .hero-avatar-wrapper { position: relative; display: inline-block; margin-bottom: 24px; }
+        .hero-avatar-wrapper::before {
+            content: ''; position: absolute; inset: -24px; border-radius: 50%;
+            background: radial-gradient(circle, var(--p-soft), var(--s-soft), transparent 72%);
+            filter: blur(14px); z-index: 0;
+        }
+        .hero-avatar-wrapper::after {
+            content: ''; position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px;
+            border: 1.5px dashed var(--p); border-radius: 50%;
+            animation: spinSlow 22s linear infinite; opacity: 0.7;
+        }
+        .main-logo {
+            width: 144px; height: 144px; border-radius: 50%;
+            border: 2.5px solid var(--border-highlight); object-fit: cover;
+            position: relative; z-index: 2; box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28);
+            transition: transform 0.4s ease;
+        }
+        .hero-avatar-wrapper:hover .main-logo { transform: scale(1.05); }
 
-        .letters-row { display: flex; justify-content: center; gap: 6px; margin: 20px 0; }
-        .p-photo { width: clamp(40px, 8vw, 55px); height: clamp(40px, 8vw, 55px); border-radius: 50%; border: 1px solid var(--border); object-fit: cover; transition: 0.3s; }
-        .p-photo:hover { transform: scale(1.15) translateY(-5px); border-color: var(--p); box-shadow: 0 5px 15px rgba(0,255,170,0.3); }
+        .bday-crown {
+            display: none; position: absolute; top: -32px; left: 50%;
+            transform: translateX(-50%) rotate(-4deg); z-index: 5; font-size: 2.1rem;
+            filter: drop-shadow(0 4px 12px rgba(255, 209, 102, 0.65));
+            animation: floatCrown 2.4s ease-in-out infinite;
+        }
+        body.is-birthday .bday-crown { display: block; }
+        body.is-birthday .hero-avatar-wrapper::after { border-color: var(--gold); opacity: 0.95; }
+        body.is-birthday .main-logo { border-color: var(--gold); box-shadow: 0 0 36px var(--gold-soft); }
 
-        header h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(2.2rem, 7vw, 4rem); font-weight: 800; text-transform: uppercase; letter-spacing: -1px; line-height: 1; }
-        header p { color: var(--p); font-family: 'Plus Jakarta Sans'; font-size: clamp(0.8rem, 2.5vw, 1.05rem); letter-spacing: 6px; text-transform: uppercase; margin-top: 15px; font-weight: 700; opacity: 0.9; }
+        @keyframes floatCrown {
+            0%, 100% { transform: translateX(-50%) translateY(0) rotate(-4deg); }
+            50% { transform: translateX(-50%) translateY(-6px) rotate(4deg); }
+        }
 
-        /* الأقسام والمساحات الحرة */
-        section { padding: 90px 20px; max-width: 1150px; margin: 0 auto; }
-        .section-header { margin-bottom: 45px; text-align: right; }
-        .section-header h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 900; position: relative; display: inline-block; }
-        .section-header h2::after { content: ''; position: absolute; bottom: -6px; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--p), var(--s)); border-radius: 2px; }
+        .letters-row { display: flex; justify-content: center; gap: 8px; margin: 14px 0 20px; flex-wrap: wrap; }
+        .p-photo {
+            width: clamp(38px, 8vw, 54px); height: clamp(38px, 8vw, 54px);
+            border-radius: 50%; border: 1.5px solid var(--border); object-fit: cover;
+            transition: 0.3s; box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16);
+        }
+        .p-photo:hover { transform: scale(1.16) translateY(-5px); border-color: var(--p); box-shadow: 0 10px 22px var(--p-soft); }
 
-        /* نظام الشبكة الهندسي للكروت */
-        .grid-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .neo-card { background: var(--card-bg); border: 1px solid var(--border); padding: 35px 25px; border-radius: 24px; transition: 0.3s ease; position: relative; display: flex; flex-direction: column; gap: 15px; }
-        .neo-card:hover { transform: translateY(-5px); border-color: rgba(0, 255, 170, 0.25); box-shadow: 0 15px 35px rgba(0,0,0,0.2); }
-        .neo-card i { font-size: 1.8rem; color: var(--p); width: max-content; }
-        .neo-card h3, .neo-card h4 { font-size: 1.25rem; font-weight: 700; }
-        .neo-card p { font-size: 0.95rem; line-height: 1.6; color: rgba(255,255,255,0.65); }
-        body.light-mode .neo-card p { color: rgba(0,0,0,0.7); }
+        header h1 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: clamp(2.1rem, 6.5vw, 3.8rem);
+            font-weight: 800; text-transform: uppercase; letter-spacing: -1px; line-height: 1.05;
+            background: var(--title-grad); -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        header p.hero-subtitle {
+            color: var(--p); font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: clamp(0.78rem, 2.2vw, 1rem); letter-spacing: 5px;
+            text-transform: uppercase; margin-top: 12px; font-weight: 700;
+        }
 
-        /* كرت المنصة المشترك المطور */
-        .collab-card { border-left: 3px solid var(--p); background: linear-gradient(135deg, rgba(0,255,170,0.02), transparent); text-decoration: none; color: inherit; }
-        .collab-card:hover { border-left-color: var(--s); }
+        .hero-chips {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 22px;
+        }
+        .hero-chip {
+            padding: 7px 14px; border-radius: 999px;
+            background: var(--input-bg); border: 1px solid var(--border);
+            font-size: 0.84rem; font-weight: 700; color: var(--text-muted);
+            display: inline-flex; align-items: center; gap: 7px;
+        }
+        .hero-chip i { color: var(--p); font-size: 0.9rem; }
 
-        /* المعرض الجديد كلياً: معرض المشاريع والمنصات الحقيقية الاحترافي */
+        .countdown-pill {
+            margin-top: 18px;
+            display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: center;
+            padding: 10px 20px; border-radius: 999px;
+            background: linear-gradient(135deg, var(--p-soft), var(--s-soft));
+            border: 1px solid var(--border);
+            color: var(--text); font-size: 0.88rem; font-weight: 700;
+        }
+        body.is-birthday .countdown-pill { display: none; }
+
+        .hero-bday-ribbon {
+            display: none; margin-top: 22px; padding: 11px 24px; border-radius: 999px;
+            background: linear-gradient(135deg, var(--gold-soft), var(--p-soft));
+            border: 1.5px solid var(--gold); color: var(--gold);
+            font-family: inherit; font-weight: 800; font-size: 0.96rem;
+            cursor: pointer; transition: 0.25s ease; align-items: center; gap: 10px;
+            box-shadow: 0 10px 28px var(--gold-soft);
+        }
+        body.is-birthday .hero-bday-ribbon { display: inline-flex; animation: pulseGlow 2.4s infinite; }
+        .hero-bday-ribbon:hover { transform: translateY(-2px) scale(1.03); }
+
+        .hero-actions {
+            display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 24px;
+        }
+        .btn-glass-primary {
+            padding: 12px 24px; border-radius: 16px; border: none; text-decoration: none;
+            background: linear-gradient(135deg, var(--p), var(--s));
+            color: var(--btn-text); font-family: inherit; font-weight: 800; font-size: 0.95rem;
+            display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+            transition: 0.25s; box-shadow: 0 10px 26px var(--p-soft);
+        }
+        .btn-glass-primary:hover { transform: translateY(-3px); filter: brightness(1.06); }
+        .btn-glass-secondary {
+            padding: 12px 22px; border-radius: 16px; text-decoration: none;
+            background: var(--input-bg); border: 1px solid var(--border);
+            color: var(--text); font-family: inherit; font-weight: 700; font-size: 0.95rem;
+            display: inline-flex; align-items: center; gap: 8px; cursor: pointer; transition: 0.25s;
+        }
+        .btn-glass-secondary:hover { border-color: var(--p); color: var(--p); transform: translateY(-3px); }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 16px var(--gold-soft); }
+            50% { box-shadow: 0 0 32px rgba(255, 209, 102, 0.42); }
+        }
+
+        /* الأقسام وعناوينها */
+        section { padding: 80px 20px; max-width: 1160px; margin: 0 auto; }
+        .section-header { margin-bottom: 38px; text-align: right; display: flex; flex-direction: column; gap: 6px; }
+        .section-kicker {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.78rem; font-weight: 800; letter-spacing: 3px;
+            text-transform: uppercase; color: var(--p);
+        }
+        .section-header h2 { font-size: clamp(1.6rem, 4vw, 2.25rem); font-weight: 900; position: relative; display: inline-block; width: max-content; }
+        .section-header h2::after { content: ''; position: absolute; bottom: -8px; left: 0; right: 0; height: 3.5px; background: linear-gradient(90deg, var(--p), var(--s)); border-radius: 4px; }
+
+        /* البطاقات الزجاجية الفخمة مع تتبع الماوس */
+        .grid-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(295px, 1fr)); gap: 20px; }
+        .neo-card {
+            background: var(--card-bg); border: 1px solid var(--border);
+            padding: 30px 26px; border-radius: 26px;
+            transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s, box-shadow 0.3s, background 0.3s;
+            position: relative; display: flex; flex-direction: column; gap: 13px;
+            backdrop-filter: blur(22px) saturate(165%);
+            -webkit-backdrop-filter: blur(22px) saturate(165%);
+            box-shadow: var(--shadow-card); overflow: hidden;
+        }
+        .neo-card::after {
+            content: ''; position: absolute; inset: 0; pointer-events: none;
+            background: radial-gradient(360px circle at var(--mx, 50%) var(--my, 50%), var(--p-soft), transparent 60%);
+            opacity: 0; transition: opacity 0.35s ease;
+        }
+        .neo-card:hover { transform: translateY(-6px); border-color: var(--p); background: var(--card-bg-hover); box-shadow: var(--shadow-hover); }
+        .neo-card:hover::after { opacity: 1; }
+
+        .card-icon-pill {
+            width: 48px; height: 48px; border-radius: 15px;
+            background: linear-gradient(135deg, var(--p-soft), var(--s-soft));
+            border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--p); font-size: 1.35rem; margin-bottom: 4px;
+        }
+        .neo-card h3, .neo-card h4 { font-size: 1.22rem; font-weight: 800; }
+        .neo-card p { font-size: 0.95rem; line-height: 1.68; color: var(--text-muted); }
+
+        .bday-highlight-card.bday-active {
+            border-color: var(--gold);
+            background: linear-gradient(135deg, var(--gold-soft), var(--card-bg));
+        }
+        .bday-card-tag {
+            display: none; width: max-content; padding: 5px 13px; border-radius: 999px;
+            background: var(--gold-soft); border: 1px solid var(--gold);
+            color: var(--gold); font-size: 0.8rem; font-weight: 800; margin-top: 4px;
+        }
+        body.is-birthday .bday-card-tag { display: inline-block; }
+
+        .collab-card { border-right: 4px solid var(--p); text-decoration: none; color: inherit; }
+        .collab-card:hover { border-right-color: var(--s); }
+
+        /* معرض المنصات الحية */
         .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .project-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: 0.3s; height: 100%; }
-        .project-card:hover { transform: translateY(-5px); border-color: var(--s); box-shadow: 0 12px 25px rgba(0, 119, 255, 0.15); }
+        .project-card {
+            background: var(--card-bg); border: 1px solid var(--border); border-radius: 24px;
+            overflow: hidden; text-decoration: none; color: inherit; display: flex; flex-direction: column;
+            transition: 0.32s cubic-bezier(0.22, 1, 0.36, 1); height: 100%;
+            backdrop-filter: blur(22px) saturate(165%);
+            -webkit-backdrop-filter: blur(22px) saturate(165%);
+            box-shadow: var(--shadow-card);
+        }
+        .project-card:hover { transform: translateY(-6px); border-color: var(--s); box-shadow: var(--shadow-hover); }
 
-        /* محاكاة متصفح داخل الكرت تدي فخامة بصرية للشغل */
-        .project-preview { background: #161823; height: 140px; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 1px solid var(--border); position: relative; }
-        .project-preview i { font-size: 2.5rem; color: var(--s); transition: 0.3s; }
-        .project-card:hover .project-preview i { transform: scale(1.1) rotate(-5deg); color: var(--p); }
+        .project-preview {
+            background: var(--preview-bg); height: 146px; display: flex;
+            flex-direction: column; justify-content: center; align-items: center;
+            border-bottom: 1px solid var(--border); position: relative;
+        }
+        .project-preview::before {
+            content: '• • •'; position: absolute; top: 10px; left: 16px;
+            font-size: 0.9rem; letter-spacing: 3px; color: var(--text-muted); opacity: 0.65;
+        }
+        .project-preview i, .project-preview svg { font-size: 2.5rem; width: 42px; height: 42px; color: var(--s); transition: 0.3s; }
+        .project-card:hover .project-preview i, .project-card:hover .project-preview svg { transform: scale(1.12) rotate(-5deg); color: var(--p); }
 
-        .project-info { padding: 25px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
-        .project-info h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; }
-        .project-info p { font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.5; }
-        .project-tag { font-family: 'Plus Jakarta Sans'; font-size: 0.75rem; font-weight: 700; color: var(--p); margin-top: 15px; letter-spacing: 1px; text-transform: uppercase; }
+        .project-info { padding: 24px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
+        .project-info h3 { font-size: 1.15rem; font-weight: 800; margin-bottom: 8px; }
+        .project-info p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.62; }
+        .project-tag {
+            font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.74rem; font-weight: 800;
+            color: var(--p); margin-top: 16px; letter-spacing: 1px; text-transform: uppercase;
+            background: var(--p-soft); width: max-content; padding: 5px 11px; border-radius: 999px;
+        }
 
-        /* قسم الاتصال والروابط المترابطة بالتوافق الملي */
-        .contact-panel { background: var(--card-bg); border: 1px solid var(--border); border-radius: 28px; padding: 45px 25px; text-align: center; backdrop-filter: blur(10px); max-width: 900px; margin: 0 auto; }
-        .links-flex-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-top: 35px; width: 100%; box-sizing: border-box; }
+        /* معرض اللقطات البصرية (1.jpg - 21.jpg) */
+        .gallery-shell {
+            background: var(--card-bg); border: 1px solid var(--border); border-radius: 28px;
+            padding: 24px 0; overflow: hidden; backdrop-filter: blur(22px);
+            box-shadow: var(--shadow-card); position: relative; direction: ltr;
+        }
+        .gallery-track {
+            display: flex; gap: 16px; width: max-content;
+            animation: marqueeScroll 45s linear infinite; padding: 6px 16px;
+        }
+        .gallery-shell:hover .gallery-track { animation-play-state: paused; }
+        .gallery-thumb {
+            width: 170px; height: 170px; border-radius: 20px; overflow: hidden;
+            border: 1.5px solid var(--border); flex-shrink: 0; cursor: pointer;
+            position: relative; transition: transform 0.3s ease, border-color 0.3s ease;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
+        }
+        .gallery-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+        .gallery-thumb:hover { transform: translateY(-6px) scale(1.03); border-color: var(--p); }
+        .gallery-thumb:hover img { transform: scale(1.08); }
+        @keyframes marqueeScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* استوديو تهنئة عيد الميلاد وقوالب الرسائل لكل المنصات */
+        .bday-studio-panel {
+            background: linear-gradient(135deg, var(--gold-soft), var(--card-bg) 45%, var(--p-soft));
+            border: 1.5px solid rgba(255, 209, 102, 0.45);
+            border-radius: 30px; padding: 34px 26px;
+            backdrop-filter: blur(26px) saturate(170%);
+            -webkit-backdrop-filter: blur(26px) saturate(170%);
+            box-shadow: var(--shadow-card);
+        }
+        .studio-top {
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 14px; margin-bottom: 24px;
+        }
+        .studio-title-wrap h3 { font-size: 1.45rem; font-weight: 900; color: var(--gold); display: flex; align-items: center; gap: 10px; }
+        .studio-title-wrap p { font-size: 0.94rem; color: var(--text-muted); margin-top: 4px; }
+
+        .fx-bar { display: flex; flex-wrap: wrap; gap: 8px; }
+        .fx-btn {
+            padding: 9px 14px; border-radius: 14px;
+            background: var(--input-bg); border: 1px solid var(--border);
+            color: var(--text); font-family: inherit; font-weight: 700; font-size: 0.85rem;
+            cursor: pointer; transition: 0.22s; display: inline-flex; align-items: center; gap: 6px;
+        }
+        .fx-btn:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+        .template-chips {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
+            gap: 10px; margin-bottom: 18px;
+        }
+        .tpl-chip {
+            text-align: right; padding: 13px 15px; border-radius: 18px;
+            background: var(--input-bg); border: 1.5px solid var(--border);
+            color: var(--text); font-family: inherit; cursor: pointer; transition: 0.24s;
+            display: flex; flex-direction: column; gap: 4px;
+        }
+        .tpl-chip strong { font-size: 0.92rem; display: flex; align-items: center; gap: 6px; }
+        .tpl-chip span { font-size: 0.78rem; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .tpl-chip:hover, .tpl-chip.active-tpl {
+            border-color: var(--p); background: var(--p-soft); transform: translateY(-2px);
+        }
+
+        .composer-box {
+            display: grid; gap: 12px; margin-bottom: 18px;
+        }
+        .composer-row {
+            display: grid; grid-template-columns: 1fr auto; gap: 10px;
+        }
+        .glass-input, .glass-textarea {
+            width: 100%; background: var(--input-bg); border: 1px solid var(--border);
+            border-radius: 16px; color: var(--text); font-family: inherit;
+            padding: 13px 16px; font-size: 0.95rem; outline: none; transition: border-color 0.25s;
+        }
+        .glass-input:focus, .glass-textarea:focus { border-color: var(--p); }
+        .glass-textarea { min-height: 98px; resize: vertical; line-height: 1.65; }
+
+        .send-platforms-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(135px, 1fr)); gap: 10px;
+        }
+        .send-platform-btn {
+            padding: 12px 12px; border-radius: 14px; border: 1px solid var(--border);
+            color: #fff; font-family: inherit; font-weight: 800; font-size: 0.88rem;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            cursor: pointer; transition: 0.24s; text-decoration: none;
+        }
+        .send-platform-btn:hover { transform: translateY(-3px); filter: brightness(1.1); box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2); }
+
+        /* قسم الاتصال والروابط */
+        .contact-panel {
+            background: var(--card-bg); border: 1px solid var(--border);
+            border-radius: 30px; padding: 42px 26px; text-align: center;
+            backdrop-filter: blur(24px) saturate(165%);
+            -webkit-backdrop-filter: blur(24px) saturate(165%);
+            max-width: 940px; margin: 0 auto; box-shadow: var(--shadow-card);
+        }
+        .links-flex-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(145px, 1fr)); gap: 11px; margin-top: 30px; width: 100%; }
 
         .action-link {
-            padding: 15px 10px; border-radius: 12px; text-decoration: none; color: #fff;
+            padding: 15px 12px; border-radius: 15px; text-decoration: none; color: #fff;
             font-weight: 700; display: flex; align-items: center; justify-content: center;
-            gap: 8px; transition: 0.25s ease; font-size: 0.95rem; white-space: nowrap; box-sizing: border-box;
+            gap: 8px; transition: 0.25s ease; font-size: 0.95rem; white-space: nowrap;
         }
-        .action-link:hover { transform: translateY(-4px); filter: brightness(1.15); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+        .action-link:hover { transform: translateY(-4px); filter: brightness(1.1); box-shadow: 0 12px 24px rgba(0,0,0,0.22); }
 
-        /* تعديل زر تيلدا كارد السوداء بالكامل وعلامة الـ متميزاً وهندسياً ~ */
-        .telda-black { 
-            background: #000000 !important; 
-            color: #ffffff !important; 
-            border: 1px solid rgba(255,255,255,0.15);
-            box-shadow: 0 4px 15px rgba(255,255,255,0.05);
+        .telda-black {
+            background: #0b0d13 !important; color: #ffffff !important;
+            border: 1px solid rgba(255,255,255,0.2);
         }
-        .telda-black:hover { border-color: #ffffff; box-shadow: 0 6px 20px rgba(255,255,255,0.2); }
         .t-symbol { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.3rem; font-weight: 900; line-height: 1; }
-
         .ec-red { background: #ec0c32; }
 
-        @keyframes spin { to { transform: rotate(360deg); } }
+        /* كانفاس الاحتفالات والبالونات */
+        #birthday-confetti {
+            position: fixed; inset: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 4500;
+        }
+        #balloon-layer {
+            position: fixed; inset: 0; pointer-events: none; z-index: 4400; overflow: hidden;
+        }
+        .balloon-item {
+            position: fixed; bottom: -110px; width: 48px; height: 58px;
+            border-radius: 50% 50% 48% 48%; pointer-events: auto; cursor: pointer;
+            box-shadow: inset -8px -10px 18px rgba(0,0,0,0.22), inset 8px 10px 16px rgba(255,255,255,0.35), 0 10px 24px rgba(0,0,0,0.2);
+            animation: floatBalloon var(--dur, 7s) ease-in forwards;
+        }
+        .balloon-item::after {
+            content: ''; position: absolute; bottom: -28px; left: 50%;
+            width: 1.5px; height: 28px; background: rgba(255,255,255,0.55);
+        }
+        @keyframes floatBalloon {
+            0% { transform: translateY(0) translateX(0) rotate(-4deg); opacity: 0.95; }
+            50% { transform: translateY(-55vh) translateX(var(--sway, 20px)) rotate(5deg); }
+            100% { transform: translateY(-120vh) translateX(calc(var(--sway, 20px) * -0.5)) rotate(-4deg); opacity: 0; }
+        }
+
+        /* الشارة العائمة لعيد الميلاد */
+        .birthday-floating-badge {
+            display: none; position: fixed; bottom: 20px; left: 20px; z-index: 3500;
+            background: var(--card-bg); border: 1.5px solid var(--gold);
+            border-radius: 22px; padding: 11px 15px; color: var(--text);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            box-shadow: var(--shadow-card), 0 0 26px var(--gold-soft);
+            align-items: center; gap: 12px; max-width: calc(100vw - 40px);
+            animation: badgeSlideIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        body.is-birthday .birthday-floating-badge { display: flex; }
+        .bday-badge-icon {
+            width: 42px; height: 42px; border-radius: 14px;
+            background: linear-gradient(135deg, var(--gold), #ff7b54);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.35rem; flex-shrink: 0;
+        }
+        .bday-badge-text { display: flex; flex-direction: column; text-align: right; gap: 2px; }
+        .bday-badge-title { font-size: 0.92rem; font-weight: 800; color: var(--gold); }
+        .bday-badge-sub { font-size: 0.78rem; color: var(--text-muted); }
+        .bday-celebrate-btn {
+            background: linear-gradient(135deg, var(--p), var(--s));
+            color: var(--btn-text); border: none; border-radius: 12px;
+            padding: 8px 13px; font-family: inherit; font-weight: 800;
+            font-size: 0.82rem; cursor: pointer; transition: 0.2s; white-space: nowrap;
+        }
+        .bday-celebrate-btn:hover { transform: scale(1.05); }
+        .bday-close-btn {
+            background: transparent; border: none; color: var(--text-muted);
+            cursor: pointer; font-size: 1.1rem; padding: 4px;
+        }
+
+        /* مودال التهنئة واللايت بوكس */
+        .bday-modal-backdrop {
+            position: fixed; inset: 0; background: rgba(4, 7, 15, 0.72);
+            backdrop-filter: blur(10px); z-index: 5000; display: none;
+            align-items: center; justify-content: center; padding: 20px;
+        }
+        .bday-modal-backdrop.open { display: flex; }
+        .bday-modal {
+            width: 100%; max-width: 460px; background: var(--card-bg);
+            border: 1.5px solid var(--gold); border-radius: 30px;
+            padding: 34px 26px; text-align: center;
+            backdrop-filter: blur(28px); box-shadow: 0 28px 70px rgba(0, 0, 0, 0.45);
+        }
+        body.light-mode .bday-modal { background: rgba(255, 255, 255, 0.94); }
+        .bday-modal-emoji { font-size: 3rem; margin-bottom: 10px; display: block; }
+        .bday-modal h3 { font-size: 1.45rem; font-weight: 900; color: var(--gold); margin-bottom: 10px; }
+        .bday-modal p { font-size: 0.96rem; line-height: 1.72; color: var(--text-muted); margin-bottom: 22px; }
+        .bday-modal-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+        .bday-modal-close {
+            background: var(--input-bg); border: 1px solid var(--border); color: var(--text);
+            border-radius: 12px; padding: 9px 18px; font-family: inherit; font-weight: 700; cursor: pointer;
+        }
+
+        .lightbox-img {
+            max-width: min(92vw, 680px); max-height: 82vh; border-radius: 24px;
+            border: 2px solid var(--border-highlight); box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+        }
+
+        /* إشعار Toast أنيق */
+        .toast-pill {
+            position: fixed; top: 82px; left: 50%; transform: translateX(-50%) translateY(-16px);
+            background: var(--card-bg); border: 1px solid var(--p); color: var(--text);
+            padding: 10px 20px; border-radius: 999px; font-weight: 800; font-size: 0.88rem;
+            backdrop-filter: blur(20px); box-shadow: var(--shadow-card);
+            z-index: 6000; opacity: 0; pointer-events: none; transition: 0.3s ease;
+        }
+        .toast-pill.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+        @keyframes badgeSlideIn {
+            from { opacity: 0; transform: translateY(24px) scale(0.94); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
 
         @media (min-width: 768px) {
             .links-flex-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
             .projects-grid { grid-template-columns: repeat(3, 1fr); }
             .action-link { font-size: 1rem; padding: 16px 15px; }
         }
+        @media (max-width: 560px) {
+            .hero-glass-frame { padding: 34px 18px 28px; border-radius: 28px; }
+            .composer-row { grid-template-columns: 1fr; }
+            .birthday-floating-badge { left: 12px; right: 12px; bottom: 12px; max-width: none; padding: 10px 12px; gap: 8px; }
+            .bday-badge-sub { display: none; }
+        }
     </style>
 </head>
 <body>
 
+<div class="bg-aura"></div>
+<div class="bg-grid"></div>
+<div class="geo-layer" aria-hidden="true">
+    <div class="geo-shape geo-1"></div>
+    <div class="geo-shape geo-2"></div>
+    <div class="geo-shape geo-3"></div>
+    <div class="geo-shape geo-4"></div>
+</div>
+<canvas id="birthday-confetti" aria-hidden="true"></canvas>
+<div id="balloon-layer" aria-hidden="true"></div>
+<div class="toast-pill" id="toastPill"></div>
+
 <!-- شاشة الإنترو للـ Terminal البرمجية التفاعلية -->
 <div id="intro-terminal">
-    <div class="terminal-box" id="terminalBox">
-        <!-- الأسطر البرمجية هيتم كتابتها تلقائياً بواسطة الـ JS بالأسفل -->
-    </div>
+    <div class="terminal-box" id="terminalBox"></div>
+    <button type="button" class="skip-intro-btn" onclick="skipIntro()">تخطي الإقلاع ⏭</button>
 </div>
 
 <div class="controls">
-    <button class="ctrl-btn" id="themeBtn" title="الوضع الليلي/النهاري"><i class="fas fa-adjust"></i></button>
-    <button class="ctrl-btn" onclick="toggleMenu()" title="تغيير الخطوط المخصصة"><i class="fas fa-font"></i></button>
+    <button class="ctrl-btn" id="themeBtn" title="تبديل الوضع الليلي / النهاري"><i class="fas fa-sun" id="themeIcon"></i></button>
+    <button class="ctrl-btn" onclick="toggleMenu(event)" title="تغيير الخطوط المخصصة"><i class="fas fa-font"></i></button>
 </div>
 
 <div class="font-menu" id="fontMenu">
-    <button class="font-btn" style="font-family:'Dahka'" onclick="setF('Dahka')">ضحكة</button>
-    <button class="font-btn" style="font-family:'Rawnaq'" onclick="setF('Rawnaq')">راونق</button>
-    <button class="font-btn" style="font-family:'Kufa'" onclick="setF('Kufa')">الكوفا</button>
-    <button class="font-btn" style="font-family:'Amira'" onclick="setF('Amira')">أميرة</button>
-    <button class="font-btn" style="font-family:'Galaxy'" onclick="setF('Galaxy')">جالاكسي</button>
-    <button class="font-btn" style="font-family:'Belabelo'" onclick="setF('Belabelo')">بلابيلو</button>
+    <button class="font-btn" data-font="Cairo" onclick="setF('Cairo')">القاهرة (الافتراضي)</button>
+    <button class="font-btn" data-font="Dahka" style="font-family:'Dahka'" onclick="setF('Dahka')">ضحكة</button>
+    <button class="font-btn" data-font="Rawnaq" style="font-family:'Rawnaq'" onclick="setF('Rawnaq')">راونق</button>
+    <button class="font-btn" data-font="Kufa" style="font-family:'Kufa'" onclick="setF('Kufa')">الكوفا</button>
+    <button class="font-btn" data-font="Amira" style="font-family:'Amira'" onclick="setF('Amira')">أميرة</button>
+    <button class="font-btn" data-font="Galaxy" style="font-family:'Galaxy'" onclick="setF('Galaxy')">جالاكسي</button>
+    <button class="font-btn" data-font="Belabelo" style="font-family:'Belabelo'" onclick="setF('Belabelo')">بلابيلو</button>
 </div>
 
-<!-- قائمة التنقل المينيماليزم العائمة -->
+<!-- قائمة التنقل الزجاجية العائمة -->
 <nav>
-    <a href="#home"><i class="fas fa-terminal"></i></a>
-    <a href="#about"><i class="fas fa-id-card"></i></a>
-    <a href="#services"><i class="fas fa-sliders"></i></a>
-    <a href="#works"><i class="fas fa-cubes"></i></a>
-    <a href="#contact"><i class="fas fa-paper-plane"></i></a>
+    <a href="#home" title="الرئيسية"><i class="fas fa-terminal"></i></a>
+    <a href="#about" title="الهوية"><i class="fas fa-id-card"></i></a>
+    <a href="#services" title="المهارات"><i class="fas fa-sliders"></i></a>
+    <a href="#works" title="المشاريع"><i class="fas fa-cubes"></i></a>
+    <a href="#birthday-studio" title="قوالب التهنئة والاحتفال"><i class="fas fa-cake-candles"></i></a>
+    <a href="#contact" title="التواصل"><i class="fas fa-paper-plane"></i></a>
 </nav>
 
-<!-- الهيدر التجريدي المحدث -->
+<!-- شارة عيد الميلاد العائمة (تظهر تلقائياً كل 15 نوفمبر) -->
+<div class="birthday-floating-badge" id="birthdayBadge" role="status" aria-live="polite">
+    <div class="bday-badge-icon">🎂</div>
+    <div class="bday-badge-text">
+        <span class="bday-badge-title" id="bdayBadgeTitle">عيد ميلاد سعيد يا كريم!</span>
+        <span class="bday-badge-sub" id="bdayBadgeSub">15 نوفمبر • كل سنة وأنت مبدع ✨</span>
+    </div>
+    <button class="bday-celebrate-btn" type="button" onclick="launchBirthdayCelebration(true)">احتفل 🎉</button>
+    <button class="bday-close-btn" type="button" onclick="dismissBirthdayBadge()" title="إخفاء الشارة">&times;</button>
+</div>
+
+<!-- نافذة تهنئة عيد الميلاد -->
+<div class="bday-modal-backdrop" id="bdayModalBackdrop" onclick="if(event.target===this) closeBirthdayModal()">
+    <div class="bday-modal">
+        <span class="bday-modal-emoji">🎂✨🚀</span>
+        <h3 id="bdayModalTitle">كل سنة وأنت طيب يا كريم!</h3>
+        <p id="bdayModalText">النهاردة 15 نوفمبر — يوم مميز لبداية سنة جديدة مليانة كود نظيف، تصميمات مبهرة، وإنجازات أكبر يا معماري الويب!</p>
+        <div class="bday-modal-actions">
+            <button class="bday-celebrate-btn" type="button" onclick="triggerFireworksShow(); launchBalloons(10);">ألعاب نارية وبالونات 🎆</button>
+            <a href="#birthday-studio" class="btn-glass-secondary" style="padding:9px 16px; border-radius:12px; font-size:0.86rem;" onclick="closeBirthdayModal()">ابعتلي تهنئة 💌</a>
+            <button class="bday-modal-close" type="button" onclick="closeBirthdayModal()">إغلاق</button>
+        </div>
+    </div>
+</div>
+
+<!-- لايت بوكس لعرض الأعمال البصرية -->
+<div class="bday-modal-backdrop" id="lightboxBackdrop" onclick="closeLightbox()">
+    <img src="" alt="Preview" class="lightbox-img" id="lightboxImg">
+</div>
+
+<!-- الهيدر الزجاجي الفخم -->
 <header id="home">
-    <div class="hero-avatar-wrapper">
-        <img src="13.jpg" class="main-logo" alt="Kareem Omar">
+    <div class="hero-glass-frame">
+        <div class="hero-avatar-wrapper">
+            <span class="bday-crown" aria-hidden="true">👑</span>
+            <img src="13.jpg" class="main-logo" alt="Kareem Omar">
+        </div>
+        <div class="letters-row">
+            <img src="K.png" class="p-photo" alt="K">
+            <img src="A.png" class="p-photo" alt="A">
+            <img src="R.png" class="p-photo" alt="R">
+            <img src="E.png" class="p-photo" alt="E">
+            <img src="E.png" class="p-photo" alt="E">
+            <img src="M.png" class="p-photo" alt="M">
+        </div>
+        <h1>KAREEM OMAR</h1>
+        <p class="hero-subtitle">The Visual Architect</p>
+
+        <div class="hero-chips">
+            <span class="hero-chip"><i class="fas fa-code"></i> Full-Stack Engineer</span>
+            <span class="hero-chip"><i class="fas fa-wand-magic-sparkles"></i> UI/UX Architect</span>
+            <span class="hero-chip"><i class="fas fa-location-dot"></i> بني سويف • مصر</span>
+        </div>
+
+        <div class="countdown-pill" id="countdownPill">
+            <i class="fas fa-hourglass-half" style="color:var(--p)"></i>
+            <span id="countdownText">جاري حساب العد التنازلي لـ 15 نوفمبر...</span>
+        </div>
+
+        <button type="button" class="hero-bday-ribbon" id="heroBdayRibbon" onclick="launchBirthdayCelebration(true)">
+            <span>🎂</span>
+            <span id="heroBdayText">15 نوفمبر • عيد ميلاد سعيد!</span>
+            <span>✨</span>
+        </button>
+
+        <div class="hero-actions">
+            <a href="#birthday-studio" class="btn-glass-primary"><i class="fas fa-gift"></i> ابعتلي رسالة عيد ميلاد 💌</a>
+            <a href="#works" class="btn-glass-secondary"><i class="fas fa-cubes"></i> استكشف المشاريع</a>
+        </div>
     </div>
-    <div class="letters-row">
-        <img src="K.png" class="p-photo" alt="K">
-        <img src="A.png" class="p-photo" alt="A">
-        <img src="R.png" class="p-photo" alt="R">
-        <img src="E.png" class="p-photo" alt="E">
-        <img src="E.png" class="p-photo" alt="E">
-        <img src="M.png" class="p-photo" alt="M">
-    </div>
-    <h1>KAREEM OMAR</h1>
-    <p>The Visual Architect</p>
 </header>
 
 <!-- قسم الهوية الرقمية والكروت الهندسية -->
 <section id="about" class="reveal">
     <div class="section-header">
+        <span class="section-kicker">IDENTITY MATRIX</span>
         <h2>بنية الهوية الشخصية</h2>
     </div>
     <div class="grid-layout">
 
         <div class="neo-card">
-            <i class="fas fa-code"></i>
+            <div class="card-icon-pill"><i class="fas fa-code"></i></div>
             <h3>المسمى الإبداعي</h3>
             <p><strong>كريم عمر سيد سباق</strong></p>
             <p>Full-Stack Software Engineer & Creative UI/UX Designer</p>
         </div>
 
-        <!-- الكرت الإستراتيجي المشترك المطور والمحدث بالكامل برابط akmtoa -->
         <a href="https://akmtoa.github.io/akmtoa/" target="_blank" class="neo-card collab-card">
-            <i class="fas fa-network-wired"></i>
+            <div class="card-icon-pill"><i class="fas fa-network-wired"></i></div>
             <h3>المنصة التقنية المشتركة</h3>
             <p><strong>Kareem & Abqarino (AKMTOA)</strong></p>
-            <p style="font-size: 0.85rem; color: var(--s); margin-top: 5px;">انقر لتصفح ملف المشاريع والأكواد المشتركة مع عبقرينو 🔗</p>
+            <p style="font-size: 0.88rem; color: var(--s); font-weight: 700;">انقر لتصفح ملف المشاريع والأكواد المشتركة مع عبقرينو 🔗</p>
         </a>
 
-        <div class="neo-card">
-            <i class="fas fa-graduation-cap"></i>
+        <div class="neo-card bday-highlight-card" id="birthDateCard">
+            <div class="card-icon-pill"><i class="fas fa-graduation-cap"></i></div>
             <h3>المرحلة الأكاديمية</h3>
             <p>طالب بالصف الثاني الثانوي (Class of 2026)</p>
             <p>تاريخ الميلاد: 15/11/2010</p>
+            <span class="bday-card-tag" id="birthCardTag">🎉 النهاردة عيد ميلادي!</span>
         </div>
 
         <div class="neo-card">
-            <i class="fas fa-location-crosshairs"></i>
+            <div class="card-icon-pill"><i class="fas fa-location-crosshairs"></i></div>
             <h3>نطاق العمل والإقامة</h3>
             <p>جمهورية مصر العربية</p>
             <p>سدس الأمراء - ببا - بني سويف</p>
         </div>
 
         <div class="neo-card">
-            <i class="fas fa-mobile-screen-button"></i>
+            <div class="card-icon-pill"><i class="fas fa-mobile-screen-button"></i></div>
             <h3>قناة الاتصال الفوري</h3>
-            <p dir="ltr" style="font-weight: 700; color: var(--p);">01101258549</p>
+            <p dir="ltr" style="font-weight: 800; color: var(--p); font-size: 1.08rem;">01101258549</p>
         </div>
 
         <div class="neo-card">
-            <i class="fas fa-atom"></i>
+            <div class="card-icon-pill"><i class="fas fa-atom"></i></div>
             <h3>الفلسفة التصميمية</h3>
             <p>تطوير واجهات مستخدم مذهلة بصرياً مبنية على خوارزميات برمجية قوية وخالية من الأخطاء.</p>
         </div>
@@ -264,42 +856,43 @@
 <!-- قسـم مهارات ومسارات الخبرة -->
 <section id="services" class="reveal">
     <div class="section-header">
+        <span class="section-kicker">CORE CAPABILITIES</span>
         <h2>مجالات التخصص الاحترافي</h2>
     </div>
     <div class="grid-layout">
 
         <div class="neo-card">
-            <i class="fas fa-layer-group"></i>
+            <div class="card-icon-pill"><i class="fas fa-layer-group"></i></div>
             <h4>Full-Stack Development</h4>
             <p>بناء وهندسة تطبيقات ومواقع الويب المتكاملة (HTML, CSS, JS, Python, Dart) وربطها بـ Firebase.</p>
         </div>
 
         <div class="neo-card">
-            <i class="fas fa-crop-simple"></i>
+            <div class="card-icon-pill"><i class="fas fa-crop-simple"></i></div>
             <h4>Creative Graphic Design</h4>
             <p>تصميم الشعارات الاحترافية والهويات البصرية الكاملة باستخدام أدوات Canva و Picsart برؤية فنية عصرية.</p>
         </div>
 
         <div class="neo-card">
-            <i class="fas fa-key"></i>
+            <div class="card-icon-pill"><i class="fas fa-key"></i></div>
             <h4>Cybersecurity & Protection</h4>
             <p>دراسة وفحص الثغرات الأمنية في تطبيقات الويب لحماية البيانات وتأمين الخوادم والمنصات.</p>
         </div>
 
         <div class="neo-card">
-            <i class="fas fa-cloud-arrow-up"></i>
+            <div class="card-icon-pill"><i class="fas fa-cloud-arrow-up"></i></div>
             <h4>Cloud Operations & Hosting</h4>
             <p>إدارة بيئات التطوير واستضافة المشاريع الحية بمرونة كاملة بالاعتماد على GitHub Pages و Vercel.</p>
         </div>
 
         <div class="neo-card">
-            <i class="fas fa-chalkboard"></i>
+            <div class="card-icon-pill"><i class="fas fa-chalkboard"></i></div>
             <h4>Smart Educational Systems</h4>
             <p>تطوير المنصات والحلول التعليمية التفاعلية اللحظية لربط الفصول الدراسية كمنصة Sapora Rocket.</p>
         </div>
 
         <div class="neo-card">
-            <i class="fas fa-cube"></i>
+            <div class="card-icon-pill"><i class="fas fa-cube"></i></div>
             <h4>Speedcubing R&D</h4>
             <p>تقديم استشارات وخوارزميات حلول مكعب روبيك وتطوير أدوات لحساب وتحليل الفترات الزمنية.</p>
         </div>
@@ -307,24 +900,23 @@
     </div>
 </section>
 
-<!-- قسـم المعرض بعد قلبه وإعادة صياغته ليعرض مشاريعك الحقيقية بشكل مبهر وفخم جداً -->
+<!-- قسـم معرض المنصات الحية -->
 <section id="works" class="reveal">
     <div class="section-header">
+        <span class="section-kicker">LIVE PLATFORMS</span>
         <h2>معرض المنصات الحية</h2>
     </div>
     <div class="projects-grid">
 
-        <!-- منصة 2027 -->
         <a href="https://2027-psi.vercel.app" target="_blank" class="project-card">
             <div class="project-preview"><i class="fas fa-graduation-cap"></i></div>
             <div class="project-info">
                 <h3>منصة 2027</h3>
-                <p>منصة تعليميه مبهرة لكل طلاب الصف الثاني الثانوي تعتمد المنصة على تخصيص تجربة الطلاب عن طريق معرفة نظامه و تحديد المواد المخصصه  له و تلخيصاتها و امتحانتها و مميزات كثيرة اخرى</p>
+                <p>منصة تعليميه مبهرة لكل طلاب الصف الثاني الثانوي تعتمد المنصة على تخصيص تجربة الطلاب عن طريق معرفة نظامه و تحديد المواد المخصصه له و تلخيصاتها و امتحانتها و مميزات كثيرة اخرى</p>
                 <div class="project-tag">Educational Platform</div>
             </div>
         </a>
 
-        <!-- منصة سحورنا -->
         <a href="https://kemo-omar.github.io/SOHOORNA/" target="_blank" class="project-card">
             <div class="project-preview"><i class="fas fa-moon"></i></div>
             <div class="project-info">
@@ -334,7 +926,6 @@
             </div>
         </a>
 
-        <!-- مكرر النصوص نُص -->
         <a href="https://kemo-omar.github.io/Nous/" target="_blank" class="project-card">
             <div class="project-preview"><i class="fas fa-copy"></i></div>
             <div class="project-info">
@@ -344,19 +935,21 @@
             </div>
         </a>
 
-        <!-- جداول الامتحانات على الهادي -->
         <a href="https://kemo-omar.github.io/3alhady/" target="_blank" class="project-card">
             <div class="project-preview"><i class="fas fa-calendar-check"></i></div>
             <div class="project-info">
                 <h3>جداول الامتحانات على الهادي</h3>
-                <p>موقع متخصص لعرض جداول الامتحانات بشكل واضح ومنظم، و بالثيمات المخصثه لاضافة الحيوية للجدول والتصفية الذكية.</p>
+                <p>موقع متخصص لعرض جداول الامتحانات بشكل واضح ومنظم، و بالثيمات المخصصة لإضافة الحيوية للجدول والتصفية الذكية.</p>
                 <div class="project-tag">Schedule Tool</div>
             </div>
         </a>
 
-        <!-- لعبة الكوتشينه -->
         <a href="https://kemo-omar.github.io/K/" target="_blank" class="project-card">
-            <div class="project-preview"><i class="fas fa-spade"></i></div>
+            <div class="project-preview">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 2C9 6.2 4 9.5 4 13.8c0 2.6 2 4.5 4.4 4.5 1.3 0 2.4-.6 3.1-1.5-.2 1.7-.9 3.4-2.3 4.7h5.6c-1.4-1.3-2.1-3-2.3-4.7.7.9 1.8 1.5 3.1 1.5 2.4 0 4.4-1.9 4.4-4.5C20 9.5 15 6.2 12 2z"/>
+                </svg>
+            </div>
             <div class="project-info">
                 <h3>لعبة الكوتشينه</h3>
                 <p>لعبة ورق الكوتشينه أونلاين بتصميم كروت مصممة يدوياً من الصفر، تجربة لعب رهيبة وتنافسية.</p>
@@ -364,7 +957,6 @@
             </div>
         </a>
 
-        <!-- مجتمع كرملات -->
         <a href="https://kemo-omar.github.io/Kramlat/" target="_blank" class="project-card">
             <div class="project-preview"><i class="fas fa-users-rectangle"></i></div>
             <div class="project-info">
@@ -377,16 +969,99 @@
     </div>
 </section>
 
-<!-- قسـم الاتصال والشبكات المدمج بالكامل بالتوافق المطلق -->
+<!-- معرض التصاميم البصرية التفاعلي -->
+<section id="gallery" class="reveal">
+    <div class="section-header">
+        <span class="section-kicker">VISUAL ARCHIVE</span>
+        <h2>معرض اللمسات البصرية</h2>
+    </div>
+    <div class="gallery-shell">
+        <div class="gallery-track" id="galleryTrack"></div>
+    </div>
+</section>
+
+<!-- استوديو قوالب رسائل عيد الميلاد والاحتفالات -->
+<section id="birthday-studio" class="reveal">
+    <div class="section-header">
+        <span class="section-kicker">NOV 15 CELEBRATION HUB</span>
+        <h2>استوديو التهنئة والاحتفالات 🎂</h2>
+    </div>
+    <div class="bday-studio-panel">
+        <div class="studio-top">
+            <div class="studio-title-wrap">
+                <h3><i class="fas fa-cake-candles"></i> ابعت تهنئة عيد ميلاد لكريم على أي منصة</h3>
+                <p>اختر قالب تهنئة جاهز أو اكتب رسالتك الخاصة، وأرسلها بضغطة واحدة مع أزرار الاحتفال!</p>
+            </div>
+            <div class="fx-bar">
+                <button type="button" class="fx-btn" onclick="triggerConfettiBurst(130)">🎊 كونفيتي</button>
+                <button type="button" class="fx-btn" onclick="triggerFireworksShow()">🎆 ألعاب نارية</button>
+                <button type="button" class="fx-btn" onclick="launchBalloons(9)">🎈 بالونات</button>
+                <button type="button" class="fx-btn" onclick="playBirthdayChime()">🎵 نغمة</button>
+            </div>
+        </div>
+
+        <div class="template-chips" id="templateChips">
+            <button type="button" class="tpl-chip active-tpl" data-tpl="egyptian" onclick="selectBirthdayTemplate('egyptian', this)">
+                <strong>🥳 تهنئة بالمصري</strong>
+                <span>كل سنة وأنت طيب يا كيمو وعقبال مليون سنة نجاح...</span>
+            </button>
+            <button type="button" class="tpl-chip" data-tpl="dev" onclick="selectBirthdayTemplate('dev', this)">
+                <strong>💻 تهنئة مبرمجين</strong>
+                <span>Happy Birthday Architect! سنة جديدة بدون Bugs...</span>
+            </button>
+            <button type="button" class="tpl-chip" data-tpl="vip" onclick="selectBirthdayTemplate('vip', this)">
+                <strong>✨ تهنئة فخمة</strong>
+                <span>أطيب التهاني بمناسبة عيد ميلادك يا كريم عمر...</span>
+            </button>
+            <button type="button" class="tpl-chip" data-tpl="short" onclick="selectBirthdayTemplate('short', this)">
+                <strong>⚡ سريعة ورايقة</strong>
+                <span>عيد ميلاد سعيد يا بطل! كل سنة وأنت متألق...</span>
+            </button>
+        </div>
+
+        <div class="composer-box">
+            <div class="composer-row">
+                <input type="text" id="senderNameInput" class="glass-input" placeholder="اكتب اسمك هنا (اختياري) ليضاف لتوقيع الرسالة..." oninput="syncSenderSignature()">
+                <button type="button" class="btn-glass-primary" onclick="copyBirthdayMessage()" style="border-radius:16px;">
+                    <i class="fas fa-copy"></i> نسخ الرسالة
+                </button>
+            </div>
+            <textarea id="birthdayMessageBox" class="glass-textarea" aria-label="نص رسالة عيد الميلاد" oninput="syncPlatformLinks()"></textarea>
+        </div>
+
+        <div class="send-platforms-grid">
+            <a id="sendWhatsapp" href="https://wa.me/201101258549" target="_blank" rel="noopener noreferrer" class="send-platform-btn" style="background:#25D366;" onclick="handlePlatformClick('whatsapp')">
+                <i class="fab fa-whatsapp"></i> إرسال واتساب
+            </a>
+            <a id="sendTelegram" href="https://t.me/kemo_omar15" target="_blank" rel="noopener noreferrer" class="send-platform-btn" style="background:#24A1DE;" onclick="handlePlatformClick('telegram')">
+                <i class="fab fa-telegram-plane"></i> إرسال تيليجرام
+            </a>
+            <a id="sendGmail" href="mailto:kareemguinness@gmail.com" class="send-platform-btn" style="background:#EA4335;" onclick="handlePlatformClick('gmail')">
+                <i class="far fa-envelope"></i> إرسال Gmail
+            </a>
+            <a id="sendInstagram" href="https://www.instagram.com/kemo_omar15?igsh=MWRrc2VmNHI2d3ZicQ==" target="_blank" rel="noopener noreferrer" class="send-platform-btn" style="background:linear-gradient(135deg,#f58529,#dd2a7b,#8134af);" onclick="handlePlatformClick('instagram')">
+                <i class="fab fa-instagram"></i> إنستجرام (نسخ + فتح)
+            </a>
+            <a id="sendFacebook" href="https://www.facebook.com/profile.php?id=61588954905696" target="_blank" rel="noopener noreferrer" class="send-platform-btn" style="background:#1877F2;" onclick="handlePlatformClick('facebook')">
+                <i class="fab fa-facebook-f"></i> فيسبوك (نسخ + فتح)
+            </a>
+            <a id="sendTiktok" href="https://www.tiktok.com/@kemo_omar15" target="_blank" rel="noopener noreferrer" class="send-platform-btn" style="background:#111319; border-color:rgba(255,255,255,0.2);" onclick="handlePlatformClick('tiktok')">
+                <i class="fab fa-tiktok"></i> تيك توك (نسخ + فتح)
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- قسـم الاتصال والشبكات -->
 <section id="contact" class="reveal">
     <div class="section-header">
+        <span class="section-kicker">CONNECT & PAY</span>
         <h2>تكامل وبوابات التواصل</h2>
     </div>
     <div class="contact-panel">
-        <p style="font-size: 1.05rem; margin-bottom: 25px;">يمكنك بدء التعاون أو إرسال المدفوعات والمعاملات المالية لـ <strong>كريم عمر</strong>:</p>
+        <p style="font-size: 1.05rem; color: var(--text-muted); margin-bottom: 10px;">يمكنك بدء التعاون أو إرسال المدفوعات والمعاملات المالية لـ <strong style="color:var(--text);">كريم عمر</strong>:</p>
 
         <div class="links-flex-grid">
-            <!-- كرت تيلدا كارد باللون الأسود بالكامل وشعارهم المميز ~ التزاماً بالهوية المطلوبة -->
             <a href="https://telda.me/kemoomar15" target="_blank" class="action-link telda-black">
                 <span class="t-symbol">~</span> Telda Card
             </a>
@@ -403,7 +1078,7 @@
                 <i class="fab fa-instagram"></i> Instagram
             </a>
 
-            <a href="https://www.tiktok.com/@kemo_omar15" target="_blank" class="action-link" style="background: #000000; border: 1px solid rgba(255,255,255,0.12);">
+            <a href="https://www.tiktok.com/@kemo_omar15" target="_blank" class="action-link" style="background: #111319; border: 1px solid rgba(255,255,255,0.16);">
                 <i class="fab fa-tiktok"></i> TikTok
             </a>
 
@@ -427,63 +1102,492 @@
 </section>
 
 <script>
+    // التحقق التلقائي من عيد الميلاد (15 نوفمبر من كل عام)
+    function isNovember15(date = new Date()) {
+        return date.getMonth() === 10 && date.getDate() === 15;
+    }
+
+    const birthYear = 2010;
+    const today = new Date();
+    const isBirthdayToday = isNovember15(today);
+    const kareemAge = Math.max(1, today.getFullYear() - birthYear);
+
+    // إشعار Toast سريع
+    let toastTimer = null;
+    function showToast(msg) {
+        const el = document.getElementById('toastPill');
+        el.textContent = msg;
+        el.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => el.classList.remove('show'), 2800);
+    }
+
+    // العد التنازلي لعيد الميلاد في الأيام الأخرى
+    function updateBirthdayCountdown() {
+        if (isBirthdayToday) return;
+        const now = new Date();
+        let nextBday = new Date(now.getFullYear(), 10, 15, 0, 0, 0);
+        if (now > nextBday) {
+            nextBday = new Date(now.getFullYear() + 1, 10, 15, 0, 0, 0);
+        }
+        const diff = nextBday - now;
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const mins = Math.floor((diff / (1000 * 60)) % 60);
+        const target = document.getElementById('countdownText');
+        if (target) {
+            target.textContent = `متبقي ${days} يوم و ${hours} ساعة و ${mins} دقيقة على عيد ميلاد 15 نوفمبر 🎂`;
+        }
+    }
+
+    // نظام الكونفيتي والألعاب النارية على Canvas
+    const confettiCanvas = document.getElementById('birthday-confetti');
+    const confettiCtx = confettiCanvas.getContext('2d');
+    let confettiParticles = [];
+    let confettiRafId = null;
+
+    function resizeConfettiCanvas() {
+        confettiCanvas.width = window.innerWidth;
+        confettiCanvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeConfettiCanvas);
+    resizeConfettiCanvas();
+
+    function triggerConfettiBurst(count = 120) {
+        const palette = ['#00f5a8', '#2b7fff', '#ffd166', '#ff4d8d', '#a855f7', '#ffffff'];
+        const origins = [
+            { x: confettiCanvas.width * 0.2, y: confettiCanvas.height * 0.24 },
+            { x: confettiCanvas.width * 0.8, y: confettiCanvas.height * 0.24 },
+            { x: confettiCanvas.width * 0.5, y: confettiCanvas.height * 0.14 }
+        ];
+        for (let i = 0; i < count; i++) {
+            const origin = origins[i % origins.length];
+            const angle = Math.random() * Math.PI * 2;
+            const speed = 3 + Math.random() * 7.5;
+            confettiParticles.push({
+                x: origin.x + (Math.random() - 0.5) * 120,
+                y: origin.y + (Math.random() - 0.5) * 60,
+                vx: Math.cos(angle) * speed,
+                vy: Math.sin(angle) * speed - 2.6,
+                size: 5 + Math.random() * 7,
+                color: palette[Math.floor(Math.random() * palette.length)],
+                rotation: Math.random() * 360,
+                vRot: (Math.random() - 0.5) * 12,
+                opacity: 1,
+                gravity: 0.15,
+                shape: Math.random() > 0.35 ? 'rect' : 'circle'
+            });
+        }
+        if (!confettiRafId) animateConfetti();
+    }
+
+    function launchFirework(cx, cy) {
+        const palette = ['#ffd166', '#00f5a8', '#2b7fff', '#ff5c8a', '#c084fc'];
+        const color = palette[Math.floor(Math.random() * palette.length)];
+        const count = 48;
+        for (let i = 0; i < count; i++) {
+            const angle = (Math.PI * 2 * i) / count;
+            const speed = 2.6 + Math.random() * 4.2;
+            confettiParticles.push({
+                x: cx,
+                y: cy,
+                vx: Math.cos(angle) * speed,
+                vy: Math.sin(angle) * speed,
+                size: 4 + Math.random() * 4,
+                color,
+                rotation: 0,
+                vRot: 0,
+                opacity: 1,
+                gravity: 0.07,
+                shape: 'circle'
+            });
+        }
+        if (!confettiRafId) animateConfetti();
+    }
+
+    function triggerFireworksShow() {
+        const spots = [
+            [0.25, 0.28], [0.75, 0.26], [0.5, 0.20], [0.35, 0.42], [0.68, 0.40]
+        ];
+        spots.forEach(([rx, ry], idx) => {
+            setTimeout(() => {
+                launchFirework(confettiCanvas.width * rx, confettiCanvas.height * ry);
+            }, idx * 240);
+        });
+    }
+
+    function animateConfetti() {
+        confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+        confettiParticles = confettiParticles.filter(p => p.opacity > 0.02 && p.y < confettiCanvas.height + 50);
+
+        for (const p of confettiParticles) {
+            p.x += p.vx;
+            p.y += p.vy;
+            p.vy += p.gravity;
+            p.vx *= 0.988;
+            p.rotation += p.vRot;
+            if (p.shape === 'circle' && p.gravity < 0.1) {
+                p.opacity -= 0.015;
+            } else if (p.y > confettiCanvas.height * 0.72) {
+                p.opacity -= 0.018;
+            }
+            confettiCtx.save();
+            confettiCtx.globalAlpha = Math.max(0, p.opacity);
+            confettiCtx.translate(p.x, p.y);
+            confettiCtx.rotate((p.rotation * Math.PI) / 180);
+            confettiCtx.fillStyle = p.color;
+            if (p.shape === 'rect') {
+                confettiCtx.fillRect(-p.size / 2, -p.size / 3, p.size, p.size * 0.6);
+            } else {
+                confettiCtx.beginPath();
+                confettiCtx.arc(0, 0, p.size * 0.45, 0, Math.PI * 2);
+                confettiCtx.fill();
+            }
+            confettiCtx.restore();
+        }
+
+        if (confettiParticles.length > 0) {
+            confettiRafId = requestAnimationFrame(animateConfetti);
+        } else {
+            confettiRafId = null;
+            confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+        }
+    }
+
+    // بالونات طائرة قابلة للفرقع بالضغط
+    function launchBalloons(count = 8) {
+        const layer = document.getElementById('balloon-layer');
+        const colors = [
+            'linear-gradient(135deg, #00f5a8, #059669)',
+            'linear-gradient(135deg, #ffd166, #f59e0b)',
+            'linear-gradient(135deg, #2b7fff, #1d4ed8)',
+            'linear-gradient(135deg, #ff5c8a, #db2777)',
+            'linear-gradient(135deg, #c084fc, #7e22ce)'
+        ];
+        for (let i = 0; i < count; i++) {
+            const b = document.createElement('div');
+            b.className = 'balloon-item';
+            b.style.left = `${8 + Math.random() * 84}%`;
+            b.style.background = colors[i % colors.length];
+            b.style.setProperty('--dur', `${5.5 + Math.random() * 3.5}s`);
+            b.style.setProperty('--sway', `${(Math.random() - 0.5) * 60}px`);
+            b.style.animationDelay = `${i * 0.14}s`;
+            b.onclick = (ev) => {
+                launchFirework(ev.clientX, ev.clientY);
+                b.remove();
+            };
+            layer.appendChild(b);
+            setTimeout(() => b.remove(), 9500);
+        }
+    }
+
+    // نغمة عيد الميلاد عبر Web Audio API بدون ملفات خارجية
+    function playBirthdayChime() {
+        try {
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+            const ctx = new AudioCtx();
+            const notes = [
+                [261.63, 0, 0.25], [261.63, 0.28, 0.22], [293.66, 0.54, 0.45],
+                [261.63, 1.02, 0.45], [349.23, 1.5, 0.45], [329.63, 2.0, 0.8],
+                [261.63, 2.9, 0.25], [261.63, 3.18, 0.22], [293.66, 3.44, 0.45],
+                [261.63, 3.92, 0.45], [392.00, 4.4, 0.45], [349.23, 4.9, 0.85]
+            ];
+            const now = ctx.currentTime + 0.05;
+            notes.forEach(([freq, start, dur]) => {
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(freq, now + start);
+                gain.gain.setValueAtTime(0.001, now + start);
+                gain.gain.exponentialRampToValueAtTime(0.14, now + start + 0.04);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + start + dur);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start(now + start);
+                osc.stop(now + start + dur + 0.04);
+            });
+            showToast('🎵 كل سنة وأنت طيب يا كريم!');
+        } catch {
+            showToast('تعذر تشغيل الصوت في هذا المتصفح');
+        }
+    }
+
+    // قوالب رسائل عيد الميلاد لكريم على أي منصة
+    const birthdayTemplates = {
+        egyptian: `كل سنة وأنت طيب يا كيمو! 🎂✨\nعقبال مليون سنة نجاح وسعادة، ودايماً متألق ومكسر الدنيا بمشاريعك وتصاميمك يا معماري الويب! 🚀`,
+        dev: `Happy ${kareemAge}th Birthday, Architect! 💻🎉\nconsole.log("Wishing Kareem a bug-free year full of shipped dreams!");\nسنة جديدة مليانة كود نظيف وإنجازات أكبر يا بطل! 🚀`,
+        vip: `أطيب التهاني القلبية بمناسبة عيد ميلادك يا كريم عمر 🌟🎂\nأتمنى لك عاماً جديداً مليئاً بالتوفيق والتميز والإبداع التقني في كل خطواتك القادمة.`,
+        short: `عيد ميلاد سعيد يا كريم! 🥳🎂✨\nكل سنة وأنت بخير وصحة ونجاح يا رب! 💙`
+    };
+    let currentTemplateKey = 'egyptian';
+
+    function composeBirthdayText(baseText) {
+        const sender = document.getElementById('senderNameInput').value.trim();
+        const cleaned = baseText.replace(/\n— من: .*$/m, '').trim();
+        return sender ? `${cleaned}\n— من: ${sender}` : cleaned;
+    }
+
+    function syncPlatformLinks() {
+        const msg = document.getElementById('birthdayMessageBox').value.trim();
+        const encoded = encodeURIComponent(msg);
+        const subject = encodeURIComponent(`🎂 عيد ميلاد سعيد يا كريم عمر (${kareemAge} سنة)!`);
+
+        const wa = document.getElementById('sendWhatsapp');
+        const tg = document.getElementById('sendTelegram');
+        const gm = document.getElementById('sendGmail');
+        if (wa) wa.href = `https://wa.me/201101258549?text=${encoded}`;
+        if (tg) tg.href = `https://t.me/share/url?url=${encodeURIComponent(window.location.href)}&text=${encoded}`;
+        if (gm) gm.href = `mailto:kareemguinness@gmail.com?subject=${subject}&body=${encoded}`;
+    }
+
+    function selectBirthdayTemplate(key, btnEl) {
+        currentTemplateKey = key;
+        document.querySelectorAll('.tpl-chip').forEach(el => el.classList.remove('active-tpl'));
+        if (btnEl) btnEl.classList.add('active-tpl');
+        document.getElementById('birthdayMessageBox').value = composeBirthdayText(birthdayTemplates[key]);
+        syncPlatformLinks();
+    }
+
+    function syncSenderSignature() {
+        const box = document.getElementById('birthdayMessageBox');
+        box.value = composeBirthdayText(box.value);
+        syncPlatformLinks();
+    }
+
+    async function copyBirthdayMessage(silent = false) {
+        const text = document.getElementById('birthdayMessageBox').value.trim();
+        if (!text) return '';
+        try {
+            await navigator.clipboard.writeText(text);
+            if (!silent) {
+                showToast('تم نسخ رسالة التهنئة بنجاح! 📋✨');
+                triggerConfettiBurst(60);
+            }
+        } catch {
+            if (!silent) showToast('حدّد النص وانسخه يدوياً');
+        }
+        return text;
+    }
+
+    function handlePlatformClick(platform) {
+        copyBirthdayMessage(true);
+        const messages = {
+            whatsapp: 'جاري فتح واتساب برسالتك الجاهزة 💚',
+            telegram: 'تم نسخ الرسالة وفتح تيليجرام ✈️',
+            gmail: 'جاري فتح البريد برسالتك الجاهزة 📧',
+            instagram: 'تم نسخ التهنئة! الصقها في رسالة إنستجرام 💜',
+            facebook: 'تم نسخ التهنئة! الصقها على فيسبوك 💙',
+            tiktok: 'تم نسخ التهنئة! ابعتها على تيك توك 🖤'
+        };
+        showToast(messages[platform] || 'تم نسخ الرسالة بنجاح ✨');
+        triggerConfettiBurst(55);
+    }
+
+    function activateBirthdayMode() {
+        document.body.classList.add('is-birthday');
+        const birthDateCard = document.getElementById('birthDateCard');
+        if (birthDateCard) birthDateCard.classList.add('bday-active');
+
+        document.getElementById('bdayBadgeTitle').textContent = `عيد ميلاد سعيد يا كريم! 🎂`;
+        document.getElementById('bdayBadgeSub').textContent = `15 نوفمبر • ${kareemAge} سنة من الإبداع ✨`;
+        document.getElementById('heroBdayText').textContent = `15 نوفمبر • عيد الميلاد الـ ${kareemAge} للمعماري البصري!`;
+        document.getElementById('birthCardTag').textContent = `🎂 كل سنة وأنت طيب (${kareemAge} سنة اليوم!)`;
+        document.getElementById('bdayModalTitle').textContent = `عيد ميلاد سعيد يا كريم (${kareemAge} سنة) 🎂`;
+        document.getElementById('bdayModalText').textContent = `النهاردة 15 نوفمبر — يوم ميلادك الـ ${kareemAge}! سنة جديدة مليانة شغف، مشاريع مبهرة، وكود خالي من الأخطاء يا بطل!`;
+    }
+
+    function launchBirthdayCelebration(openModal = false) {
+        triggerConfettiBurst(130);
+        setTimeout(() => triggerFireworksShow(), 320);
+        if (openModal) {
+            document.getElementById('bdayModalBackdrop').classList.add('open');
+        }
+    }
+
+    function closeBirthdayModal() {
+        document.getElementById('bdayModalBackdrop').classList.remove('open');
+    }
+
+    function dismissBirthdayBadge() {
+        const badge = document.getElementById('birthdayBadge');
+        if (badge) badge.style.display = 'none';
+    }
+
+    // بناء معرض الصور البصرية (1.jpg - 21.jpg)
+    function initVisualGallery() {
+        const track = document.getElementById('galleryTrack');
+        if (!track) return;
+        const indices = Array.from({ length: 21 }, (_, i) => i + 1);
+        const allItems = [...indices, ...indices];
+        allItems.forEach(num => {
+            const card = document.createElement('div');
+            card.className = 'gallery-thumb';
+            card.title = `عمل بصري #${num}`;
+            card.onclick = () => openLightbox(`${num}.jpg`);
+            const img = document.createElement('img');
+            img.src = `${num}.jpg`;
+            img.alt = `Kareem Omar Artwork ${num}`;
+            img.loading = 'lazy';
+            card.appendChild(img);
+            track.appendChild(card);
+        });
+    }
+
+    function openLightbox(src) {
+        document.getElementById('lightboxImg').src = src;
+        document.getElementById('lightboxBackdrop').classList.add('open');
+    }
+    function closeLightbox() {
+        document.getElementById('lightboxBackdrop').classList.remove('open');
+    }
+
     // لوجيك إنترو الـ Terminal البرمجية التفاعلية
     const terminalLines = [
         "Initializing Kareem_Omar_Core_v2026...",
         "Connecting to AKMTOA database... SUCCESS",
-        "Loading UI/UX glassmorphism models...",
+        "Loading UI/UX frosted glassmorphism models...",
         "Setting active font family parameters...",
+        ...(isBirthdayToday ? [`[EVENT] Nov 15 Detected — Happy ${kareemAge}th Birthday, Kareem!`] : []),
         "Boot complete. Welcome, Architect."
     ];
 
     const box = document.getElementById('terminalBox');
     let lineIdx = 0;
+    let introDone = false;
+
+    function finishIntro() {
+        if (introDone) return;
+        introDone = true;
+        document.getElementById('intro-terminal').classList.add('slide-up');
+        if (isBirthdayToday) {
+            launchBirthdayCelebration(false);
+            launchBalloons(7);
+        }
+    }
+
+    function skipIntro() {
+        finishIntro();
+    }
 
     function printTerminal() {
-        if(lineIdx < terminalLines.length) {
+        if (introDone) return;
+        if (lineIdx < terminalLines.length) {
             const p = document.createElement('div');
             p.className = 'terminal-line';
-            p.style.animation = 'type 1.5s steps(40) forwards, blink .75s step-end infinite';
+            if (terminalLines[lineIdx].includes('[EVENT]')) {
+                p.classList.add('bday-line');
+            }
+            p.style.animation = 'type 1.1s steps(44) forwards, blink .75s step-end infinite';
             p.innerText = `> ${terminalLines[lineIdx]}`;
             box.appendChild(p);
             lineIdx++;
-            setTimeout(printTerminal, 600);
+            setTimeout(printTerminal, 440);
         } else {
-            setTimeout(() => {
-                document.getElementById('intro-terminal').classList.add('slide-up');
-            }, 1000);
+            setTimeout(finishIntro, 700);
         }
     }
-    window.addEventListener('DOMContentLoaded', printTerminal);
+
+    // تتبع حركة الماوس لتأثير إضاءة الزجاج داخل البطاقات
+    document.addEventListener('pointermove', (e) => {
+        document.querySelectorAll('.neo-card').forEach(card => {
+            const rect = card.getBoundingClientRect();
+            card.style.setProperty('--mx', `${e.clientX - rect.left}px`);
+            card.style.setProperty('--my', `${e.clientY - rect.top}px`);
+        });
+    });
+
+    function syncThemeIcon() {
+        const icon = document.getElementById('themeIcon');
+        if (!icon) return;
+        const isLight = document.body.classList.contains('light-mode');
+        icon.className = isLight ? 'fas fa-moon' : 'fas fa-sun';
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        if (isBirthdayToday) {
+            activateBirthdayMode();
+        } else {
+            updateBirthdayCountdown();
+            setInterval(updateBirthdayCountdown, 30000);
+        }
+
+        if (localStorage.getItem('kareem_theme') === 'light') {
+            document.body.classList.add('light-mode');
+        }
+        syncThemeIcon();
+
+        const savedFont = localStorage.getItem('kareem_font') || 'Cairo';
+        document.body.style.setProperty('--active-font', savedFont);
+        updateActiveFontBtn(savedFont);
+
+        selectBirthdayTemplate('egyptian', document.querySelector('.tpl-chip[data-tpl="egyptian"]'));
+        initVisualGallery();
+        printTerminal();
+    });
 
     // مراقبة السكرول والأنيميشن التفاعلي للكروت والأقسام
     const revealElements = document.querySelectorAll('.reveal');
     const scrollObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
-            if(entry.isIntersecting){
+            if (entry.isIntersecting) {
                 entry.target.classList.add('active');
-                observer.unobserve(entry.target); 
+                observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.1 });
-
+    }, { threshold: 0.08 });
     revealElements.forEach(el => scrollObserver.observe(el));
+
+    // تمييز القسم النشط في شريط التنقل
+    const navLinks = document.querySelectorAll('nav a');
+    const sections = document.querySelectorAll('header[id], section[id]');
+    const navObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                navLinks.forEach(link => {
+                    link.classList.toggle('active-nav', link.getAttribute('href') === `#${id}`);
+                });
+            }
+        });
+    }, { threshold: 0.25 });
+    sections.forEach(sec => navObserver.observe(sec));
 
     // لوجيك تغيير السيم (Light / Dark)
     const themeBtn = document.getElementById('themeBtn');
     themeBtn.onclick = () => {
         document.body.classList.toggle('light-mode');
+        const isLight = document.body.classList.contains('light-mode');
+        localStorage.setItem('kareem_theme', isLight ? 'light' : 'dark');
+        syncThemeIcon();
+        showToast(isLight ? 'تم تفعيل الوضع النهاري الزجاجي ☀️' : 'تم تفعيل الوضع الليلي السايبر 🌙');
     };
 
     // لوجيك تغيير الخطوط الستة المخصصة
-    function toggleMenu() {
+    function updateActiveFontBtn(fName) {
+        document.querySelectorAll('.font-btn').forEach(btn => {
+            btn.classList.toggle('active-font-item', btn.dataset.font === fName);
+        });
+    }
+
+    function toggleMenu(e) {
+        if (e) e.stopPropagation();
         const m = document.getElementById('fontMenu');
         m.style.display = (m.style.display === 'flex') ? 'none' : 'flex';
     }
+
     function setF(fName) {
         document.body.style.setProperty('--active-font', fName);
+        localStorage.setItem('kareem_font', fName);
+        updateActiveFontBtn(fName);
         toggleMenu();
     }
+
+    document.addEventListener('click', (e) => {
+        const m = document.getElementById('fontMenu');
+        if (m && m.style.display === 'flex' && !m.contains(e.target)) {
+            m.style.display = 'none';
+        }
+    });
 </script>
 </body>
 </html>
