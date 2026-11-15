@@ -324,15 +324,13 @@
         }
         .hero-chip i { color: var(--p); font-size: 0.9rem; }
 
-        .countdown-pill {
-            margin-top: 18px;
-            display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: center;
-            padding: 10px 20px; border-radius: 999px;
-            background: linear-gradient(135deg, var(--p-soft), var(--s-soft));
-            border: 1px solid var(--border);
-            color: var(--text); font-size: 0.88rem; font-weight: 700;
-        }
-        body.is-birthday .countdown-pill { display: none; }
+        /* إظهار عناصر عيد الميلاد فقط يوم 15 نوفمبر */
+        .nav-bday-link,
+        .hero-bday-cta,
+        #birthday-studio { display: none; }
+        body.is-birthday .nav-bday-link { display: flex; }
+        body.is-birthday .hero-bday-cta { display: inline-flex; }
+        body.is-birthday #birthday-studio { display: block; }
 
         .hero-bday-ribbon {
             display: none; margin-top: 22px; padding: 11px 24px; border-radius: 999px;
@@ -570,15 +568,18 @@
         }
         .t-symbol { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.3rem; font-weight: 900; line-height: 1; }
         .ec-red { background: #ec0c32; }
+        .instapay-btn { background: linear-gradient(135deg, #6d28d9, #f97316); }
 
-        /* كانفاس الاحتفالات والبالونات */
+        /* كانفاس الاحتفالات والبالونات (تعمل فقط يوم 15 نوفمبر) */
         #birthday-confetti {
             position: fixed; inset: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 4500;
+            pointer-events: none; z-index: 4500; display: none;
         }
         #balloon-layer {
-            position: fixed; inset: 0; pointer-events: none; z-index: 4400; overflow: hidden;
+            position: fixed; inset: 0; pointer-events: none; z-index: 4400; overflow: hidden; display: none;
         }
+        body.is-birthday #birthday-confetti,
+        body.is-birthday #balloon-layer { display: block; }
         .balloon-item {
             position: fixed; bottom: -110px; width: 48px; height: 58px;
             border-radius: 50% 50% 48% 48%; pointer-events: auto; cursor: pointer;
@@ -672,9 +673,9 @@
         }
 
         @media (min-width: 768px) {
-            .links-flex-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+            .links-flex-grid { grid-template-columns: repeat(5, 1fr); gap: 12px; }
             .projects-grid { grid-template-columns: repeat(3, 1fr); }
-            .action-link { font-size: 1rem; padding: 16px 15px; }
+            .action-link { font-size: 0.96rem; padding: 16px 12px; }
         }
         @media (max-width: 560px) {
             .hero-glass-frame { padding: 34px 18px 28px; border-radius: 28px; }
@@ -725,7 +726,7 @@
     <a href="#about" title="الهوية"><i class="fas fa-id-card"></i></a>
     <a href="#services" title="المهارات"><i class="fas fa-sliders"></i></a>
     <a href="#works" title="المشاريع"><i class="fas fa-cubes"></i></a>
-    <a href="#birthday-studio" title="قوالب التهنئة والاحتفال"><i class="fas fa-cake-candles"></i></a>
+    <a href="#birthday-studio" class="nav-bday-link" title="قوالب التهنئة والاحتفال"><i class="fas fa-cake-candles"></i></a>
     <a href="#contact" title="التواصل"><i class="fas fa-paper-plane"></i></a>
 </nav>
 
@@ -783,11 +784,6 @@
             <span class="hero-chip"><i class="fas fa-location-dot"></i> بني سويف • مصر</span>
         </div>
 
-        <div class="countdown-pill" id="countdownPill">
-            <i class="fas fa-hourglass-half" style="color:var(--p)"></i>
-            <span id="countdownText">جاري حساب العد التنازلي لـ 15 نوفمبر...</span>
-        </div>
-
         <button type="button" class="hero-bday-ribbon" id="heroBdayRibbon" onclick="launchBirthdayCelebration(true)">
             <span>🎂</span>
             <span id="heroBdayText">15 نوفمبر • عيد ميلاد سعيد!</span>
@@ -795,8 +791,9 @@
         </button>
 
         <div class="hero-actions">
-            <a href="#birthday-studio" class="btn-glass-primary"><i class="fas fa-gift"></i> ابعتلي رسالة عيد ميلاد 💌</a>
-            <a href="#works" class="btn-glass-secondary"><i class="fas fa-cubes"></i> استكشف المشاريع</a>
+            <a href="#works" class="btn-glass-primary"><i class="fas fa-cubes"></i> استكشف المشاريع</a>
+            <a href="#contact" class="btn-glass-secondary"><i class="fas fa-paper-plane"></i> تواصل معي</a>
+            <a href="#birthday-studio" class="btn-glass-primary hero-bday-cta"><i class="fas fa-gift"></i> ابعتلي رسالة عيد ميلاد 💌</a>
         </div>
     </div>
 </header>
@@ -1070,6 +1067,10 @@
                 <i class="fas fa-wallet"></i> E& Cash
             </a>
 
+            <a href="https://ipn.eg/S/kemo_omar15/instapay/5HMjzK" target="_blank" rel="noopener noreferrer" class="action-link instapay-btn" title="kemo_omar15@instapay • Powered by InstaPay">
+                <i class="fas fa-bolt"></i> InstaPay
+            </a>
+
             <a href="https://www.facebook.com/profile.php?id=61588954905696" target="_blank" class="action-link" style="background: #1877F2;">
                 <i class="fab fa-facebook-f"></i> Facebook
             </a>
@@ -1120,24 +1121,6 @@
         el.classList.add('show');
         clearTimeout(toastTimer);
         toastTimer = setTimeout(() => el.classList.remove('show'), 2800);
-    }
-
-    // العد التنازلي لعيد الميلاد في الأيام الأخرى
-    function updateBirthdayCountdown() {
-        if (isBirthdayToday) return;
-        const now = new Date();
-        let nextBday = new Date(now.getFullYear(), 10, 15, 0, 0, 0);
-        if (now > nextBday) {
-            nextBday = new Date(now.getFullYear() + 1, 10, 15, 0, 0, 0);
-        }
-        const diff = nextBday - now;
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const mins = Math.floor((diff / (1000 * 60)) % 60);
-        const target = document.getElementById('countdownText');
-        if (target) {
-            target.textContent = `متبقي ${days} يوم و ${hours} ساعة و ${mins} دقيقة على عيد ميلاد 15 نوفمبر 🎂`;
-        }
     }
 
     // نظام الكونفيتي والألعاب النارية على Canvas
@@ -1506,9 +1489,7 @@
     window.addEventListener('DOMContentLoaded', () => {
         if (isBirthdayToday) {
             activateBirthdayMode();
-        } else {
-            updateBirthdayCountdown();
-            setInterval(updateBirthdayCountdown, 30000);
+            selectBirthdayTemplate('egyptian', document.querySelector('.tpl-chip[data-tpl="egyptian"]'));
         }
 
         if (localStorage.getItem('kareem_theme') === 'light') {
@@ -1520,7 +1501,6 @@
         document.body.style.setProperty('--active-font', savedFont);
         updateActiveFontBtn(savedFont);
 
-        selectBirthdayTemplate('egyptian', document.querySelector('.tpl-chip[data-tpl="egyptian"]'));
         initVisualGallery();
         printTerminal();
     });
